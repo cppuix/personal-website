@@ -1,0 +1,96 @@
+
+
+#volumeSliderContainer
+{
+    display: none;
+    position: absolute;
+
+    top: 2rem;
+    left: 2rem;
+
+    background: var(--bg);
+    padding: 0.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--menuShadowColor);
+
+    width: 2.5em;
+    height: 10em;
+
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: transform 0.2s ease;
+
+}
+
+#volumeSliderContainer.show
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.5rem;
+    opacity: 1;
+    transform: translateY(0.1em);
+    width: 4ch;
+    height: 10em;
+
+    padding: 0;
+
+    overflow: hidden;
+}
+
+#volumeRange
+{
+    width: 4ch;
+    height: 100%;
+    background-color: red;
+    appearance: slider-vertical;
+}
+
+/*#######################################
+
+########################################*/
+
+#volumeSliderContainer, .range {
+	touch-action: none; /* Prevent scrolling or zooming */
+	-webkit-user-select: none; /* Stop text selection */
+	user-select: none;
+}
+
+.range
+{
+    width: 4ch;
+    flex: 1;
+    -webkit-appearance: none;
+    /* background: var(--sliderGrooveColor); */
+    background-color: red;
+    outline: none;
+    overflow: visible;
+
+    position: absolute;
+
+    border: 0;
+    z-index: 2;
+
+    padding: 0;
+    opacity: 0;
+}
+
+.range::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    padding: 0;
+    opacity: 0;
+}
+
+#volumeProgress
+{
+    position: absolute;
+    bottom: 0;
+    width: 4ch;
+    height: 100%;
+    background-color: #5cdde681;
+    pointer-events: none;
+
+}
