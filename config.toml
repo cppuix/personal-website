@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://arm-alqaddari.codeberg.page/pages/"
+base_url = "https://arm-alqaddari.codeberg.page/"
 title = "عبد الرحمن بن ميهوب القداري"
 description = "نشر العلم وتعليمه"
 default_language = "ar"
