@@ -1,6 +1,0 @@
-This favicon was generated using the following font:
-
-- Font Title: Noto Kufi Arabic
-- Font Author: undefined
-- Font Source: https://fonts.gstatic.com/s/notokufiarabic/v21/CSRp4ydQnPyaDxEXLFF6LZVLKrodhu8t57o1kDc5Wh5v34bPnLSmf5yD.ttf
-- Font License: undefined)
