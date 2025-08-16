@@ -24,4 +24,44 @@
     <url>
         <loc>https://arm-alqaddari.codeberg.page/divers/</loc>
     </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/fataawa/</loc>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/</loc>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post1/</loc>
+        <lastmod>2025-08-16T10:44:08</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post2/</loc>
+        <lastmod>2025-08-15T19:30:20</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post3/</loc>
+        <lastmod>2025-08-14T23:24:04</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post4/</loc>
+        <lastmod>2025-08-14T23:24:33</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post5/</loc>
+        <lastmod>2025-08-14T23:24:41</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post6/</loc>
+        <lastmod>2025-08-14T23:24:44</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/posts/post7/</loc>
+        <lastmod>2025-08-13T23:36:34</lastmod>
+    </url>
+    <url>
+        <loc>https://arm-alqaddari.codeberg.page/quotes/</loc>
+    </url>
 </urlset>

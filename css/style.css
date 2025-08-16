@@ -612,3 +612,58 @@ input
   overflow: hidden;
   background-color: var(--bg);
 }
+
+/* ########### TELEGRAM CLONE */
+
+/* Telegram-style messages */
+
+/* Telegram-style feed */
+.telegram-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.telegram-message {
+  background-color: var(--alternateBg);
+  border-radius: 12px;
+  padding: 10px 14px;
+  
+  color: var(--text);
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  width: fit-content;
+  max-width: 80%;
+}
+
+.telegram-message.right {
+  margin-left: auto;
+  background-color: var(--buttonBg);
+}
+
+.telegram-message.left {
+  margin-right: auto;
+}
+
+.telegram-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 0.75em;
+  font-family: 'Almarai'
+}
+
+.telegram-author {
+  font-weight: bold;
+}
+
+.telegram-date {
+  font-style: italic;
+}
+
+.telegram-text {
+  white-space: pre-wrap;
+}
