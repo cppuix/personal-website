@@ -154,7 +154,7 @@ html
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 
-  touch-action: none;
+  /* touch-action: none; */
 
   background-color: var(--bg);
   color: var(--text);
