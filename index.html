@@ -49,6 +49,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Amiri+Quran&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&family=Noto+Kufi+Arabic:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://arm-alqaddari.codeberg.page/rss.xml">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="https://arm-alqaddari.codeberg.page/atom.xml">
+
+
 </head>
 
 
@@ -65,7 +71,7 @@
 
 <body>
 
-	<div class="modal" id="sideModal">
+	<!-- <div class="modal" id="sideModal">
 		<div id="mySidenav" class="sidenav">
 			<div id="sideHeader">
 				<button class="iconButton closebtn" id="collapseSideModalButton">
@@ -115,23 +121,6 @@
 										<li><a href="https://t.me/arm_al_qaddaaree" target="_blank">تليجرام: t.me/arm_al_qaddaaree</a></li>
 								</section>
 
-								<!-- <section>
-									<h2>بعض خصائص الموقع</h2>
-									<ul>
-										<li><strong>التحكم في السرعة:</strong> تغيير سرعة التشغيل: 1, 1.25, 1.5, 1.75,
-											2.</li>
-										<li><strong>التقديم والتأخير:</strong> الانتقال 5 ثوانٍ للأمام أو للخلف.</li>
-										<li><strong>استئناف الاستماع:</strong> حفظ موضع التقدم لكل درس تلقائيا.</li>
-										<li><strong>إمكانية التشغيل التلقائي للدرس التالي:</strong> يمكنك تفعيل خاصية
-											الانتقال للدرس التالي عند
-											انتهاء الحالي.</li>
-										<li><strong>تحميل الصوتيات:</strong> تحميل أي درس بالضغط على زر "تحميل
-											الصوتية"<br>ولكن، هذه الخاصية غير ثابتة بسبب اختلاف برامج المتصفحات، فقد
-											يبدأ التحميل، وقد تفتح لك صفحة جديدة فيها مشغل صوتيات، فإن ظهر لك ذلك، فاضغط
-											عليه إلى أن يظهر لك خيار التحميل.
-										</li>
-									</ul>
-								</section> -->
 							</div>
 						</div>
 					</div>
@@ -158,11 +147,11 @@
 			</div>
 
 		</div>
-	</div>
+	</div> -->
 
 	<header style="padding: 5px 10px;">
     <div id="topToolBar">
-			<button class="toolButton" id="openSideModalButton">
+			<!-- <button class="toolButton" id="openSideModalButton">
 				<svg class="svgicon" viewBox="-3.2 -3.2 22.40 22.40" fill="none" transform="matrix(-1, 0, 0, 1, 0, 0)">
 					<g fill="currentColor">
 						<path
@@ -173,7 +162,16 @@
 							clip-rule="evenodd"></path>
 					</g>
 				</svg>
-			</button>
+			</button> -->
+			<button class="iconButton" id="themeSwitch">
+						<svg viewBox="-4.8 -4.8 33.60 33.60" fill="none">
+							<path
+								d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+								fill="currentColor">
+							</path>
+
+						</svg>
+					</button>
 
 			<span style="text-align: left; margin: 0; margin-left: 5px; left: 0px;">الموقع الشخصي لعبد الرحمن بن ميهوب القداري</span>
 		</div>
@@ -200,7 +198,10 @@
             	<a href="https://arm-alqaddari.codeberg.page">الرئيسية</a>
             	<a href="https://arm-alqaddari.codeberg.page/books">كتب</a>
             	<!-- <a href="https://arm-alqaddari.codeberg.page/articles">مكتوبات</a> -->
-				<a href="https://arm-alqaddari.codeberg.page/posts">منشورات</a>
+				<a href="https://arm-alqaddari.codeberg.page/tasweer">التصوير</a>
+				<a href="https://arm-alqaddari.codeberg.page/photography">Photography</a>
+				<a href="https://arm-alqaddari.codeberg.page/recommendations">مقترحات</a>
+				<a href="https://arm-alqaddari.codeberg.page/about">حول الموقع</a>
             	<!-- <a href="https://arm-alqaddari.codeberg.page/divers">متفرقات</a> -->
             </div>
             <button id="scrollRightNavButton">
@@ -220,18 +221,26 @@
         </div>
     </nav>
 
-	<div style="height: 2em;"></div>
+	<!-- <div style="height: 2em;"></div> -->
 	<main>
 		
-<h1 class="title">
-  الرئيسية
-</h1>
-<ul>
-  <!-- If you are using pagination, section.pages will be empty.
-       You need to use the paginator object -->  
-  
-</ul>
+<blockquote>
+	<h3>بريق الأمل</h3>
+<p>
+ولكن، والحمد للّه، يعجبني أمر المشايخ والعلماء الذين يكتفون بإنشاء مواقع خاصة بهم، يتحكمون فيها كيف شاؤوا.
+وقد تطورت الوسائل ولدينا من الشباب المختصين في البرمجة والآليات والبرامج ما يمكننا من الاستغناء عن مواقع الفجور.
+وهذا الضرب من المزاحمة هو ما يصلح تفسيرًا وتطبيقًا لقول الإمام ابن عثيمين — رحمه اللّه وغفر له —،
+تطبيقٌ يجعل للمسلمين شأنًا ومكانةً خاصةً بهم على شبكة المعلومات.<br>
+تطبيقٌ يحقق أمر النبي — صلى اللّه عليه وسلم — في مخالفة الكفار وعدم التشبه بهم.<br>
+تطبيقٌ ليس فيه ارتكاب الكبائر.<br>
+تطبيقٌ لا ابتداع فيه.<br>
+تطبيقٌ يُصَفّي متبعي الهوى ومحبي الظهور.<br>
+تطبيقٌ على نهج الكتاب، والسنة، والسلف الصالح.
+</p>
+</blockquote>
+<p><a href="/books/buzoogh">بزوغ ضياء الفجر الوضاء على سحر مسألة التصوير بالأضواء</a>، آخر الرد على شبهة الحاجة للتصوير لنشر العلم والدعوة.</p>
 
+		
 	</main>
 	
 	<footer>
