@@ -25,7 +25,9 @@ function goToPlaylist(playlistIndex)
 /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 function adjustNavbar()
 {
+  
   var x = document.getElementById("topNavbar");
+  console.log("adjusting navbar", x.className)
   if (x.className === "navbar")
   {
     console.log(x.className)
