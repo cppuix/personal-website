@@ -248,6 +248,19 @@
 	<script src="/js/topNavBar.js"></script>
 	<!-- <script src="/js/sidebar.js"></script> -->
 
+	<script>
+		let savedScroll = localStorage.getItem("page-scroll");
+if (savedScroll !== null) {
+  window.scrollTo(0, parseInt(savedScroll, 10));
+}
+
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("page-scroll", window.scrollY);
+});
+
+		
+	</script>
+
 </body>
 
 </html>

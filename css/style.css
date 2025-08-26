@@ -69,7 +69,7 @@
 {
   --bg: rgba(29, 30, 31);
   --alternateBg: rgba(35, 36, 37);
-  --text: white;
+  --text: rgb(218, 218, 218);
   --a-hover-background: rgba(0, 80, 80, 1);
 
   --insetShadowColor: rgba(20, 20, 20, 0.3);
@@ -612,7 +612,8 @@ input
 
 /* COLLAPSIBLE AREA */
 
-.collapsible {
+.collapsible
+{
   background-color: var(--bg);
   color: var(--text);
   cursor: pointer;
@@ -631,7 +632,7 @@ input
 .content
 {
   padding: 0 18px;
-  display: none;
+  /* display: none; */
   overflow: hidden;
   background-color: var(--bg);
 }
