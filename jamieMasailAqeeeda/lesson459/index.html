@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>1- هل يجوز التسمية بأسماء الله الخاصة ؟<br>.... تنقسم اسماء الله إلي قسمين: اسماء خاصة فهذه لا يجوز التسمي بها وإذا سمي بها غير الله فلابد من تغييره..<br>وأسماء مشتركة إن لوحظت الصفة منع التسمي به وإن لم تلاحظ الصفة جاز التسمي به على أنه علم محض كرؤوف ورحيم وسميع وبصير......<br>2- الأدلة على عدم جواز التسمية بالاسماء الخاصة وجواز ذلك في الاسماء المشتركة <br>3- هل يجوز أن يسمى غير الله بالرحمن وما علاقة ذلك بمسيلمة الكذاب.  .......</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

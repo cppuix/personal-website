@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>تابع اسمي الله ( 80- الكفيل   81- الوكيل)<br>1- ما معنى اسمي الله الكفيل والوكيل ؟<br>....الكفيل هو القائم بأرزاق الخلائق وأقواتها.<br>....والكفيل بمعنى الحفيظ والشاهد.<br>....الوكيل هو المتولي شؤون خلقه بعلمه وكمال قدرته وشمول حكمته وله معان مرجعها إلي أن الوكيل هو المتوكل عليه.<br>2- بين الوكيل بالمعنى العام وبالمعنى الخاص ؟<br>3- هل يجوز أن تقول توكلت على الله ثم على فلان ؟<br>4- هل يجوز أن تتوكل على السبب ؟<br>5- ما هي الآثار المترتبة على الإيمان بإثبات اسمي الله الوكيل والكفيل؟<br>...من تلك الاثار واهمها ترك القلق وخصوصا على مسألة الرزق <br>.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

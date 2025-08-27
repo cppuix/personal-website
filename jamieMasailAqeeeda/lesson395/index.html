@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> (62- السلام )<br>1..ما هي الأدلة على إثبات هذا الاسم لله سبحانه وتعالى ؟<br>...ورد اسم السلام في القران في موضع واحد فقط. وجاء في السنة في بعض الأحاديث.<br>2..ما معنى اسم الله (السلام)؟<br>...الذي سلم المؤمنون من عقوبته <br>...السالم من العيوب والنقص وقد فصلها ابن القيم في (البدائع) إلي عشرة أمور :<br>١- هو السالم من الصاحبة والولد والكفء والشريك والنظير....<br>٢- حياته سلام.... وقيوميته سلام....وعلمه سلام...<br>٣- كلماته سلام....وغناه سلام....وملكه سلام....<br>٤- حلمه وعفوه وصفحه سلام....<br>٥- بطشه وانتقامه سلام....<br>٦- دينه وشرعه سلام....<br>٧- عطاؤه ومنعه سلام.....<br>٨- استواؤه على العرش سلام....<br>٩- كماله وصفاته سلام......<br>١0- موالاته لاوليائه سلام....<br>3.. ما هي الآثار المترتبة على الإيمان بهذا الاسم ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

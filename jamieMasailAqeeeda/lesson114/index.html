@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>.. تابع مسائل العين <br>1..اذكر الحديث الذي يبين أهمية التبريك في العين وفي الاستغسال من العين ؟<br>....قصة سهل بن حنيف عندما أصابه عامر بن ربيعة بعين..........<br>2..ما صفة التبريك ؟<br>.3.هل قول ما شاء الله لا قوة الا بالله يقال في دفع العين ؟<br>4..هل الصلاة على النبي صلى الله عليه وسلم تقال في دفع العين ؟<br>...<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

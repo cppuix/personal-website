@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد <br>تابع ذكر تسلسل تاريخي للأحداث من بعد موت النبي صلى الله عليه وسلم حتى مقتل الحسين رضي الله عنه <br>.إكمال قصة بيعة أبي بكر رضي الله عنه...<br>..1.توضيح أكثر لقوله إن بيعة أبي بكر رضي الله عنه كانت فلتة.<br>.2..ما معنى وقى الله شرها فهل بيعة أبي بكر شر؟<br>3...كم استغرقت المشاورات في السقيفة ؟ وكيف يستعمل الرافضة هذا الموقف ضد الصحابة ؟<br>.4..هل بايع علي بن ابي طالب لأبي بكر رضي الله عنهما ؟<br>5... لماذا بايع علي رضي الله عنه مرة أخرى بعد موت فاطمة رضي الله عنها ؟<br>6...ما حكم القول بأن علي رضي الله عنه بايع وهو كاره ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

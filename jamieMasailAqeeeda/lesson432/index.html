@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br> (91- المتكبر)<br>1-  ما هي الأدلة على إثبات هذا الاسم لله سبحانه وتعالى ؟<br>...ورد في موضع واحد من القرآن في آخر سورة الحشر <br>2- ما معنى اسم الله (المتكبر)؟<br>.. خمسة معان:<br>١- المتنزه عن كل سوء وشر <br>٢- المتكبر على عتاة خلقه وعلى الجبابرة <br>٣- المتكبر عن ظلم العباد <br>٤- المتكبر عن صفات خلقه <br>٥- الذي كبر وعظم فهو القوي العظيم <br>3- التكبر لا يليق إلا بالله وأما العبد اذا اتصف بها فهو مذموم (لا يدخل الجنة من كان في قلبه مثقال ذرة من كبر).<br>4- اذكر نماذج من المتكبرين ؟<br>...إبليس لعنه الله <br>....فرعون لعنه الله <br>... الوليد بن المغيرة <br>...قوم نوح وقوم عاد وقوم ثمود وقوم شعيب....<br>4- ما هي الآثار المترتبة على إثبات هذا الاسم لله سبحانه وتعالى ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد <br>تابع ذكر تسلسل تاريخي للأحداث من بعد موت النبي صلى الله عليه وسلم حتى مقتل الحسين رضي الله عنه <br>1..تابع قصة مقتل عمر رضي الله عنه <br>...كم دين عمر وما وصية عمر في سداد دينه<br>...استئذانه من عائشة الله عنها أن يدفن مع النبي صلى الله عليه وسلم وأبي بكر رضي الله عنه <br>...جعله الأمر من بعده للستة الذين مات النبي صلى الله عليه وسلم وهو عنهم راض.<br>...وصيته للخليفة من بعده بالمهاجرين والأنصار و بأهل الأمصار وبالأعراب.<br>2..قاتل عمر هو أبو لؤلؤة المجوسي لعنه الله ومن الذي يعظمه</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>27--- صفة البشاشة <br>...ما هو الدليل على اثبات هذه الصفة ؟<br>..دليلها جاء في السنة. <br>...الحث  على توطن المساجد للعبادة<br>28--- صفة البصر.<br>... ما هو الدليل على اثبات هذه الصفة الله سبحانه وتعالى ؟<br>29---صفة البطش.<br>.. ما هو الدليل على اثبات هذه الصفة؟<br>30--- صفة البغض .<br>...ما هو الدليل على اثبات هذه الصفة؟<br>31-- صفة البقاء.<br>...ما هو الدليل على إثبات هذه الصفة ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

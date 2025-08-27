@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- كم عدد الملائكة ؟<br>... لا يعلم عددهم إلا الله وهناك أدلة كثيرة تبين كثرتهم :<br>١ــ حديث (يؤتى بجهنم لها سبعون ألف زمام.......<br>٢ــ حديث (البيت المعمور يدخله كل يوم سبعون ألف ملك....<br>٣-- حديث (أطت السماء وحق لها أن تئط....   .....<br>٤ــ حديث (في ليلة القدر...تنزل الملائكة بعدد الحصى)<br>٥ــ الأحاديث التي فيها أن كل نطفة موكل بها ملك وكل إنسان موكل به حفظة من الملائكة ومن يرفعون أعماله.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

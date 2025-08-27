@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الشرط السادس من شروط لا إله إلا الله... الانقياد <br>2..ماهو الانقياد ؟<br>3.. الانقياد هو ثمرة قول لا اله الا الله <br>4.. من سنن الله أنه من لم ينقد لله فإن الله يسلط عليه من يهينه من المخلوقين.... <br>5.. الشرط السابع من شروط لا إله إلا الله القبول لها..<br>6..الشرط الثامن من شروط لا إله إلا الله الكفر بالطاغوت</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- ما حال حديث أن رجلا سأل النبي صلى الله عليه وسلم (أي البقاع خير وأي البقاع شر ؟ فقال لا أدري حتى أسأل جبريل عليه السلام فسأله فقال لا أدري حتى أسأل ميكائيل عليه السلام فسأله فقال خير البقاع المساجد وشر البقاع الأسواق) ؟<br>2-- ما حال حديث (أن الله تعالى أيدني بأربعة نقباء إثنين من أهل السماء واثنين من أهل الأرض) قالوا من هم قال جبريل و ميكائيل من أهل السماء وأبو بكر وعمر من أهل الأرض..؟<br>3-- خطورة وضع الأحاديث الموضوعة والمكذوبة على النبي صلى الله عليه وسلم.<br>4-- من هي الفرقة التي تقول إنها تكذب للنبي وليس على النبي صلى الله عليه وسلم ؟<br>5-- خطورة العجلة وعدم التحري في نشر الرسائل في وسائل التواصل.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

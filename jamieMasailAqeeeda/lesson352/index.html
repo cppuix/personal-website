@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات<br>1.هل الدهر من اسماء الله الحسنى ؟<br>..اختلف أهل العلم إلي ثلاثة أقوال والراجح انه <br>....ليس من الأسماء الحسنى لأمور:<br>... لأن اسماء الله أعلام وأوصاف وكلمة الدهر لا يستخرج منها صفة.لانه اسم جامد وأسماء الله ليست جامدة بل مشتقة <br>...الدهر هو الليل والنهار والله سبحانه هو الذي يقلب الليل والنهار فكيف يكون المقلب هو المقلب.<br> ...لو كان الدهر من اسماء الله الحسنى لكان قول الكفار الدهرية صواباً حيث قالوا وما يهلكنا إلا الدهر.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

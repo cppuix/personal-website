@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br>تابع مسألة سوء الظن بالله سبحانه وتعالى <br>4- من قنط من رحمة الله وأيس من روحه...<br>5- من جوز على الله أن يعذب أولياءه مع إحسانهم وإخلاصهم....<br>6- من ظن أن الله لن يجمع عباده ولن يحكم بينهم ولن يبين لهم حقيقة ما اختلفوا فيه <br>7- من ظن أن الله يضيع عليه عمله الصالح ويبطله بلا سبب <br>8- من ظن أن الله يجوز عليه أن يؤيد الدجالين والكذابين بالمعجزات.<br>9- أن الله يحسن به أن يعذب من استنفذ عمره في طاعة الله أو ينعم من استنفذ عمره في معصية الله.<br>10- من ظن أن الله أخبر عن نفسه وصفاته وأفعاله بما ظاهره باطل وتشبيه وتمثيل <br>11- من ظن أنه يكون في ملكه ما لا يشاء.....<br>12- من ظن بالله أنه كان معطلا في الأزل ثم بعد ذلك صار قادراً عليه بعد أن لم يكن.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

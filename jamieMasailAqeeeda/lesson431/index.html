@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br> (90- الوارث)<br>1-  ما هي الأدلة على إثبات هذا الاسم لله سبحانه وتعالى ؟<br>...ورد في ثلاثة مواضع من القرآن وكلها بصيغة الجمع.<br>2- ما معنى اسم الله (الوارث)؟<br>...هو الباقي بعد فناء الخلق والمسترد أملاكهم وموارثهم بعد موتهم.....<br>....الله هو الذي يرث الأرض ومن عليها وبين الله أنه له ميراث السموات والأرض  فهو يورثها من يشاء من عباده <br>....والكتاب يورثه الله من يشاء <br>.... والجنة يورثها الله من يشاء <br>....والنبوة يورثها الله من يشاء <br>4- ما هي الآثار المترتبة على إثبات هذا الاسم لله سبحانه وتعالى ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

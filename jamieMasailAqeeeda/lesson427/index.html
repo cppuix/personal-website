@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>تابع اسمي الله (86- القريب   87-  المجيب)<br>تابع موضوع الدعاء وأهميته,:<br>1-  ما هي موانع الدعاء؟<br>١- المطعم الحرام شربا وتغذية ولبسا....<br>٢- الاستعجال في إجابة الدعاء فيقول دعوت فلم يستجب لي......<br>٣- ألا يدعو بإثم أو قطيعة رحم...<br>٤- الاعتداء في الدعاء....<br>٥- ارتكاب المعاصي والذنوب <br>٦- ترك الأمر بالمعروف والنهي عن المنكر....<br>مسألة مهمة جدا:<br>2- كيف يكون استجابة الدعاء ؟<br>.....على ثلاثة أحوال.....مع ذكر أمثلة مهمة جدا لتوضيح الكلام...</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

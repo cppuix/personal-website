@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى (1-الله  2- الإله).<br>...1..مقدمة في التعريف بأهمية تعلم اسماء الله. وبذل الجهد والوقت في ذلك.<br>... لفظ الجلالة (الله) <br>..2.ما معنى (الله)؟<br>..3.هل (الله) من الأسماء الخاصة ؟<br>.4. في كم موضع ورد اسم الله في القران ؟<br>..لا تسقط الألف واللام منه في الدعاء <br>..من هو الذي يحب لذاته ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

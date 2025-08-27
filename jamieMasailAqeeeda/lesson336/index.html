@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات <br>1.. ضرب مثال في الفقه يبين موضوع القرينة حديث نهى الرجل عن الاغتسال بفضل المرأة والمرأة بفضل الرجل .......ثم وجدت قرينة تصرف النهي من التحريم إلي الكراهة.<br>2..اذكر مثالاً على التأويل المحمود ؟<br>...قال تعالى (اتى أمر الله فلا تستعجلوه..).<br>قال تعالى (فإذا قرأت القرآن فاستعذ بالله).<br>3..اذكر مثالاً على التأويل المذموم ؟<br>قال تعالى (الرحمن على العرش استوى) فقولهم استوى بمعنى استولى تأويل مذموم بمعنى التحريف.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

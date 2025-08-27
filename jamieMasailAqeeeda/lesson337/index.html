@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات<br>   1.. ما هو المراد بالتاويل في قوله تعالى (وما يعلم تأويله إلا الله والراسخون في العلم يقولون امنا به......؟<br>... على قراءة الوصل يكون معنى التأويل التفسير.<br>...على قراءة الوقف يكون معنى التأويل حقيقة الشيء وما يؤول إليه.<br>...هل تفسير القرآن يعلمه الراسخون في العلم ؟<br>...من فوائد الآية أن المتشابه يرد إلي المحكم </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

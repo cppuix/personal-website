@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">1.القسم الثاني أن يكون العمل لله ولكن خالطته نية أخرى غير الرياء كمن يجاهد من أجل الله ومن أجل الغنيمة <br>2.ان يكون عمله من أجل الدنيا كمن يخرج للجهاد من أجل الغنيمة فقط <br>3.التاجر أو المكاري الذي يخرج من أجل الحج ومن أجل التجارة <br>4.اذا عمل العمل خالصاً لله ثم مدحه الناس وأثنى عليه المؤمنون هل ذلك يؤثر على أجره ؟<br>5.فائدة مهمة قول سهل التستري ليس على النفس شيء أشق من الإخلاص</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

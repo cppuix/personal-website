@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> (60- الكريم.  61- الأكرم)<br>1..ما هي الأدلة على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>... الكريم ورد في ثلاثة مواضع من القرآن <br>...الأكرم ورد في موضع واحد من القرآن <br>2.. ما معنى اسم الله (الكريم) و(الأكرم) ؟<br>... الكريم: البهي الكثير الخير العظيم النفع <br>... الكريم يشمل جميع المحاسن والمحامد ولهذا تعددت أقوال أهل العلم في تفسير معانيه.ومنها:<br>١- كثير الخير عظيم النفع<br>٢-الدائم بالخير <br>٣-يسهل خيره ويقرب من خلقه <br>٤-هو الذي له قدر عظيم وكرم كل كريم من كرمه<br>٥- منزه عن النقائص<br>٦- المكرم لعباده <br>٧- هو الذي يعطي من يشاء ولا يتوقع عوضاً <br>٨- هو الذي يعطي بغير سبب <br>٩- هو الذي لا يبالي من أعطى<br>١0- هو الذي يعطي من يحتاج ومن لا يحتاج <br>١١- هو الذي يعطي ويزيد على المنى.<br>3- هل بسط الرزق دليل على الاكرام وتقتيره دليل على الاهانة ؟<br>4.. فائدة لمن يشكو من ضعف الحفظ والتحصيل (اقرأ وربك الأكرم). <br>3.. ما هي الآثار المترتبة على الإيمان بهذين الاسمين ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

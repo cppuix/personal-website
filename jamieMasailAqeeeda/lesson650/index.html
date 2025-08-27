@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>تابع ذكر الأشياء التي لا تنافي العصمة للأنبياء:<br>1-- هل نقل الإجماع على أن الأنبياء يجوز عليهم المرض والجوع والنسيان وغير ذلك ؟<br>2-- ما الذي اضطر شيخ الإسلام لنقل الإجماع على ذلك وأدلتها واضحة ؟<br>....لوجود من يغلو في الأنبياء وفي النبي صلى الله عليه وسلم حتى يرفعهم إلى درجة الألوهية وهم بشر يطرأ عليهم ما يطرأ على البشر.<br>3-- ماذا قال الإمام الدارمي في الرد على الجهمية في إثبات العرش ؟<br>4-- أمثلة واقعية على ذلك...</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

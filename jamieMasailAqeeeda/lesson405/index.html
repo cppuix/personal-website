@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>(67- الشكور.  68- الشاكر)<br>1- ما هو الدليل على إثبات هذين الاسمين  لله سبحانه وتعالى ؟<br>....الشكور ورد في أربعة مواضع من القرآن <br>....الشاكر ورد في موضعين من القرآن <br>2- ما معنى هذين الاسمين ؟<br>...الشكور والشاكر هو الذي يشكر القليل من العمل ويعفو عن الكثير من الزلل ولا يضيع اجر من احسن عملا.<br>3- اذكر بعض صور شكر الله تعالى ؟<br>١- أنه يجزي بالحسنة عشر أمثالها إلي سبعمائة ضعف إلي أضعاف كثيرة <br>٢- شكر الله لتلك البغي عندما سقت الكلب <br>٣- شكر الله لذلك الذي قطع الشوك من طريق الناس<br>٤- من شكر الله توفيقه للعبد للعمل الصالح ثم مجازاته على ذلك <br>٥- من صور شكر الله أنه أعطى العبد ما يحسن به إلي نفسه وأثابه عليه<br>٦-يجازي عدوه بما عمله من خير في الدنيا</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

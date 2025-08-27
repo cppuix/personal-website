@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>تابع صفة المحبة <br>1--- لماذا كان إنكار صفة المحبة يعتبر انكارا للألوهية ؟<br>2--- ما هي شبهة هؤلاء الذين نفوا صفة المحبة ؟<br>....لهم شبه واهية منها:<br>١-- أن هذا يخالف العقل والرد عليهم بجوابين:<br>....رد على التسليم.........<br>....ورد على المنع.........<br>٢-- لا تكون المحبة إلا بين اثنين متجانسيين والرد عليهم بالمنع ونحن نورد لك الأدلة على بطلان هذه المقدمة..........<br>3--- هل أحد يحب لذاته غير الله ؟<br>... الجواب لشيخ الإسلام.......</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

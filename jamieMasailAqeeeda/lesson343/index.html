@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>1.. ما هو الأصل في النفي والاثبات من ناحية التفصيل والإجمال؟<br>... أخبر الله في أسمائه وصفاته بإثبات مفصل ونفي مجمل....<br>... أمثلة على الإثبات المفصل.     <br>..........................في سورة الحج...<br>...........................في سورة الحشر....<br>... أمثلة على النفي المجمل <br>.....................ليس كمثله شيء.<br>.....................ولم يكن له كفوا احد.<br>....................هل تعلم له سميا </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

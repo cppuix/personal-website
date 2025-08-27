@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- هل الملائكة يموتون ؟<br>...اختلف الناس في ذلك فالأكثر على أنهم يموتون والدليل قول الله تعالى (وصعق من في السماوات ومن في الأرض إلا من شاء الله) .<br>وقسم قالوا  إنهم لا يموتون كابن حزم رحمه الله وهو قول الفلاسفة ومن إليهم كأصحاب رسائل إخوان الصفا.<br>2--- من هم الذين استثناهم الله من الصعق في قوله تعالى (فصعق من في السماوات والأرض إلا من شاء الله)؟<br>3-- ما حال حديث الصور الطويل ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

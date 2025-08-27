@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- هل الملائكة يتكلمون ويفهمون ولهم عقول ؟<br>2-- هل توصف الملائكة بالذكورة ؟<br>...الراجح أنهم يوصفون بالذكورة لأمور:<br>١ــ أن الله نفى عنهم الأنوثة <br>٢ــ في حديث سمرة في البخاري وفيه ورأيت رجلا يسعى حول النار. وهو مالك خازن النار.<br>..فتوى الشيخ ابن باز رحمه الله في ذلك.<br>.. فتوى الشيخ يحيى الحجوري حفظه الله في ذلك.<br>3-- الرد على قول سعيد بن المسيب أنهم ليسوا ذكورا ولا إناثا..</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

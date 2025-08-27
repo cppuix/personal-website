@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>34-  35--- صفتا التقديم والتأخير <br>...ما هو الدليل على إثبات هاتين الصفتين لله سبحانه وتعالى ؟<br>... ينبغي لنا أن نسلك سبل التقدم إلى الله <br>.... اياك والتأخر  عن الله وطاعته ومرضاته<br>36--- صفة التوب.<br>والتواب من اسماء الله الحسنى .<br>توبة الله على عباده نوعان ما هما ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

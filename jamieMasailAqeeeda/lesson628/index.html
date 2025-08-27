@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1-- ما هي الأدلة على ان الأنبياء أفضل من بقية البشر؟<br>..١--.قال تعالى (ومن يطع الله والرسول فأولئك مع الذين أنعم الله عليهم من النبيين والصديقين والشهداء والصالحين....). ما سبب نزول هذه الآية ؟<br>٢-- (وكلا فضلنا على العالمين)بعد ذكر عدد من الأنبياء.<br>٣--ومن الأحاديث النبوية................<br>3-- قد يقول قائل لماذا حشد كل هذه الأدلة في هذا الموضوع مع ان هذا الشيء متقرر عند اكثر الناس؟<br>....لأنه قد وجد من الفرق من يقول إن بعض الأولياء أفضل من بعض الأنبياء ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

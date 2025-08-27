@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>135--صفة المعية ثابتة لله سبحانه وتعالى <br>....ماهو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>136--- صفة المغفرة والغفران لله سبحانه وتعالى . ومن أسمائه الغفور والغفار.<br>....ما هو الدليل على إثبات هذه الصفة؟<br>137---صفة المقت وهو اشد البغض ثابتة لله سبحانه وتعالى  .<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>138--- صفة المقيت لله سبحانه وتعالى، ومن أسمائه المقيت .<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى؟<br>139--- صفة الملك والملكوت لله سبحانه وتعالى ومن أسمائه الملك والمليك؟<br>....ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

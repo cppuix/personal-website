@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد <br>تابع ذكر تسلسل تاريخي للأحداث من بعد موت النبي صلى الله عليه وسلم حتى مقتل الحسين رضي الله عنه شي<br>1..اذكر بعض فضائل ومناقب عمر بن الخطاب رضي الله عنه ؟<br>... حديث قصر عمر في الجنة......<br>... حديث الرؤيا أن النبي صلى الله عليه وسلم ناول عمر اللبن.....<br>... حديث الرؤيا أن النبي صلى الله عليه وسلم ينزع من الماء.....ثم جاء عمر بن الخطاب فاستحالت غربا ونزع نزعا قويا......<br>... حديث ما لقيك الشيطان سالكا فجا إلا سلك غير فجك....<br>... أثر ابن مسعود ما زلنا أعزة منذ أسلم عمر....<br>.... أثر علي بن ابي طالب رضي الله عنه في ثنائه على عمر عند موته....<br>....حديث اثبت أحدا فما عليك إلا نبي أو صديق أو شهيد....<br>.... حديث لقد كان في من كان قبلكم محدثون فإن يكن في أمتي فهو عمر.....<br>... حديث الرؤيا أن النبي صلى الله عليه وسلم رأى عمر وعليه قميص طويل......</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>ذكر بعض الآيات التي فيها ذكر الملائكة وتحتاج إلى بيان وتفسير<br>1-- ما معنى قوله تعالى ( قل لو كان في الأرض ملائكة يمشون مطمئنين لنزلنا عليهم من السماء ملكا رسولا)؟<br>2-- من الحكمة أن كل رسول يبعث بلسان قومه .<br>3-- ما معنى قوله تعالى (وقالوا لولا انزل عليه ملك ولو أنزلنا ملكا لقضي الأمر ثم لا ينظرون ولو جعلناه ملكا لجعلناه رجلا وللبسنا عليهم ما يلبسون)؟ <br>4-- أهمية البيان لشبهات أهل الباطل والتحذير من تخطف الشبهات. <br>5-- بيان عناد أهل الباطل ومعارضتهم للحق.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

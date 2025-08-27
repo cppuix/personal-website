@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>الشبهات المتعلقة بهذا الباب والردود عليها:<br>تكملة ما يتعلق بقصة الغرانيق<br>1-- ما الرد على الحافظ ابن حجر رحمه الله في تصحيحه للقصة ؟<br>2-- اذكر بعض أسماء العلماء والمحدثين الذين ضعفوا القصة ؟<br>3-- ما سبب سجود الكفار عند قراءة النبي صلى الله عليه وسلم سورة النجم ؟<br>4-- تأثير القرآن العجيب على النفوس.....<br>5-- فتوى مهمة للجنة الدائمة في هذه المسألة........<br>6-- المعنى الصحيح للآية ( وما أرسلنا من قبلك من رسول ولا نبي إلا إذا تمنى ألقى الشيطان في أمنيته....... الآية.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

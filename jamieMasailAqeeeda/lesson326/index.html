@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>1.ما هو الرد على من يقول إن هذا الكلام الذي ذكرتموه عن عقيدة أهل السنة في الأسماء والصفات إنما هو من كلام شيخ الإسلام ابن تيمية ومن بعده.؟<br>...نقولات عن أهل العلم في ذلك من عهد التابعين ومن بعدهم <br>..عن الأوزاعي ومكحول <br>..عن الزهري <br>..عن مالك وشيخه ربيعه وسفيان <br>..عن الليث<br>..عن أبي زرعة<br>..عن أبي نعيم الاصبهاني <br>....عن الإمام أحمد <br>..عن نعيم بن حماد الخزاعي <br>..عن ابن خزيمة <br>..عن ابن بطة <br>..عن ابن القيم <br>2.. لماذا لم تذكر نقولات عن الصحابة رضي الله عنهم في هذا الباب ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

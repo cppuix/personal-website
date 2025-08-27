@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> تابع اسم الله (القوي والمتين)<br>الكلام على قول( لا حول ولا قوة الا بالله ).<br>1..بين عظمة هذه الكلمة ؟<br>.. كلام شيخ الإسلام في عظمتها <br>..هي من كنز من كنوز الجنة من تحت العرش .<br>..هي من غراس الجنة.<br>2..ما معنى هذه الكلمة ؟<br>3..ما هي المواضع التي تقال فيها ؟<br>...ذكر مطلق <br>... عند الخروج من المنزل <br>... إذا تعار من الليل.<br>...دبر الصلوات <br>... عند سماع المؤذن في الحيعلتين <br>... عند القتال وفيه قصة عجيبة لذلك النبي الذي أعجب بقومه فسلط الله عليهم الموت .</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

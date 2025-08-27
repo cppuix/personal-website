@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات <br>تابع بعض القواعد الإجمالية في صفات الله:<br>٦-- يلزم في إثبات الصفات التخلي عن محذورين عظيمين الأول وهو التمثيل والثاني هو التكييف.<br>٧-- صفات الله توقيفية لا مجال للعقل فيها.<br>٨-- التوقف في الألفاظ المجملة التي لم يرد إثباتها ولا نفيها.........مثال (الجهة).....<br>٩-- كل صفة ثبتت بالنقل الصحيح توافق العقل الصريح ولابد.<br>١0-- قطع الطمع عن إدراك كيفية الصفات .</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

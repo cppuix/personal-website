@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>(69- الحليم)<br>1- ما هو الدليل على إثبات اسم (الحليم) لله سبحانه وتعالى ؟<br>... جاء ذكره في القرآن في ما يقارب احدى عشر موضعا.<br>2- ما معنى اسم الله (الحليم)؟<br>هو الذي لا يعجل على عباده بعقوبتهم على ذنوبهم ومعاصيهم وهم يستحقونها ولكنه يؤجل ويؤخر ويحلم عليهم ومع ذلك يوالي النعم عليهم.<br>.. هذا الحلم عن قدرة لا عن عجز.<br>3- اذكر بعض صور حلم الله ؟<br>١_ أن الله أخبر عن حلمه أنه لو يؤاخذهم بظلمهم ما ترك عليها من دابة <br>٢_ حلم الله لفرعون مع شدة طغيانه<br>٣_ دعوته لهم بالتوبة رغم ما فعلوا من قتل أوليائه الله <br>٤_ إمساكه للسماء أن تزول وتقع على الأرض.<br>4- اذكر بعض الآثار المترتبة على إثبات اسم الله الحليم ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

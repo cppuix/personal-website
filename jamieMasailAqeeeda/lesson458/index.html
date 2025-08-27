@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>1- ما هي الأسماء التي تدل على الإحاطة ؟<br>...الأول والأخر والظاهر والباطن والعليم.....<br>2- هل هذه الأسماء متلازمة أم يجوز فصل بعضها عن بعض ؟<br>... المتقابل منها متلازم فإذا ذكرت الأول فلابد تذكر الآخر وهكذا الظاهر والباطن....<br>3- ما حال أثر أن العوالم كلها في قبضته سبحانه وتعالى كخردلة في يد أحدكم ؟<br>4- لماذا جاء الواو بين هذه الاسماء مع أنها تدل على موصوف واحد ؟<br>5- هل هذه الأسماء مختصة بالله ؟ وما حكم من وصف بها غير الله تعالى ؟<br>6- هل يجوز وصف بعض المخلوقات التي خلقها الله للبقاء كالولدان المخلدون وأهل الجنة والحور العين و.... أنهم آخر؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

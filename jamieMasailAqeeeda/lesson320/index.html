@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. ما هو الرد على هذه الشبهة وهو أن معاوية رضي الله عنه كان يأمر بسب علي بن ابي طالب رضي الله عنه من على المنابر.<br>‌2..لا يعرف لمعاوية سب لعلي بن ابي طالب لا في <br>‌3.. معاوية رضي الله عنه كان يضرب به المثل في الحلم<br>‌4. لم يكن الصحابة يطعن بعضهم في دين بعض حتى لو اختلفوا أو تقاتلوا <br>‌5.. ماذا قال معاوية عندما بلغه خبر قتل علي رضي الله عنهما؟<br>‌6..ما معنى الحديث الذي في مسلم عن قول معاوية لسعد بن ابي وقاص ما منعك أن تسب أبا تراب ؟<br>‌6.. ماذا قال عمر بن عبد العزيز لما أمر بسب أهل البيت.....</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات<br>1.. ما هو التعطيل ؟<br>2.. هل المراد بالتعطيل تعطيل الصفة أم تعطيل النص ؟<br>3.. اثر حماد بن زيد في ضرب مثال للجهمية ؟<br>4..اذكر أنواع التعطيل ؟<br>...  (الاشاعرة) تعطيل جزئي <br>...(المعتزلة) يثبتون الأسماء وينكرون الصفات<br>...(الجهمية)ينكرون الأسماء والصفات <br>...(القرامطة )ينكرون اي صفة ثبوتية ويثبتون السلبية.<br>...(غلاة القرامطة) ينفون الثبوتية والسلبية </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

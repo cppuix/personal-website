@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>1.. اذكر بعض القواعد المتعلقة بالاسماء والصفات ؟<br>...أسماء الله كلها حسنى.<br>... اسماء الله أعلام وأوصاف.<br>... اسماء الله إن دلت على وصف متعد تضمنت ثلاثة أمور.......<br>....وإن دلت على وصف غير متعد تضمنت امرين...<br>....دلالة أسماء الله تعالى على ذاته وصفاته تكون بالمطابقة والتضمن والالتزام <br>.... أسماء الله تعالى توقيفية <br>.... اسماء الله غير محصورة بعدد معين <br>2..ما معنى اسماء الله كلها حسنى ؟<br>3..هل من اسماء الله الحسنى المتكلم ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى  اسم الله (105- الرفيق)<br>1-ماهو الدليل على إثبات اسم الله (الرفيق )؟<br>.... الدليل من السنة...وفيه (إن الله رفيق يحب الرفق في الأمر كله.... الحديث <br>2- ما هو معنى اسم الله (الرفيق)؟<br>.... أن الله رفيق في قدره وأفعاله وأحكامه ودينه وشرعه...<br>....خلق السماوات والأرض في ستة أيام مع قدرته على خلقها بكن فتكون <br>.... لا يكلف العباد شيئاً لا يستطيعونه <br>....من رفقه بخلقه امهاله فاعل الخطيئة وعدم تعجيل العذاب <br>...دينه كله رفق <br>3- الرفق في المخلوق وفضل اتصاف المخلوق بصفة الرفق مما ينبغي ويليق بالمخلوق</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

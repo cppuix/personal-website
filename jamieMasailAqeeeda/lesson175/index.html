@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب: الأمور المنافية للتوحيد <br>.. تابع الأمثلة على الغلو في النبي صلى الله عليه وسلم .<br>...القول بأن آدم عليه الصلاة والسلام عندما أخرج من الجنة توسل بجاه محمد صلى الله عليه وسلم<br>..الوقوف والدعاء عند زيارة قبره صلى الله عليه وسلم <br>... النية وشد الرحل يكون لزيارة المسجد النبوي فإذا جاءه سلم على النبي صلى الله عليه وسلم </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1-- كم عدد الرسل والأنبياء ؟<br>...عدد الرسل ثلاثمائة وبضعة عشر...... الحديث ثابت عن أبي أمامة.<br>....عدد الأنبياء مختلف في تصحيح الحديث الذي فيه أنهم مائة و أربعة وعشرين ألفا.والراجح ضعفه .<br>2-- كم عدد الأنبياء المذكورين في القرآن ؟<br>... خمسة وعشرين نبيا.<br>3-- من هم الأنبياء الذين ذكروا في السنة ولم يرد ذكرهم في القرآن ؟<br>....يوشع بن نون عليه الصلاة والسلام <br>... أنبياء مختلف في نبوتهم </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

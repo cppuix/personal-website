@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>..  مسألة الذين يدخلون الجنة بغير حساب ولا عذاب <br>.1.ما حال حديث من اكتوى أو استرقى فقد بريء من التوكل ؟ وعلام يحمل ؟<br>2.. إذا جاء شخص وأراد أن يرقيك فهل تمنعه ؟<br>3.. ما هي السنة في رقية المريض عند زيارته ؟<br>4..ما حكم طلب الرقية للغير ؟ وما الحكم إذا كان هذا الغير من الأقارب أو من يلي أمره ؟<br>5..لو طلب أحد الرقية فاعتذر الراقي فهل يخرج الطالب للرقية من السبعين ألفا ؟<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

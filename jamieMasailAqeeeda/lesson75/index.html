@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد .... الرجاء <br>1.هل يسوى بين الخوف والرجاء أم يغلب أحدهما على الآخر ؟<br>...القول الأول تغليب جانب الرجاء مطلقاً <br>...القول الثاني تغليب جانب الخوف<br>...القول الثالث يسوي بين الخوف والرجاء <br>... القول الرابع يسوي بين الخوف والرجاء وعند الاحتضار يغلب جانب الرجاء وفي جانب الصحة يغلب الخوف <br>...القول الخامس يغلب جانب الخوف عند الهم بالمعصية <br>2.. ما معنى القول بأن من عبد الله بالمحبة فقط فهو زنديق ومن عبد الله بالرجاء وحده فهو مرجيء ومن عبد الله بالخوف وحده فهو حروري ومن عبد الله بالمحبة والخوف والرجاء فهو مؤمن </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

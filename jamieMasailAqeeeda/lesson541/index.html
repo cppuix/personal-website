@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- ما حال حديث (يا عائشة العرب يومئذ قليل يعني بعد الدجال قلت ما يجزئ المؤمنين يومئذ من الطعام والشراب قال ما يجزئ الملائكة التسبيح والتحميد والتكبير..)؟<br>.... اختلف أهل العلم في ذلك منهم من صححه كالعلامة الألباني والعلامة التويجري في كتابه (اتحاف الجماعة في أشراط الساعة)ووجه معنى هذا الحديث وإن ذلك ليس بمستغرب بل هو من كرامات الأولياء التي ستحصل للمؤمنين آخر الزمان .<br>.... كلام أبي عبية وانكاره لذلك الحديث وانتقاده لمعناه وهو من المعتزلة العقلانيين الجدد.<br>....رد العلامة التويجري على أبي عبية.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

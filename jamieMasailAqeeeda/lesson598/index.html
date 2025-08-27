@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالكتب <br>1-- هل ترتيب النزول هو ترتيب التلاوة ؟<br>2-- هل يعتبر جمع القرآن من البدع ؟<br>.... لا يعتبر من البدع<br>١-- لأنه حفظ الله به دينه<br> ٢-- أنه لم يبتدع الصحابة ولم يزيدوا شيئا جديدا وانما جمعوا فقط تلك الصحف الموجودة لمصلحة عظمى <br>٣-- أنه إجماع للصحابة.وإجماعهم حجة<br>3--- ما حال حديث (لا تكتبوا عني غير القران ومن كتب عني غير القرآن فليمحه)؟ وما معناه ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

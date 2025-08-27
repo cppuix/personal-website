@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد <br>1.. تابع الأمثلة التي ضربها الله لبيان بطلان دعوة غير الله <br>...آية سورة فاطر (يولج الليل في النهار ويولج النهار في الليل وسخر الشمس والقمر كل يجري لأجل مسمى ذلكم الله ربكم له الملك والذين تدعون من دونه ما يملكون من قطمير  إن تدعوهم لا يسمعوا دعاءكم ولو سمعوا ما استجابوا لكم ويوم القيامة يكفرون بشرككم)..<br>..في هذا الاستدلال بالربوبية على الألوهية <br>...ماهو القطمير ؟<br>.. ٧ ما هو النقير ؟<br>...ما هو الفتيل ؟  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

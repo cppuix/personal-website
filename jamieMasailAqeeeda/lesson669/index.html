@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>الشبهات المتعلقة بهذا الباب والردود عليها :<br>1_ الشبهات التي تتعلق بنبينا محمد صلى الله عليه وسلم إما من مستشرق وطاعن في النبوة والرسالة وإما من طاعن في الأحاديث الصحيحة وخصوصاً الصحيحين بحجة الدفاع عن النبي صلى الله عليه وسلم.<br>2-- أنواع الخطابات للنبي صلى الله عليه وسلم في القرآن.وهذا موضوع مهم جدا ويتعلق به فهم آيات كثيرة جدا ودفع إشكالات كثيرة تعرض على العبد.<br>3-- ما سبب المثل العربي المعروف (إياك أعني واسمعي يا جارة)؟ </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

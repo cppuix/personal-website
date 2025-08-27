@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- أذكر الملائكة الذين عرفوا بأسمائهم ؟<br>..جبريل <br>.. ميكائيل <br>..إسرافيل <br>..مالك <br>..منكر ونكير<br>..هاروت وماروت <br>2-- هل ثبت أن اسم ملك الموت عزرائيل ؟<br>3-- هل ثبت أن اسم خازن الجنة رضوان ؟<br>4-- هل رقيب وعتيد اسمين للملائكة الموكلة بحفظ الأعمال أم وصفين ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1-- ما الجمع بين الأدلة التي فيها التفاضل بين الأنبياء التي قد تقدمت وبين بعض الأدلة التي ظاهرها النهي عن التفضيل بين الأنبياء كقوله تعالى (لا نفرق بين أحد من رسله) وقول النبي صلى الله عليه وسلم (لا تفضلوا بين الأنبياء....) وقوله ( لا تفضلوني على موسى.... وقوله ( لا تخيروا بين الأنبياء...وقوله (لا ينبغي لأحد أن يقول أنا خير من يونس بن متى..... إلى غير ذلك من الأدلة ؟<br>الجواب:...<br>ذكروا اقوالا منها:<br>١-- أن هذا قبل أن يعلم النبي صلى الله عليه وسلم أنه أفضل من بقية الانبياء.<br>٢-- أنه قال ذلك على سبيل التواضع.<br>٣-- لا نفرق بين أحد من رسله أي في الإيمان بهم.<br>٤-- أن التفضيل الممنوع هو الذي يؤدي إلى تنقص المفضول والإزراء به أو على سبيل العصبية.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

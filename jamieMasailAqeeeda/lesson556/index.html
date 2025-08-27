@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>تابع تقسيم الملائكة بحسب أعمالهم :<br>١-- اسرافيل عليه السلام الموكل بالنفخ في الصور.<br>٢-- حفظة الأبدان .<br>٣ــ حفظة الأعمال وهم الكرام الكاتبون الذين يسجلون على العبد أعماله.<br>٤-- المتعاقبون بالليل والنهار ويجتمعون في صلاة الصبح والعصر.<br>سؤال: هل المتعاقبون هم غير الحفظة ؟ وهل يبدلون كل يوم ؟<br>..فتوى لشيخ الإسلام في ذلك وأن الراجح أنهم غير الحفظة. وأما هل يبدلون فالله أعلم.<br>.. حال المفرطين في العمل في شهادة هؤلاء الملائكة عليهم.نسال الله السلامة.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

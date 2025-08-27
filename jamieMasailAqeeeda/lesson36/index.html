@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد <br>1..ما هو الدليل على أن دعاء غير الله يعتبر شركا ؟<br>..قال تعالى (ومن يدع مع الله إلها اخر لا برهان له به فإنما حسابه عند ربه إنه لا يفلح الكافرون).<br>قال تعالى (ومن أضل ممن يدعوا من دون الله من لا يستجيب له إلي يوم القيامة..............<br>قال تعالى ( ولا تدع من دون الله ما لا ينفعك ولا يضرك....   <br>وقال تعالى (إن الذين يستكبرون عن عبادتي سيدخلون جهنم...........<br>وقال النبي صلى الله عليه وسلم (الدعاء هو العبادة........<br>2..هناك أمثلة ضربها الله في كتابه عن أن الذين يدعونهم من دونه لا يملكون لهم شيئاً اذكر بعض ذلك ؟<br>... ما معنى إلا كباسط كفيه إلي الماء ليبلغ فاه وما هو ببالغه</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

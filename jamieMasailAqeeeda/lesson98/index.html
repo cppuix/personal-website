@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>..1.هل يجوز للرجل أن يرقي المرأة ؟<br>.. إن كانت أجنبية عنه فبشروط عدم الخلوة وعدم مس المرأة......<br>تتبيه: حول المخالفات التي يرتكبها بعض الرقاة في هذا الباب.<br>.2..هل يجوز للمرأة أن ترقي الرجل ؟<br>. بوب على ذلك الامام البخاري.. .....  <br>تنبيه:  نصيحة للرقاة حول اتقاء الشبهات.<br>....... نصيحة لمن به اوهام ووساوس .<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

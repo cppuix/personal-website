@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1--  ما حال دانيال هل هو نبي أم لا ؟<br>....اختلف كلام أهل العلم في هذا فأثبت نبوته عدد من أهل العلم كشيخ الإسلام وابن القيم وابن كثير و الالباني وفتوى للجنة الدائمة.<br>....ذكر القصة كما ذكرها ابن كثير في البداية والنهاية والقصة عن أبي العالية..<br>2-- في ابواب العلم يذكر العلماء هذه القصة ؟<br>...في باب الغلو في قبور الصالحين......<br>3-- ما اوجه النكارة في القصة عند من ضعفها ؟<br>4-- حرص الصحابة والسلف على سد ابواب الشرك </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

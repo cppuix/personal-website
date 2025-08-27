@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>1.. ما هو الاسم ؟ وما هي الصفة ؟ وكيف نفرق بينهما ؟<br>... الاسم ما دل على معنى وذات <br>...الصفة ما دلت على معنى فقط <br>..2..ما هي الأشياء التي تميز الأسماء عن الصفات؟<br>... الأسماء يشتق منها صفات ولا يشتق من كل صفة اسم.<br>... أسماء الله وصفاته تشترك في الاستعاذة  والحلف بها وتختلف في التعبيد والدعاء  .<br>...الاسم لا يشتق من أفعال الله وأما الصفة فتشتق من الأفعال.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

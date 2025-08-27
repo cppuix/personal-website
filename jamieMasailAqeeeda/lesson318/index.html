@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. إلي كم انقسم الناس في مقتل الحسين بن علي رضي الله عنه ؟<br>‌....النواصب:قالوا قتل بحق..<br>‌.... فرقة قالوا هو الامام الذي يجب طاعته وإن الأمر كان ينبغي أن يسلم إليه <br>‌... أنه قتل مظلوما ولم يقتل خارجيا لأنه تراجع وطلب الرجوع فلم يمكنوه <br>‌2..هل جعل يوم قتل علي رضي الله عنه مثل يوم مقتل الحسين؟<br>‌3..هل جعل يوم قتل الانبياء مثل يوم قتل الحسين ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

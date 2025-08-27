@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>تابع ما يتعلق باسم الله(67- الشكور.  68- الشاكر):<br>تابع ذكر بعض صور شكر الله تعالى :<br>7- أنه يخرج العبد من النار بأدنى مثقال ذرة من إيمان ولا يضيع لهم ذلك.<br>8- أن العبد يقوم له المقام بين الناس فإن الله يشكر له ذلك كما مدح الله مؤمن آل فرعون وكذلك مؤمن آل يس ووعدهم جنته ونعيمه.<br>فائدة: لما كان الله متصفا بصفة الشكر كان من أحب الخلق إليه من يتصف بهذه الصفة ومن أبغض الخلق إليه من اتصف بضدها.<br>2- ما هي قواعد الشكر ؟<br>١- خضوع الشاكر للمشكور<br>٢- حبه له<br>٣- الاعتراف بالنعمة<br>٤- ثناؤه عليه <br>٥- أن لا يستعملها في ما يكرهه <br>3- نعمة الشكر تحتاج إلى دعاء لله سبحانه وتعالى في الإعانة على الشكر .<br>4- من هم أعظم الناس معروفاً عليك ؟<br>5- ما هي الآثار المترتبة على الإيمان بهذين الاسمين الشكور والشاكر ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

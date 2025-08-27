@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>تابع صفة العلم لله سبحانه وتعالي <br>1--- في قوله تعالى (وعنده مفاتح الغيب لا يعلمها الا هو.......  .......) فيها دلالات على سعة وشمول علم الله لكل شيء اذكر هذه الدلالات ؟<br>....لا يعلمها إلا هو.....(حصر وقصر...<br>...ويعلم ما في البر والبحر.....(عموم....<br>....وما تسقط من ورقة.....(عموم....<br>.... إلا يعلمها ....(حصر....<br>...ولا حبة في ظلمات الأرض ولا رطب ولا يابس....(عموم ..  <br>.... إلا في كتاب مبين......(حصر وأيضا الكتابة لا تكون إلا بعد علم....<br>2--- هل يقال إن الله يعرف ما في القلوب ؟ وهل نثبت صفة (المعرفة لله سبحانه وتعالى)؟<br>.... لا تثبت صفة المعرفة لله سبحانه وتعالى وانما يخبر عن الله سبحانه وتعالى بذلك.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

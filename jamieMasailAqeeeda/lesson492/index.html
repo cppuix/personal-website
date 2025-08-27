@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>43---  صفة الحثو <br>ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>44--- صفة الحسب والحسيب.<br>ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟ وما معناها ؟<br>45--- صفة الحفظ.<br>...ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟<br>...من اسماء الله الحفيظ والحافظ.<br>....على قدر حفظك لله في أوامره وشرعه يكون حفظ الله لك.<br>....معاني الحفيظ <br>46--- صفة الحفي <br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟ وما معناها ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>  اسم الله (94- المقدم.  95- المؤخر)<br>1-.ما هو الدليل على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>.... جاء ذلك في السنة <br>تنبيه: هذان الاسمان المقدم والمؤخر من الأسماء المتقابلة التي لا يجوز أن تطلق إلا مجتمعة كالضار والنافع والقابض الباسط فإن الكمال في اجتماعهما.<br>2- ما معنى اسم الله (المقدم والمؤخر)؟<br>...المنزل للأشياء منازلها يقدم ما يشاء ويؤخر ما يشاء .<br>... الله له الحكمة البالغة في تقديم ما يشاء وتأخير ما يشاء ؟<br>....من أسباب التأخر هي الذنوب والمعاصي ومن أسباب التقدم التوبة إلى الله..<br>.... على العبد أن يسلك المسالك آلتي تؤدي به إلي التقدم.....<br>....الحرص على تقديم ما قدم الله وتأخير ما أخر...</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

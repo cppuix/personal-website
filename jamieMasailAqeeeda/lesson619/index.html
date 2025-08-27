@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1--  قوله تعالى في سورة يس (واضرب لهم مثلاً اصحاب القرية إذ جاءها المرسلون) من هم هؤلاء الأنبياء ؟ وهل هم قبل عيسى عليه السلام أو بعده؟<br>2-- هل خالد بن سنان نبي ؟<br>3-- هل هناك أنبياء بين عيسى ونبينا محمد صلى الله عليهم وسلم اجمعين ؟<br>4-- ما اسم هذه القرية ؟ وهل هي انطاكية ؟<br>4-- ما اوجه الرد على ان هذه القرية هي أنطاكية المعروفة ؟<br>5-- فائدة مهمة جدا في أن الأمم قبل نزول التوراة يهلكهم الله إذا كذبوا بعذاب عام من عنده وأما من بعد نزول التوراة فشرع القتال.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>الشبهات المتعلقة بهذا الباب والردود عليها:<br>1-- ما تفسير قول الله تعالى (يا أيها النبي لم تحرم ما أحل الله لك تبتغي مرضاة ازواجك.......<br>ما سبب نزول هذه الآيات ؟ ما هو الذي حرمه النبي ؟ولماذا عاتبه الله ؟ وهل حرمه على غيره ؟<br>2--ماحكم من حرم على نفسه شيئا ؟ وهل كفر النبي صلى الله عليه وسلم عن يمينه ؟<br>3-- يغتفر فيما بين الضرات ما لا يغتفر في غيره......</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

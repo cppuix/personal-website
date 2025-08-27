@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى  (102- المنان)<br>1- ما هو الدليل على إثبات هذا الاسم لله سبحانه وتعالى ؟<br>...الدليل من السنة..... لا إله إلا أنت وحدك لا شريك لك بديع السموات والأرض المنان.....<br>2- ما معنى اسم الله (المنان) ؟<br>.. صيغة مبالغة بمعنى كثير العطاء والمن يدر العطا يبدأ بالنوال قبل السؤال ويوالي النعم عليهم له المنة على عبادة ولا منة لأحد منهم عليه......<br>....ومنن الله كثيرة جدآ أعظمها منة الإسلام والهداية ونعمة بعثة الرسل عليهم الصلاة والسلام. ومنها دفاعه عنهم وحمايته لهم وإدخالهم الجنة.وغير ذلك</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

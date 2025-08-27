@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>89--- صفة العجب لله سبحانه وتعالى..(فعلية -خبرية).<br>....ما هو الدليل على إثبات هذه الصفة ؟<br>....كم أنواع العجب ؟ وما هو النوع الذي يثبت لله سبحانه وتعالى ؟<br>....النوع الذي ينفى عن الله هو العجب الناشيء عن خفاء الأسباب أو جهل بحقائق الأمور.<br>....النوع الذي يثبت لله سبحانه وتعالى هو الذي سببه :خروج الشيء عن نظائره وقرائنه أو عما ينبغي أن يكون عليه.<br>....ما معنى قول النبي صلى الله عليه وسلم (يدخلون الجنة بالسلاسل)؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

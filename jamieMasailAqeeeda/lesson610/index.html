@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1-- اذكر تفصيل حديث نبوة يوشع بن نون وما فيه من الفوائد ؟<br>... الأمور المهمة لا تفوض إلا إلى أولي الحزم وفراغ البال لها <br>....لماذا خاف يوشع من غروب الشمس قبل دخوله الأرض المقدسة ؟<br>...ما معنى حبست الشمس ؟<br>...هل ثبت أن الشمس حبست لأحد غير يوشع بن نون عليه الصلاة والسلام ؟<br>...ما حال الروايات التي يفتريها الرافضة أن الشمس حبست لعلي رضي الله عنه مرتين ؟<br>...كلام شيخ الإسلام في الرد على ذلك وهو كلام مهم جدا.<br>.... ماذا تعرف عن قصة حبس الشمس للحضرمي صاحب الضحي؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

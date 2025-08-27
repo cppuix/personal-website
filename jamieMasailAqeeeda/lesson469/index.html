@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات <br>1-- كم أنواع الصفات من حيث دلالتها على الكمال والنقص ؟<br>١-- أن تكون الصفة نقص لا كمال فيها فهذه لا تثبت لله سبحانه وتعالى كالموت والجهل والنسيان والعجز والعمى والصمم.....<br>٢-- أن تكون الصفة كمال لا نقص فيها بوجه من الوجوه فهذه تثبت لله وصفات الله كلها كذلك كالعلم والحياة والقدرة والحكمة والإحاطة........<br>٣-- أن تكون الصفة كمالا في حال ونقصا في حال فهذه تثبت لله في حال الكمال ولا تثبت لله في حال النقص كالخداع والمكر والاستهزاء والكيد.....وتسمى (صفات المقابلة).</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

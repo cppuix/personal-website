@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالكتب <br>1--ما معنى قول الله تعالى (ولقد كتبنا في الزبور من بعد الذكر أن الأرض يرثها عبادي الصالحون)؟ ما المراد (بالزبور) --- و(الذكر)-- ومن هم المقصودون بقوله (عبادي الصالحون.).<br>..... خلاصة الجواب:<br>الزبور: جميع الكتب المنزلة <br>الذكر: اللوح المحفوظ <br>عبادي الصالحون: أمة محمد صلى الله عليه وسلم <br>2-- ما معنى قوله تعالى (فإن كذبوك فقد كذب رسل من قبلك جاءوا بالبينات والزبر والكتاب المنير)؟<br>... الخلاصة <br>الزبور: جميع الكتب المنزلة <br>الكتاب المنير : التوراة والإنجيل </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

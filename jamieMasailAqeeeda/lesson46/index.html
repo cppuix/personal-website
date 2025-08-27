@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد <br>.. 1.ما هي أقسام الاستغاثة ؟<br>.. استغاثة بالله.<br>.. استغاثة بمخلوق وهي أنواع (استغاثة بمخلوق حي حاضر فيما يقدر عليه) (استغاثة بمخلوق فيما لا يقدر عليه إلا الله) (استغاثة بمخلوق حي قادر ولكنه غير حاضر).(استغاثة بمخلوق حي حاضر غير قادر)<br>2.ما حال حديث (إنه لا يستغاث بي ولكن يستغاث بالله).؟ وعلى ماذا يحمل في حال صحة الحديث ؟<br>3..ما حال الذي يأتي قبر النبي صلى الله عليه وسلم ويستغيثون به ؟  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

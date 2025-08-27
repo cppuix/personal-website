@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> (63- القدوس.  64- السبوح)<br>1..ما هي الأدلة على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>...ورد اسم القدوس في موضعين من القرآن <br>....ورد اسم السبوح في السنة <br>2..ما معنى اسم الله (القدوس)و ( السبوح)؟<br>... المعنى متقارب فالقدوس هو: المنزه عن كل نقص وعيب ويتضمنان الكمال المطلق لله من كل وجه. فهو بمعنى السلام.<br>والسبوح: هو الذي يسبح بحمده لأنه قدوس <br>.....التسبيح بحمد الله تعالى............ فيه مسائل مهمة جدا منها :<br>١- هل كل تسبيح محمود ؟<br>...ليس كل تسبيح محمود.......</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

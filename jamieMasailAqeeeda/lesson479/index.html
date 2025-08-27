@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية <br>10-- صفة استطابة الروائح.<br>...دليلها من السنة.حديث (لخلوف فم الصائم أطيب عند الله من ريح المسك) <br>11-- صفة الاستواء على العرش.<br>... لماذا كانت هذه الصفة فعلية؟<br>... استواء الله على العرش ليس عن حاجة إلى العرش بل الله هو الذي يمسك العرش وهو مستغن عن العرش وما دونه محيط بكل شيء وفوقه.<br>...كم المواضع التي ذكر فيها الاستواء على العرش في كتاب الله؟<br>. ...ما هي معاني الاستواء  ؟<br>...ما هو الرد على من يحرف معنى صفة الاستواء على العرش ويقولون إنه بمعنى استولى؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>53---  صفة الحياة.ومن أسمائه الحي <br>ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>....صفة الحياة مع القيومية تستلزم إثبات سائر الصفات ولهذا عد بعضهم اسم الله الاعظم هو الحي القيوم.<br>54--- صفة الخبرة ومن أسمائه الخبير .<br>ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟ وما هو معناها ؟<br>55-- صفة الخفض والرفع.<br>...ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟ وما معنى يخفض القسط ويرفعه؟.<br>56--- صفة الخلق .ومن أسمائه الخالق والخلاق.<br>....ما هو الدليل على اثبات هذه الصفة ؟<br>57--- صفة الخلة.<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟ <br>58--- صفة الدلالة والدليل. وليس الدليل من اسماء الله سبحانه وتعالى <br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟  <br>59---صفة الديان وهو من أسمائه أيضا <br>...ما هو الدليل على إثبات هذه الصفة ؟ وما هو المعنى؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد <br>1.. كيف كانت معركة الجمل ؟<br>..هل طلحة والزبير رضي الله عنهما يريدان الخروج على علي رضي الله عنه <br>هل معاوية رضي الله عنه يريد  أخذ الحكم على علي رضي الله عنه.<br>. ماذا فعل السبئيون حتى تمكنوا من إثارة الحرب بين الفريقين ؟<br>.هل ندم علي رضي الله عنه على تلك المعركة ؟<br>.كيف قتل طلحة والزبير؟<br>. لماذا سميت معركة الجمل ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

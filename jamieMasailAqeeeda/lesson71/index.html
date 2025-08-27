@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">م<br>تابع أقسام التوحيد .... الخوف<br>1.. ما معنى قول الله تعالى (إنما ذلكم الشيطان يخوف اولياءه....)؟<br>... معنى الآية عند جميع المفسرين يخوفكم من أوليائه.<br>2..من هم أولياء الشيطان ؟<br>3..هدف الشيطان من ذلك تثبيطهم عن الإقدام على قول الحق والرضا بالباطل.<br>4..ما هو الفرق بين الخوف والخشية ؟<br>... الخشية هي خوف مقترن بالعلم والمعرفة.<br>5..ما حكم من صرف الخشية لغير الله سبحانه ؟<br>6..ذكر بعض الأمثلة على عظمة مخلوقات الله سبحانه وتعالى وهذا يدل على عظمة الخالق سبحانه وعلى قدر تعظيم الله سبحانه تكون الخوف منه والخشية منه سبحانه.<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

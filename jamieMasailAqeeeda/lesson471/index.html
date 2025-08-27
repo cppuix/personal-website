@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات <br>1-- ما معنى أن صفات الله لا يقاس عليها ؟<br>2-- اذكر تقسيم صفات الله ؟<br>...تنقسم إلى قسمين ذاتية وفعلية.<br>...والذاتية تتقسم إلي معنوية كالحياة والقدرة والعلم والحكمة و . ...  وخبرية (عينية)  كالوجه واليدين والسمع والبصر والقدم و........ .<br>...والفعلية تتقسم إلي مالها سبب كالرضا والغضب والسخط و ....  وما ليس لها سبب كالنزول إلي السماء الدنيا والاستواء على العرش و.....  .</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

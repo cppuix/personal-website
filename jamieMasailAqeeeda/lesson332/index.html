@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات <br>1..ما معنى (الله سبحانه لا سمي له ولا كفوء له ولا ند له ولا ضد له)؟<br>2..هل المراد من نفي السمي عن الله أنه لا يسمى غيره بأسمائه ؟<br>.. الأسماء المشتركة..... وكل بحسب ما يضاف إليه.<br>.. الأسماء الخاصة لا يجوز أن يسمى بها غير الله.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

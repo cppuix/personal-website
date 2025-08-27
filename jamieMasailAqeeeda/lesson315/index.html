@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. بعد النهروان اجتمع ثلاثة من الخوارج لقتل علي ومعاوية وعمرو بن العاص رضي الله عنهم....... فماذا حصل ؟<br>‌2..ما معنى المقولة (اردنا عمرا وأراد الله خارجة).؟<br>‌3.ما حكم القول بخرم الأجل ؟<br>‌4.من هو قاتل علي بن ابي طالب رضي الله عنه ؟ وكيف كانت نهايته ؟ وماذا قال عندما أرادوا قطع لسانه ؟<br>‌5.لمن بويع بعد قتل علي بن ابي طالب رضي الله عنه ؟‌</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

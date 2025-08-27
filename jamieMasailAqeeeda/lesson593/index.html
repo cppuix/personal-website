@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالكتب<br>1-- لم جاز التبديل على التوراة ولم يجز على القرآن ؟<br>... القران تكفل الله بحفظه.<br>.... التوراة وكل الله حفظها إلى أهلها (بما استحفظوا من كتاب الله).<br>2-- هل يجوز القراءة في التوراة والإنجيل وغيرهما من الكتب السابقة الآن ؟<br>....لا يجوز إلا لمصلحة أو ضرورة......<br>3-- ماحال حديث ( لو كان أخي موسى حيا ما وسعه إلا اتباعي)؟<br>4--- اجتهاد النصارى في نشر أناجيلهم.......<br>5-- قصة عجيبة واقعية لأحد المنصرين وكيف من الله عليه بالإسلام.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

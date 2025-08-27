@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد <br>‌1.. لماذا امتنع معاوية رضي الله عنه عن البيعة لعلي رضي الله عنه ؟<br>‌2.. ماذا كان سبب معركة صفين ؟<br>‌3..هل كان عليا راض عن قتل عثمان ؟<br>‌4..من هي الفئة الباغية وما معنى ذلك ؟وهل ذلك الفعل يسيغ ذمهم؟<br>‌5.. كلام مهم جدا لابن حجر رحمه الله في ذلك...<br>‌6.. أهل السنة أهل إنصاف حتى ولو اختلفوا قلا يطعنون على بعضهم في الدين...</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

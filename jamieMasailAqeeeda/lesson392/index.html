@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> ( 57- المؤمن.  58-  الصادق)<br>1..ما هي الأدلة على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>... جاء ذكر اسم الله (المؤمن) في القرآن في موضع واحد <br>... وهكذا اسم الله (الصادق) جاء في القرآن في موضع واحد.<br>2...ما هو معنى هذين الاسمين ؟<br>...هناك تقارب في معنى الاسمين <br>..المؤمن يشمل معنيين: الأول: بمعنى المصدق............<br>الثاني: الذي يؤمن خلقه...........<br>3.. ما هي الآثار المترتبة على الإيمان بهذين الاسمين ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

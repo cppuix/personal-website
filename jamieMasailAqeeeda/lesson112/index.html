@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>.. تابع مسائل العين <br>1.. هل الجن تصيب بالعين ؟<br>...كان رسول الله صلى الله عليه وسلم يستعيذ من عين الجان..... حديث صحيح <br>....حديث الجارية التي في وجهها سفعة فقالوا استرقوا لها فإن بها النظرة.....<br>2..بين الإفراط والتفريط في موضوع العين ؟<br>3.. هل الحيوانات تصيب بالعين؟<br>4..هل ممكن أن تصيب العين قرية باكملها ؟<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

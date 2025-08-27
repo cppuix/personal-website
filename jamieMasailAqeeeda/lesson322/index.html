@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. ما الرد على هذه الشبهة <br>‌ان خالد بن الوليد رضي الله عنه قتل مالك بن نويرة وهو لم يرتد وأن خالداً دخل بامرأة مالك بن نويرة في نفس اليوم بدون استبراء.<br>‌2..الشبه كثيرة جداً التي أثيرت على الصحابة ومن أحسن الكتب في رد تلك الشبه كتاب منهاج السنة النبوية لشيخ الإسلام ابن تيمية رحمه الله.<br>‌3.نصائح في نهاية الكلام على موضوع الصحابة.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

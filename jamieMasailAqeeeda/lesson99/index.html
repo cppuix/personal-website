@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>..1.ما حكم أخذ الأجرة على الرقية ؟<br>.. فتوى للنووي <br>.. فتوى شيخ الإسلام <br>.. فتوى الشيخ ابن باز <br>.. فتوى الشيخ ابن عثيمين <br>.. فتوى اللجنة الدائمة <br>.2.. أيهما أفضل اخذ الأجرة أو ترك ذلك ؟<br>..3..اذكر قصة علاقة بن صحار رضي الله عنه مع المجنون ؟وما حال الحديث ؟<br>4..تنبيه:حول قول النبي صلى الله عليه وسلم (فلعمري) وأنها ليست من ألفاظ القسم.<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

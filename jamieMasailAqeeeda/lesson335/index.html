@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات <br>1.. لماذا عدل أهل السنة عن استعمال لفظ التأويل إلي لفظ التحريف ؟ وما الفرق بينهما ؟ ولماذا يحرص أهل البدع على استعمال لفظ التأويل ؟<br>2.. اذكر بعض معاني التأويل ؟<br>... بمعنى التفسير .... (اللهم فقهه في الدين وعلمه التأويل).<br>... بمعنى حقيقة الشيء ومايؤول إليه فإن كان خبرا فتأويله وقوعه وإن كان طلبا فتأويله امتثاله (هل ينظرون إلا تأويله)(...يتأول القرآن...) (يا أبت هذا تأويل رؤوياي من قبل...<br>.... بمعنى صرف اللفظ عن المعنى الراجح إلي المعنى المرجوح بقرينة وهذا ينقسم إلى تأويل محمود ومذموم.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> (47- المهيمن  48- المحيط  49- المقيت 50- الواسع )<br>1..ما هي الأدلة على إثبات هذه الأسماء لله سبحانه وتعالى ؟<br>... المهيمن  لم يرد في القرآن إلا في موضع واحد <br>...المقيت كذلك لم يرد في القرآن إلا في موضع واحد.<br>2..ما معنى هذه الأسماء ؟<br>.. المهيمن: المطلع على خفايا الأمور وخباياها شاهد عليهم. وعلى أعمالهم.......<br>... المحيط: الذي أحاط بكل شيء علما وقدرة وقهرا........<br>...المقيت: الذي أوصل إلي الموجودات ما به تقتات ومن معانيه الشهيد والحفيظ والحسيب.<br>...الواسع: الواسع الصفات والنعوت ومتعلقاتها فسلطانه واسع ورحمته واسعة وعلمه واسع ورحمته واسعة وعطاؤه واسع وثوابه واسع.....<br>3..ما هي الآثار المترتبة على إثبات هذه الأسماء ؟<br>..<br> تنبيه: تعديل أرقام الأسماء في الصوتية صوابه 47 و48 و 49 و 50</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

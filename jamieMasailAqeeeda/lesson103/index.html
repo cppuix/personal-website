@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">.. الأمور المنافية للتوحيد (إما لأصل التوحيد وإما لكماله<br>..1.ما حكم الاستعانة بالجن ؟<br>....اختلف أهل العلم في ذلك فمنهم من يبيح ذلك بشروط كشيخ الإسلام...........<br>...مناظرة للشيخ الألباني رحمه الله من اقصر المناظرات.<br>....ومنهم من يمنع الاستعانة بالجن مطلقا وهو الصحيح <br>... كيف يكون استماع الانسي بالجني واستمتاع الجني بالانسي ؟<br>... كيف كان تعامل النبي صلى الله عليه وسلم مع الجن ؟<br>..ماحكم خبر الجن هل يقبل؟<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

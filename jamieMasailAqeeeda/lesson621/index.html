@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالرسل<br>1--  ما الفرق بين النبي والرسول ؟ وما هو الدليل على وجود الفرق بينهما ؟<br>....قال تعالى (وما أرسلنا من قبلك من رسول ولا نبي إلا إذا تمنى.....<br>.... الحديث الذي فيه عدد الأنبياء والرسل <br>... آدم عليه السلام كان نبياً مكلما ونوح أول الرسل إلي أهل الأرض...<br><br><br>2-- ما معنى ألقى الشيطان في أمنيته.....؟<br>3-- ما هي الأقوال في التفريق بين النبي والرسول ؟ وما هو الراجح من تلك الأقوال ؟<br>4-- هل الفرق بين النبي والرسول في كون الرسول أوتي كتابا والنبي لم يؤت ذلك ؟<br><br>.<b>تنبيه</b>: حصل خطأ في قراءة الآية (وما أرسلنا قبلك من رسول والصواب (من قبلك)</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

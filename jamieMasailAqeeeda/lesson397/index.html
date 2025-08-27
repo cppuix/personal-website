@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br> تابع (63- القدوس.  64- السبوح)<br>الكلام حول (سبحان الله وبحمده)<br>1- ما معنى أن سبحان الله وبحمده صلاة كل شيء ؟ وهل هو تسبيح حال أم مقال ؟<br>....ذكر الأدلة على تسبيح المخلوقات.<br>...ذكر تسببح الملائكة وأنهم لا يفترون ولا يسأمون....<br>....ذكر الأدلة على الحث على كثرة التسبيح <br>2..اذكر بعض فضائل التسبيح ؟<br>...سبب للطمانينة والراحة وعلاج الضيق.<br>...سبب للنجاة من الغم والهم (دعوة ذي النون)</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

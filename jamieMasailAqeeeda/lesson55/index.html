@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد ....الذبح<br>1.. المثال الثاني من الذبح الذي هو بدعة أو معصية الذي يذبح لله ولكن يذبحها عند القبر الفلاني أو المكان الفلاني ؟<br>2.. المثال الثالث الذبيحة عن الميت يوم سابع أو في الاربعين مثلاً ؟وهل يجوز التصدق عن الميت بالذبح ؟<br>3..نصيحة لمن ابتلوا بهذه المحدثات؟<br>4.. كلام الشيخ ابن باز رحمه الله في تفصيل هذه المسألة........<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

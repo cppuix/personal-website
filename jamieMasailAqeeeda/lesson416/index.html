@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br> ( 82- الغالب  83-  النصير  )<br>1- ما هو الدليل على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>....الغالب ورد في موضع واحد من القرآن <br>....النصير ورد في أربعة مواضع من القرآن <br>2- ما معنى اسم الله الغالب والنصير ؟<br>...الغالب : هو الذي يفعل ما يشاء ولا يغلبه شيء ولا يرد حكمه راد ولا يملك أحد رد ما قضاه أو منع ما أمضاه.<br>.... أمثلة على ذلك <br>....المعطلة في الصفات محرومون من الانتفاع بأسماء الله وصفاته.<br>. ...النصير:هو الذي تكفل بنصر عباده ....... <br>....نصر الأنبياء والمرسلين والصالحين حق أوجبه الله على نفسه <br>.... كان الأنبياء يدعون الله ويستمدون النصر من عنده</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>148--صفة النور ثابتة لله سبحانه وتعالى ومن أسمائه النور.<br>....ماهو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>149--- يوصف الله سبحانه انه الهادي  . ومن أسمائه الهادي.<br>....ما هو الدليل على إثبات هذه الصفة؟<br>150---صفة الهيمنة  ثابتة لله سبحانه وتعالى  ومن أسمائه المهيمن <br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى؟<br>151-- صفة الوحدانية لله سبحانه وتعالى .ومن أسمائه الواحد.<br>....ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>152-- يوصف الله سبحانه وتعالى أنه الوارث  . واختلفوا في إثبات اسم الله الوارث. <br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>153-- يوصف الله بأنه الواسع والموسع .ومن أسمائه الواسع والموسع.<br>....ما هو الدليل على إثبات هذه الصفة لله تعالى</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

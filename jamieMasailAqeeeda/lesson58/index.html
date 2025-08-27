@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد ....الذبح<br>1..ما هي أنواع الذبح الذي هو شرك بالله ؟ <br>هو الذبح لغير الله تقربا وتعظيما <br>فائدة ... حول قبور الأنبياء هل تعرف ؟<br>2..الذبح للجن إما على عتبة الباب للعروسين.<br>الذبح للجن عند الانتهاء من بناء البيت.<br>3.. الذبح بغير الله كمن يقول باسم المسيح أو باسم الزهرة ونحوها.<br>4..ما أهل لغير الله به يدخل فيه النوعان.من سمى غير الله ومن ذبح لغير الله ولو سمى الله.<br>5..الذبح للسلاطين والملوك إذا كان بالتقرب إليهم فهذا شرك أكبر.<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

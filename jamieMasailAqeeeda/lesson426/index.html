@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>تابع اسمي الله (86- القريب   87-  المجيب)<br>تابع موضوع الدعاء وأهميته,:<br>تابع بعض آداب وشروط الدعاء :<br>٧- تجنب السجع في الدعاء.....<br>٨- الإلحاح على الله في الدعاء.  <br>٩- التوسل إلي الله بأسمائه وصفاته.. <br>١0- التوسل إلي الله بالاعتراف بالذنب وذكر الافتقار إلي الله <br>١١- رفع اليدين في المواضع التي يشرع فيها رفع اليدين <br>١٢- استقبال القبلة</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

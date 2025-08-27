@@ -513,10 +513,10 @@ input
   box-shadow: inset 0 0 5px var(--inputInsetShadow);
 }
 
-/* #pagination-spinbox
+#pagination-spinbox
 {
   max-width: 6ch;
-} */
+}
 
 /* input:invalid
 {
@@ -727,7 +727,7 @@ blockquote {
 
 /* ########### JMAS ############## */
 
-#description-container
+.scrollabaleTextContainer
 {
   flex: 1;
   height: 100%;
@@ -736,4 +736,9 @@ blockquote {
   padding: 15px;
   border-radius: 8px;
   box-shadow: inset 0 2px 5px var(--inputInsetShadow);
+}
+
+.ts
+{
+  color: var(--a-hover-background);
 }

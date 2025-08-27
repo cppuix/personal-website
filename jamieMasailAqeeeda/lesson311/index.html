@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. فضائل عمرو بن العاص رضي الله عنه <br>‌..أسلم الناس وآمن عمرو بن العاص <br>‌.. نعم المال الصالح للرجل الصالح.<br>‌..ولاه على غزوة ذات السلاسل وفيها أبو بكر وعمر رضي الله عنهما<br>‌...<br>‌2.فضائل أبي موسى الأشعري رضي الله عنه.<br>‌.. الأحاديث التي وردت في فضل الاشعريين عموماً <br>‌.. حديث اللهم أغفر لعبد الله بن قيس ذنبه وأدخله يوم القيامة مدخلا كريما <br>‌...حديث الأعرابي وعدم قبوله البشرى.<br>‌.. حديث استماع النبي صلى الله عليه وسلم لتلاوته <br>‌... حديث لقد أوتيت مزمارا من مزامير ال داود <br>‌3.. ماذا فعل الخوارج بعد قضية التحكيم ‌</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

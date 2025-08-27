@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى  اسم الله (109- الحفي 110- الأعز)<br>1- ماهو الدليل على اثبات اسمي الله (الحفي والأعز)؟<br>..الحفي اختلف أهل العلم في ذلك فمنهم من أثبته أسما لله ثبت في القرآن قوله تعالى عن إبراهيم عليه الصلاة والسلام (إنه كان بي حفيا) ومنهم من لم يثبته.<br>الأعز كذلك من أثبته استدل بأثر موقوف على ابن مسعود وابن عمر رضي الله عنهما وقالوا له حكم الرفع.<br>2- ما معنى اسمي الله (الحفي والأعز)؟<br>.....انتهينا بحمد الله من ذكر ما استطعنا من اسماء الله الحسنى .....<br>في نهاية هذا الدرس...'''''''''نصيحة مهمة جدا</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br> شرح الأسماء الحسنى<br>تابع صور مسألة سوء الظن بالله سبحانه وتعالى :<br> 13- من ظن أن الله ليس على سمواته فوق عرشه.......<br>14- من ظن أن الله يحب الكفر والفسوق والعصيان.<br>15- من ظن أن الله لا يحب ولا يرضى ولا يسخط ولا يغضب...<br>16- من ظن أن هناك وسائط يرفعون حاجات المخلوقين إلي الله .<br>17- من ظن أن ما عند الله ينال بمعصيته ...<br>18- من ظن أنه إذا ترك من أجله شيء أنه لن يعوضه......<br>19-.من ظن أن الله سيخيبه إذا استقام...  <br>.....كلمة مهمة جدا لابن القيم رحمه الله تتمة للموضوع</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

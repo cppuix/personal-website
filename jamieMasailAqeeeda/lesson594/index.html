@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالكتب <br>1-- ما هي طرق حفظ القرآن في عهد النبي صلى الله عليه وسلم وبعده؟<br>.... لحفظ القران في عهد النبوة طرق منها أنه كان يأتي مثل صلصلة الجرس ومنها أنه يتمثل له الملك رجلا فيكلمه ومنها مدارسة جبريل للنبي صلى الله عليه وسلم كل سنة في رمضان <br>.... أهمية مدارسة القرآن..<br>....من الطرق لحفظ القران كذلك كتابة الوحي ومقابلته..<br>...من ذلك منع الكتابة للأحاديث  في أول الأمر <br>...هل كان في الصحابة من يحفظ القرآن ؟ <br> <br>...أهمية حفظ القرآن <br>....من </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

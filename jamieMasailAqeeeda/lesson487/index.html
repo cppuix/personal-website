@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>37--- صفة الجبروت.<br>...ما هو الدليل على اثبات هذه الصفة ؟<br>...اسم الجبار ثابت لله سبحانه ومعاني الجبار.........(4 معاني).<br>....كرر النبي صلى الله عليه وسلم ( سبحان ذي الجبروت والملكوت والكبرياء والعظمة)في ركوعه نحوا مما يقارب قراءة سورة البقرة.<br>38--- صفة الجلال.<br>...ما هو الدليل على اثبات هذه الصفة ؟<br>... الجليل ليس من اسماء الله الحسنى.<br>....  الصفات تنقسم إلى قسمين صفات جمال وصفات جلال  واوصاف الجلال كالعزة والقهر والكبرياء والعظمة والمجد وغير ذلك.<br>39---صفة الجمال.<br>...ما هو الدليل على اثبات هذه الصفة؟<br>... الجمال المثبت لله هو الجمال المطلق فهو جميل في ذاته وصفاته وأفعاله.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

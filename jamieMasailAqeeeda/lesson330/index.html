@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">باب الأسماء والصفات <br>.تابع الأشياء التي يصان عنها الإيمان بالاسماء والصفات <br>.. أي كيفية تقدرها في ذهنك فالله أعظم من ذلك.<br>.. أي كيفية تقدرها لصفات الله فإنك ستكون فيها كاذباً.<br>1..ما الواجب على من جاءته الوساوس في هذا الباب ؟<br>..الاستعاذة/ آمنت بالله ورسوله/الانتهاء <br>2..ما هو التمثيل ؟ وبين بطلانه ؟<br>.. قال تعالى (ليس كمثله شيء)<br>..قال تعالى (ولم يكن له كفوا احد)<br>.. قال تعالى (هل تعلم له سميا)<br>3..الصفة بحسب ما تضاف إليه <br>يد الله//يد الفيل/يد الذرة</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

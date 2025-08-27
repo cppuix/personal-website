@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأمور المنافية للتوحيد ... موضوع الصحابة <br>‌1.. الرافضة الأصل عندهم القدح في الصحابة والبحث في الكتب والتواريخ عن كل ما يطعن في الصحابة <br>‌2.الأصل عند أهل السنة الدفاع عن صحابة رسول الله صلى الله عليه وسلم <br>‌3.اذا اعتمدنا على كلام الرافضة فأين خيرية هذه الأمة <br>‌4..ما هو الرد على شبهة أن في قوله تعالى (يا نساء النبي من يأت منكن بفاحشة مبينة يضاعف لها العذاب ضعفين) امكانية وقوع الفاحشة من نساء النبي صلى الله عليه وسلم ؟<br>الرد مع ضرب أمثلة على أن الشرط لا يلزم منه الوقوع..............</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>64---  صفة الرحمة ومن أسمائه الرحمن الرحيم.<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>  ...كم أقسام الناس في هذه الصفة ؟<br>....هل صفة الرحمة ذاتية أم  فعلية ؟<br>..  ما هي حجة المبتدعة الذين ينفون صفة الرحمة ؟<br>وكيف الرد عليهم ؟<br>...يقولون الرحمة خور وضعف وتالم لحالة المرحوم والرد عليهم من خمسة أوجه..............</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

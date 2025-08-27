@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>الشبهات المتعلقة بهذا الباب والردود عليها :<br>1_ ما الرد  على هذه الشبهة المتعلقة بنبي الله موسى عليه الصلاة والسلام في أنه قتل نفسا ؟<br>....تفصيل القصة على ما جاءت في سورة القصص <br>....هل كان ذلك القتل عمدا أم خطأ ؟<br>....هل كان ذلك قبل الرسالة أم بعد ؟<br>....هل كان ذلك ذنبا ؟ وما الدليل على ذلك ؟<br>...من هو القائل أتريد أن تقتلني كما قتلت نفسا بالأمس ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

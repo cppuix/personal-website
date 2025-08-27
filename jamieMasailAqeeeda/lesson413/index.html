@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>(78- الحسيب  79-  الكافي)<br>1- ما هو الدليل على إثبات اسم (الحسيب)(الكافي )لله سبحانه وتعالى ؟<br>2- ما معنى اسم الله( الحسيب) (والكافي) ؟<br>الحسيب بمعنى:<br>١- الكافي<br>٢- الحفيظ <br>٣- المحاسب<br>3- اذكر أنواع الكفاية ؟<br>... كفاية عامة.  وكفاية خاصة <br>4- أمور ينبغي التنبيه عليها منها:<br>١- تحقيق العبودية واتباع الرسول أعظم أسباب نيل الكفاية من الله ويكون ذلك بحسب قوة العبودية وقوة الاتباع.<br>٢-التوكل من أعظم الأسباب في دفع أذى الخلق.<br>٣- التوكل على الله من أقوى أسباب الرزق.<br>٤- لا تستعجل كفاية الله لأن الله له الحكمة البالغة وقد جعل الله لكل شيء قدرا فلا تستبطىء الكفاية.<br>٥- التوكل على الله لا ينافي العمل بالسبب.<br>- ما هي الآثار المترتبة على إثبات اسمي الله (الحسيب) و(الكافي)؟<br>.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

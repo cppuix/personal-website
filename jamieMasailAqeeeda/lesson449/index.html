@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى  اسم الله (107- المعطي 108- الجواد)<br>1-ماهو الدليل على اثبات اسمي الله (المعطي والجواد)؟<br>.... الدليل من السنة...وفيه (والله المعطي وأنا قاسم....... الحديث <br>....الجواد جاء في عدة احاديث بمجموع طرقها تصلح للاحتجاج.<br>2- ما هو معنى اسمي الله (المعطي والجواد)؟<br>.... بينهما تقارب فالمعطي هو المتفرد بالعطاء على الحقيقة كالوهاب لا مانع لما اعطى ولا معطي لما منع عطاؤه كلام ومنعه كلام وكل ما بالعباد من النعم فمن عطائه يجود بالنوال قبل السؤال <br>...والجواد كثير العطاء <br>.....العطاء العام والخاص .<br>3- الجود بالعلم والمال والجاه وغير ذلك</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

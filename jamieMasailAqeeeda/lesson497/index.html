@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>65---  صفة الرزق ومن أسمائه الرزاق والرازق .<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br> ... مسألة مهمة : هل الرزق الحلال والحرام كله من الله ؟<br>....الرزق كله من الله فمن أخذه من الحلال فمباح وإن أخذه من حرام فمؤاخذ به.<br>... كلام شيخ الإسلام في هذا  .<br>...كلام الشيخ الرشيد في هذا.<br>... كلام الشيخ الهراس في هذا.<br>....الفرق بين الرزق المطلق ومطلق الرزق.<br>...خلق الله الرزق الحرام وحذر منه كما خلق إبليس وحذر منه لحكم يعلمها الله سبحانه وتعالى.<br>...الرزق الحرام اراده الله كونا ولم يرده شرعا.<br>....الرزق الحلال أراده الله كونا وشرعا.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

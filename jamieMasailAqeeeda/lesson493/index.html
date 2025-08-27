@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتاب الأسماء والصفات ......باب الصفات<br>تابع ذكر صفات الله تعالى بحسب الحروف الأبجدية<br>47---  صفة الحق. وهو من اسماء الله وصفاته أيضاً.<br>ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟<br>....كل ما ينسب إلى الله بحق فهو حق فرسله حق وكتبه حق<br>48-- صفة الحكمة .<br>ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟ وما هو معناها ؟<br>49-- صفة الحلم.<br>...ما هو الدليل على اثبات هذه الصفة لله سبحانه وتعالى ؟ <br>50--- صفة الحميد.وهو من أسمائه أيضاً.<br>....ما هو الدليل على اثبات هذه الصفة ؟<br>51--- صفة الحنان (بمعنى الرحمة).<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟ <br>...لا يثبت (الحنان)اسما لله سبحانه وتعالى.<br>52--- صفة الحياء والاستحياء.<br>...ما هو الدليل على إثبات هذه الصفة لله سبحانه وتعالى ؟  وما هو المعنى ؟</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

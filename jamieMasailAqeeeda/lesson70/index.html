@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد .... الخوف<br>1.. ما هو القدر الواجب من الخوف ؟<br>..هو ما حمل على أداء الفرائض واجتناب المحارم......(قول ابن رجب رحمه الله..)<br>.2..ما هو الخوف المحمود ؟<br>..هو ما يحمله على أداء الفرائض واجتناب المحارم....  ......<br>3..ما هو الخوف المذموم ؟<br>..هو الذي يؤدي إلى اليأس من روح الله أو القنوط من رحمة الله.<br>4..من هو الذي قال الخوف المحمود ما حجزك عن محارم الله ؟<br>5.. كيف تكون العبادة بالنسبة للخوف والرجاء ؟<br>6.. هذه شبهة عظيمة ربما تأثر بها بعض الناس حتى يقع في اليأس من روح الله أو يقنط من رحمة الله.......الرد على هذه الشبهة....<br>  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

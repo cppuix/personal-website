@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمـــان بالملائكــــــــــة <br>1-- اذكر تقسيم الملائكة بحسب أعمالهم ؟<br>.١..جبريل: الموكل بالوحي وكذلك مشاركته في القتال مع النبي صلى الله عليه وسلم وهو الذي شق صدر النبي صلى الله عليه وسلم.<br>٢... ميكائيل: الموكل بالقطر والنبات وكذلك مشاركته في القتال وفي حديث سمرة بن جندب في الرؤيا التي رآها النبي صلى الله عليه وسلم في أحوال المعذبين في البرزخ كان الملكان اللذان أخذا النبي صلى الله عليه وسلم هما جبريل و ميكائيل.<br>٣...اسرافيل: وهو الموكل بالنفخ في الصور.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">تابع أقسام التوحيد .... الخوف<br>1.. كم أنواع الخوف ؟ وما حكم كل منها ؟<br>..خوف عبادة وهو الخوف من الله.<br>..خوف شرك وهو خوف السر......<br>..خوف محرم وهو كأن يترك شيئاً واجبا عليه خوفا من الناس بدون إكراه وبدون عذر. <br>..خوف طبيعي.<br>2..ماسبب نزول قوله تعالى (إنما ذلكم الشيطان يخوف اوليائه فلا تخافوهم وخافون......<br>3..من الأدلة على الخوف المحرم (ومن الناس من يقول آمنا بالله فإذا اوذي في الله جعل فتنة الناس كعذاب الله) (حديث لا يمنعن أحدكم هيبة الناس أن يقول في حق إذا رآه أو شهده أو سمعه...  </span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

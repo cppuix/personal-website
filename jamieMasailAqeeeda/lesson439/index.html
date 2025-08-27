@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">الأسماء والصفات <br>أسماء الله الحسنى <br>  اسم الله (97- الشافي.   98- الطبيب)<br>1- ما هو الدليل على إثبات هذين الاسمين لله سبحانه وتعالى ؟<br>....ورد في السنة حديث...  ..(اشف انت الشافي.....<br>...حديث أبي رمثة رضي الله عنه.....وفيه فقال النبي صلى الله عليه وسلم (الله  الطبيب ... طبيبها الذي خلقها.)<br>2- هل يشكل هذا مع تسمي الخلق بهذا ؟<br>3- ما هو معنى هذين الاسمين ؟<br>.... الشافي أي الذي منه الشفاء سواء كان شفاء القلوب أو الأبدان.....<br>....</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 

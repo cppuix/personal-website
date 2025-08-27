@@ -240,8 +240,13 @@
   </div>
 
   <!-- Scrollable description -->
-  <div id="description-container">
+   <p>نبذة:</p>
+  <div class="scrollabaleTextContainer" id="description-container">
     <span id="description">كتــاب الإيمان بالرسل <br>مسألة عصمة الأنبياء <br>الشبهات المتعلقة بهذا الباب والردود عليها :<br>1-- لماذا كان الضلال بمعنى الغواية منفي عن الأنبياء ؟<br>..١-- لأن الله نفاها عن نبيه قال تعالى (ما ضل صاحبكم وما غوى)<br>٢-- أن الإجماع قائم على أن الأنبياء معصومون من الغواية <br>٣-- لم يكن هناك شرع قائم قبل النبوة.<br>٤-- ما ثبت بالتواتر من أن الله عصم نبيه من أي شيء يمس خلقه ودينه.<br>2-- ما معنى قوله تعالى (قل إن ضللت فإنما أضل على نفسي وإن اهتديت فبما يوحي إلي ربي)؟<br>.....الشرط لا يقتضي الوقوع.<br>امثلة على ذلك.</span>
+  </div>
+  <p>التفريغ:</p>
+  <div class="scrollabaleTextContainer">
+    <span id="transcription"></span>
   </div>
 
   <!-- Publication date -->
@@ -265,6 +270,20 @@
 
 </div>
 <script src="/js/jmas.js"></script>
+<script>
+  const audio = document.getElementById("audio-player");
+  
+   document.querySelectorAll(".ts").forEach(span => {
+    span.style.cursor = "pointer";
+    span.style.color = "blue";
+    span.onclick = () => {
+      const [min, sec] = span.textContent.split(":").map(Number);
+      const total = min * 60 + sec;
+      audio.currentTime = total;
+      audio.play();
+    };
+  });
+</script>
 
 
 
