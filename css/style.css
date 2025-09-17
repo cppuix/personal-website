@@ -680,7 +680,7 @@ input
 
 .telegram-message.right {
   margin-left: auto;
-  background-color: var(--buttonBg);
+  /* background-color: var(--buttonBg); */
 }
 
 .telegram-message.left {
@@ -695,12 +695,22 @@ input
   font-family: 'Almarai'
 }
 
-.telegram-author {
-  font-weight: bold;
+[dir="rtl"] .telegram-author
+{
+  margin-left: 0.5em;
+}
+[dir="ltr"] .telegram-author
+{
+  margin-right: 0.5em;
 }
 
-.telegram-date {
-  font-style: italic;
+[dir="rtl"] .telegram-date
+{
+  margin-right: 0.5em;
+}
+[dir="ltr"] .telegram-date
+{
+  margin-left: 0.5em;
 }
 
 /* .telegram-text {
@@ -741,4 +751,27 @@ blockquote {
 .ts
 {
   color: var(--a-hover-background);
+}
+
+/* ############### Khawaatir  #######################*/
+
+#khawaatir-categories .tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 2px;
+    background: #eee;
+    border-radius: 6px;
+    font-size: 0.9em;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+#khawaatir-categories .tag:hover {
+    background: var(--a-hover-background);
+}
+
+#khawaatir-categories .tag.active {
+    background: var(--a-hover-background);
+    font-weight: bold;
 }
