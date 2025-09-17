@@ -759,8 +759,10 @@ blockquote {
     display: inline-block;
     padding: 4px 8px;
     margin: 2px;
-    background: #eee;
+    background: var(--bg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.5);
     border-radius: 6px;
+    border: 1px solid var(--borderShadowColor);
     font-size: 0.9em;
     cursor: pointer;
     user-select: none;
@@ -769,9 +771,11 @@ blockquote {
 
 #khawaatir-categories .tag:hover {
     background: var(--a-hover-background);
+    border: 1px solid var(--a-hover-background);
 }
 
 #khawaatir-categories .tag.active {
     background: var(--a-hover-background);
+    border: 1px solid var(--a-hover-background);
     font-weight: bold;
 }
