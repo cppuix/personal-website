@@ -11,7 +11,7 @@
 	<!-- <title>عبد الرحمن بن ميهوب القداري</title> -->
 	<title>
   
-    مدونة | عبد الرحمن بن ميهوب القداري
+    المدونات | عبد الرحمن بن ميهوب القداري
   
 </title>
 
@@ -227,18 +227,20 @@
 	<main>
 		
 
-<h3 class="title">مدونة</h3>
-<div style="height:1em;"></div>
-
+<h3 class="title">المدونات</h3>
+<p style="font-size:0.9em; opacity:0.9;">
+اختر مدونة لعرض منشوراتها، ثم يمكنك التصفية حسب التصنيف.
+</p>
 <!-- blog selector -->
 <div id="blog-buttons" style="margin-bottom:1em;"></div>
 
 <!-- category filter -->
+ <h4 style="margin-bottom:0.5em;">التصنيفات</h4>
 <div id="khawaatir-categories"></div>
 
 <!-- scroll area -->
 <div id="scrollArea" class="clusterize-scroll telegram-feed" style="
-    max-height:80vh;
+    max-height:100vh;
     overflow-y:auto;
     border-radius:6px;
     box-shadow:
@@ -267,7 +269,7 @@ const BLOGS = [
   { id: "9065693698621053781", name: "منتقى كنز الأطفال" },
   { id: "4615630765962467442", name: "الاستدلال على كنز الأطفال" },
   { id: "3967488874006330031", name: "The Children's Treasure (Kanz al-Atfaal)" },
-  //{ id: "6459273135043304733", name: "The Selection from The Children's Treasure" },
+  { id: "1567972416554949640", name: "The Selection from The Children's Treasure (Muntaqaa Kanz al-Atfaal)" }
 ];
 
 let clusterize = null;
@@ -329,7 +331,7 @@ function buildCategoryBar()
   allPosts.forEach(p => allCategories.add(p.category));
 
   catBox.innerHTML =
-    `<span class="tag active" onclick="filterByCategory(null)">الكل</span> ` +
+    `<button class="tag active" onclick="filterByCategory(null)">الكل</span> ` +
     Array.from(allCategories).map(c =>
       `<span class="tag" onclick="filterByCategory('${c}')">${c}</span>`
     ).join(" ") + `<div style="height:1em;"></div>`;
