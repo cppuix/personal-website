@@ -755,8 +755,10 @@ blockquote {
 
 /* ############### Khawaatir  #######################*/
 
-#khawaatir-categories .tag {
-    display: inline-block;
+
+#blog-buttons .tag
+{
+  display: inline-block;
     padding: 4px 8px;
     margin: 2px;
     background: var(--bg);
@@ -769,13 +771,15 @@ blockquote {
     transition: background 0.2s, color 0.2s;
 }
 
-#khawaatir-categories .tag:hover {
+#blog-buttons .tag:hover
+{
     background: var(--a-hover-background);
     border: 1px solid var(--a-hover-background);
 }
 
-#khawaatir-categories .tag.active {
-    background: var(--a-hover-background);
+#blog-buttons .tag.active
+{
+  background: var(--a-hover-background);
     border: 1px solid var(--a-hover-background);
     font-weight: bold;
 }

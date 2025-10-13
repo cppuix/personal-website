@@ -227,22 +227,23 @@
 	<main>
 		
 
-<h3 class="title">
-    مدونة
-</h3>
+<h3 class="title">مدونة</h3>
+<div style="height:1em;"></div>
 
+<!-- blog selector -->
+<div id="blog-buttons" style="margin-bottom:1em;"></div>
 
-<div style="height: 1em;"></div>
-
+<!-- category filter -->
 <div id="khawaatir-categories"></div>
 
+<!-- scroll area -->
 <div id="scrollArea" class="clusterize-scroll telegram-feed" style="
-    max-height: 80vh; 
-    overflow-y: auto; 
-    border-radius: 6px;
-    box-shadow: 
-      inset 0 2px 6px rgba(0, 0, 0, 0.12), 
-      inset 0 -2px 6px rgba(0, 0, 0, 0.08);
+    max-height:80vh;
+    overflow-y:auto;
+    border-radius:6px;
+    box-shadow:
+      inset 0 2px 6px rgba(0,0,0,0.12),
+      inset 0 -2px 6px rgba(0,0,0,0.08);
 ">
   <div id="contentArea" class="clusterize-content">
     <div class="clusterize-no-data">جار التحميل…</div>
@@ -251,99 +252,141 @@
 
 <script src="https://unpkg.com/clusterize.js/clusterize.min.js"></script>
 <script>
-console.log("khawaatir Blogger API script loaded");
+console.log("khawaatir multi-blog Blogger API script loaded");
+
+const API_KEY = "AIzaSyBuvQ5R51hereHpU65F0FtYi9Uzod_ft3w";
+
+// --- your blogs ---
+const BLOGS = [
+  { id: "6054040021329953972", name: "فتنة التصوير الضوئي" },
+  { id: "671623261151206189", name: "عبد الرحمن بن مِيهوب القَدَّاري" },
+  { id: "359021229544733096", name: "Abdurrahmaan Al-Qaddaaree" },
+  { id: "6459273135043304733", name: "The Scourge of Photography" },
+
+  { id: "2763648330048779873", name: "كنز الأطفال" },
+  { id: "9065693698621053781", name: "منتقى كنز الأطفال" },
+  { id: "4615630765962467442", name: "الاستدلال على كنز الأطفال" },
+  { id: "3967488874006330031", name: "The Children's Treasure (Kanz al-Atfaal)" },
+  //{ id: "6459273135043304733", name: "The Selection from The Children's Treasure" },
+];
 
 let clusterize = null;
 let allPosts = [];
 let allCategories = new Set();
 
-const BLOG_ID = "6054040021329953972";
-const API_KEY = "AIzaSyBuvQ5R51hereHpU65F0FtYi9Uzod_ft3w";
-
-async function loadPosts() {
-    try {
-        const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts?key=${API_KEY}`);
-        const data = await res.json();
-
-        console.log(data)
-        // map Blogger posts to your feed format
-        allPosts = data.items.map(post => {
-            const category = post.labels && post.labels.length ? post.labels[0] : "عام";
-            allCategories.add(category);
-
-            return {
-                title: post.title,
-                author: post.author.displayName,
-                date: post.published,
-                content: post.content,
-                category: category,
-                url: post.url
-            };
-        });
-
-        // build category bar
-        const catBox = document.getElementById("khawaatir-categories");
-        if (catBox) {
-            catBox.innerHTML =
-                `<span class="tag active" onclick="filterByCategory(null)">الكل</span> ` +
-                Array.from(allCategories).map(c =>
-                    `<span class="tag" onclick="filterByCategory('${c}')">${c}</span>`
-                ).join(" ") + `<div style="height: 1em;"></div>`;
-        }
-
-        // initialize Clusterize
-        clusterize = new Clusterize({
-            rows: renderPosts(allPosts),
-            scrollId: 'scrollArea',
-            contentId: 'contentArea'
-        });
-
-    } catch (err) {
-        console.error("Error loading Blogger posts:", err);
-    }
+function initBlogButtons()
+{
+  const box = document.getElementById("blog-buttons");
+  box.innerHTML = BLOGS.map(b =>
+    `<button onclick="loadPosts('${b.id}', this)" class="tag">${b.name}</button>`
+  ).join(" ");
 }
 
-function renderPosts(posts) {
-    return posts.map(post => `
-        <div class="telegram-message right">
-            <div class="telegram-header">
-                <span class="telegram-author">${post.author}</span>
-                <span class="telegram-date">${toHijri(post.date)}</span>
-            </div>
-            <div class="telegram-text">
-                ${post.content}
-                <div><a href="${post.url}" target="_blank">قراءة المزيد</a></div>
-            </div>
-        </div>
-        <div style="height: 1em;"></div>
-    `);
-}
+// --- fetch posts for one blog ---
+async function loadPosts(blogId, btn)
+{
+  document.getElementById("contentArea").innerHTML = "<div class='clusterize-no-data'>جار التحميل…</div>";
+  document.getElementById("khawaatir-categories").innerHTML = "";
 
-function filterByCategory(category) {
-    const visiblePosts = category
-        ? allPosts.filter(p => p.category === category)
-        : allPosts;
+  // highlight selected blog button
+  document.querySelectorAll("#blog-buttons .tag").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
 
-    if (clusterize) clusterize.update(renderPosts(visiblePosts));
+  try {
+    const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?key=${API_KEY}&maxResults=50`);
+    const data = await res.json();
 
-    const tags = document.querySelectorAll("#khawaatir-categories .tag");
-    tags.forEach(tag => {
-        tag.classList.remove("active");
-        if ((category === null && tag.textContent.trim() === "الكل") || tag.textContent.trim() === category) {
-            tag.classList.add("active");
-        }
+    if (!data.items) throw new Error("No posts found");
+
+    allPosts = data.items.map(post => {
+      const category = post.labels && post.labels.length ? post.labels[0] : "عام";
+      allCategories.add(category);
+
+      return {
+        title: post.title,
+        author: post.author.displayName,
+        date: post.published,
+        content: post.content,
+        category: category,
+        url: post.url
+      };
     });
+
+    buildCategoryBar();
+    renderAllPosts();
+
+  } catch (err) {
+    console.error("Error loading Blogger posts:", err);
+    document.getElementById("contentArea").innerHTML =
+      "<div class='clusterize-no-data'>خطأ في التحميل</div>";
+  }
 }
 
-function toHijri(date) {
-    return new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    }).format(new Date(date));
+function buildCategoryBar()
+{
+  const catBox = document.getElementById("khawaatir-categories");
+  allCategories.clear();
+  allPosts.forEach(p => allCategories.add(p.category));
+
+  catBox.innerHTML =
+    `<span class="tag active" onclick="filterByCategory(null)">الكل</span> ` +
+    Array.from(allCategories).map(c =>
+      `<span class="tag" onclick="filterByCategory('${c}')">${c}</span>`
+    ).join(" ") + `<div style="height:1em;"></div>`;
 }
 
-document.addEventListener("DOMContentLoaded", () => loadPosts());
+function renderAllPosts()
+{
+  if (clusterize) clusterize.destroy(true);
+
+  clusterize = new Clusterize({
+    rows: renderPosts(allPosts),
+    scrollId: 'scrollArea',
+    contentId: 'contentArea'
+  });
+}
+
+function renderPosts(posts)
+{
+  return posts.map(post => `
+    <div class="telegram-message right">
+      <div class="telegram-header">
+        <span class="telegram-author">${post.author}</span>
+        <span class="telegram-date">${toHijri(post.date)}</span>
+      </div>
+      <div class="telegram-title">${post.title}</div>
+      <div class="telegram-text">
+        ${post.content}
+        <div><a href="${post.url}" target="_blank">قراءة المزيد</a></div>
+      </div>
+    </div>
+    <div style="height:1em;"></div>
+  `);
+}
+
+function filterByCategory(category)
+{
+  const visiblePosts = category ? allPosts.filter(p => p.category === category) : allPosts;
+  if (clusterize) clusterize.update(renderPosts(visiblePosts));
+
+  const tags = document.querySelectorAll("#khawaatir-categories .tag");
+  tags.forEach(tag => {
+    tag.classList.remove("active");
+    if ((category === null && tag.textContent.trim() === "الكل") || tag.textContent.trim() === category)
+      tag.classList.add("active");
+  });
+}
+
+function toHijri(date)
+{
+  return new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  }).format(new Date(date));
+}
+
+document.addEventListener("DOMContentLoaded", () => initBlogButtons());
 </script>
 
 
