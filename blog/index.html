@@ -331,9 +331,9 @@ function buildCategoryBar()
   allPosts.forEach(p => allCategories.add(p.category));
 
   catBox.innerHTML =
-    `<button class="tag active" onclick="filterByCategory(null)">الكل</span> ` +
+    `<button class="tag active" onclick="filterByCategory(null)">الكل</button> ` +
     Array.from(allCategories).map(c =>
-      `<span class="tag" onclick="filterByCategory('${c}')">${c}</span>`
+      `<button class="tag" onclick="filterByCategory('${c}')">${c}</button>`
     ).join(" ") + `<div style="height:1em;"></div>`;
 }
 
