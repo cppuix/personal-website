@@ -756,7 +756,7 @@ blockquote {
 /* ############### Khawaatir  #######################*/
 
 
-#blog-buttons .tag
+.tag
 {
   display: inline-block;
     padding: 4px 8px;
@@ -771,15 +771,20 @@ blockquote {
     transition: background 0.2s, color 0.2s;
 }
 
-#blog-buttons .tag:hover
+.tag:hover
 {
     background: var(--a-hover-background);
     border: 1px solid var(--a-hover-background);
 }
 
-#blog-buttons .tag.active
+.tag.active
 {
   background: var(--a-hover-background);
     border: 1px solid var(--a-hover-background);
     font-weight: bold;
+}
+
+#blog-section::backdrop {
+  background-color: var(--bg);
+  color: var(--text)
 }
