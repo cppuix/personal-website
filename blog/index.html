@@ -347,23 +347,20 @@
 
       if (!data.items) throw new Error("No posts found");
 
-      allPosts = data.items.map(post =>
-      {
-        const category = post.labels && post.labels.length ? post.labels[0] : "عام";
-        allCategories.add(category);
+      const blog = BLOGS.find(b => b.id === blogId);
+    const dir = blog?.dir || "rtl";
 
-        return {
-          title: post.title,
-          author: post.author.displayName,
-          date: post.published,
-          content: post.content,
-          category: category,
-          url: post.url
-        };
-      });
+    allPosts = data.items.map(post => ({
+      title: post.title,
+      author: post.author.displayName,
+      date: post.published,
+      content: post.content,
+      category: post.labels?.[0] || "عام",
+      url: post.url
+    }));
 
-      buildCategoryBar();
-      renderAllPosts();
+    buildCategoryBar();
+    renderAllPosts(dir);
 
     } catch (err)
     {
@@ -384,25 +381,6 @@
       Array.from(allCategories).map(c =>
         `<button class="tag" onclick="filterByCategory('${c}')">${c}</button>`
       ).join(" ") + `<div style="height:1em;"></div>`;
-  }
-
-  async function loadPosts(blogId, btn)
-  {
-    // ...
-    const blog = BLOGS.find(b => b.id === blogId);
-    const dir = blog?.dir || "rtl";
-
-    allPosts = data.items.map(post => ({
-      title: post.title,
-      author: post.author.displayName,
-      date: post.published,
-      content: post.content,
-      category: post.labels?.[0] || "عام",
-      url: post.url
-    }));
-
-    buildCategoryBar();
-    renderAllPosts(dir);
   }
 
   function renderAllPosts(dir = "rtl")
