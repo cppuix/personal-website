@@ -232,7 +232,13 @@
   اختر مدونة لعرض منشوراتها، ثم يمكنك التصفية حسب التصنيف.
 </p>
 <!-- blog selector -->
-<div id="blog-buttons" style="margin-bottom:1em;"></div>
+<div id="blog-buttons" style="margin-bottom:1em;">
+<button id="tasweerBlogButton" onclick="loadPosts('6054040021329953972', this)" class="tag">فتنة التصوير الضوئي</button>
+<button onclick="loadPosts('671623261151206189', this)" class="tag">عبد الرحمن بن مِيهوب القَدَّاري</button>
+<button onclick="loadPosts('359021229544733096', this)" class="tag">Abdurrahmaan Al-Qaddaaree</button>
+<button onclick="loadPosts('6459273135043304733', this)" class="tag">The Scourge of Photography</button>
+
+</div>
 
 <div id="blog-section" style="position:relative;">
   <button onclick="toggleFullscreen()" style="
@@ -263,28 +269,14 @@
 
 <p>للقراءة من مصادر المدونات، تفقد الروابط التالية:</p>
 <ul id="blog-list" style="list-style:none; padding:0;">
-  <li style="margin:0.3em 0;"></li><a href="https://selectionfromchildrenstreasure.blogspot.com"
-    rel="nofollow noopener noreferrer" target="_blank">The Selection from Children's Treasure (Muntaqaa Kanz
-    Al-Atfaal)</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://kanzatfaal.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">كنز الأطفال</a></li>
   <li style="margin:0.3em 0;"></li><a href="https://en-armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
     target="_blank">Abdurrahmaan Al-Qaddaaree</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://childrentreasure.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">The Children's Treasure (Kanz al-Atfaal)</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://istidlaalkanzatfaal.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">الاستدلال على كنز الأطفال</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://doros-jmas.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">دروس جامع مسائل العقيدة الصحيحة</a></li>
   <li style="margin:0.3em 0;"></li><a href="https://fitnattasweer.blogspot.com" rel="nofollow noopener noreferrer"
     target="_blank">فتنة التصوير الضوئي</a></li>
   <li style="margin:0.3em 0;"></li><a href="https://scourgeofphotography.blogspot.com"
     rel="nofollow noopener noreferrer" target="_blank">The Scourge of Photography</a></li>
   <li style="margin:0.3em 0;"></li><a href="https://armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
     target="_blank">عبد الرحمن بن ميهوب القداري</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://muntaqaakanzatfaal.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">المنتقى من كنز الأطفال</a>
-  <li style="margin:0.3em 0;"></li>
 </ul>
 
 <style>
@@ -308,27 +300,14 @@
   const BLOGS = [
     { id: "6054040021329953972", name: "فتنة التصوير الضوئي", dir: "rtl" },
     { id: "671623261151206189", name: "عبد الرحمن بن مِيهوب القَدَّاري", dir: "rtl" },
-    { id: "2763648330048779873", name: "كنز الأطفال", dir: "rtl" },
-    { id: "9065693698621053781", name: "منتقى كنز الأطفال", dir: "rtl" },
-    { id: "4615630765962467442", name: "الاستدلال على كنز الأطفال", dir: "rtl" },
 
     { id: "359021229544733096", name: "Abdurrahmaan Al-Qaddaaree", dir: "ltr" },
-    { id: "6459273135043304733", name: "The Scourge of Photography", dir: "ltr" },
-    { id: "3967488874006330031", name: "The Children's Treasure (Kanz al-Atfaal)", dir: "ltr" },
-    { id: "1567972416554949640", name: "The Selection from The Children's Treasure (Muntaqaa Kanz al-Atfaal)", dir: "ltr" }
+    { id: "6459273135043304733", name: "The Scourge of Photography", dir: "ltr" }
   ];
 
   let clusterize = null;
   let allPosts = [];
   let allCategories = new Set();
-
-  function initBlogButtons()
-  {
-    const box = document.getElementById("blog-buttons");
-    box.innerHTML = BLOGS.map(b =>
-      `<button onclick="loadPosts('${b.id}', this)" class="tag">${b.name}</button>`
-    ).join(" ");
-  }
 
   // --- fetch posts for one blog ---
   async function loadPosts(blogId, btn)
@@ -457,7 +436,7 @@
     }).format(new Date(date));
   }
 
-  document.addEventListener("DOMContentLoaded", () => initBlogButtons());
+  loadPosts("6054040021329953972", getElementById("tasweerBlogButton"));
 
   function toggleFullscreen()
   {
