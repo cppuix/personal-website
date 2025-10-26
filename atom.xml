@@ -14300,4 +14300,24 @@ Photographs exist independently without fulfilling any of these conditions — a
 </content>
         
     </entry>
+    <entry xml:lang="ar">
+        <title>جامع مسائل العقيدة الصحيحى</title>
+        <published>2025-05-01T00:00:00+00:00</published>
+        <updated>2025-05-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://arm-alqaddari.codeberg.page/portfolio/development/jmas/"/>
+        <id>https://arm-alqaddari.codeberg.page/portfolio/development/jmas/</id>
+        
+        <content type="html" xml:base="https://arm-alqaddari.codeberg.page/portfolio/development/jmas/">&lt;p&gt;A brief explanation of what the app does, its purpose, and your role.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
 </feed>
