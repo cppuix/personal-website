@@ -241,14 +241,15 @@
 
 <h3 class="title">الترجمة</h3>
 <p style="font-size:0.9em; opacity:0.9;">
-  اختر مدونة لعرض منشوراتها، ثم يمكنك التصفية حسب التصنيف.
+  اختر مدونة لعرض منشوراتها.
 </p>
+
 <!-- blog selector -->
 <div id="blog-buttons" style="margin-bottom:1em;">
-<button id="tasweerBlogButton" onclick="loadPosts('6054040021329953972', this)" class="tag">فتنة التصوير الضوئي</button>
-<button onclick="loadPosts('671623261151206189', this)" class="tag">عبد الرحمن بن مِيهوب القَدَّاري</button>
-<button onclick="loadPosts('359021229544733096', this)" class="tag">Abdurrahmaan Al-Qaddaaree</button>
-<button onclick="loadPosts('6459273135043304733', this)" class="tag">The Scourge of Photography</button>
+  <button id="tasweerBlogButton" onclick="setBlog('https\:\/\/fitnattasweer.blogspot.com')" class="tag">فتنة التصوير الضوئي</button>
+  <button onclick="setBlog('https\:\/\/armalqaddaaree.blogspot.com')" class="tag">عبد الرحمن بن مِيهوب القَدَّاري</button>
+  <button onclick="setBlog('https\:\/\/en-armalqaddaaree.blogspot.com')" class="tag">Abdurrahmaan Al-Qaddaaree</button>
+  <button onclick="setBlog('https\:\/\/scourgeofphotography.blogspot.com')" class="tag">The Scourge of Photography</button>
 
 </div>
 
@@ -265,21 +266,14 @@
   <h4 style="margin-bottom:0.5em;">التصنيفات</h4>
   <div id="khawaatir-categories"></div>
 
-  <!-- scroll area -->
-  <div id="scrollArea" class="clusterize-scroll telegram-feed" style="
-    max-height:100vh;
-    overflow-y:auto;
-    border-radius:6px;
-    box-shadow:
-      inset 0 2px 6px rgba(0,0,0,0.12),
-      inset 0 -2px 6px rgba(0,0,0,0.08);">
-    <div id="contentArea" class="clusterize-content">
-      <div class="clusterize-no-data">…</div>
-    </div>
+  <div id="portfolio-section" style="position:relative;">
+    
+    <iframe id="blogFrame" src="https://armalqaddaaree.blogspot.com" width="100%" height="100vh"
+      style="border:none; overflow:auto;" loading="lazy">
+    </iframe>
   </div>
-</div>
 
-<p>للقراءة من مصادر المدونات، تفقد الروابط التالية:</p>
+  <p>للقراءة من مصادر المدونات، تفقد الروابط التالية:</p>
 <ul id="blog-list" style="list-style:none; padding:0;">
   <li style="margin:0.3em 0;"></li><a href="https://en-armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
     target="_blank">Abdurrahmaan Al-Qaddaaree</a></li>
@@ -290,165 +284,71 @@
   <li style="margin:0.3em 0;"></li><a href="https://armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
     target="_blank">عبد الرحمن بن ميهوب القداري</a></li>
 </ul>
+</div>
+
 
 <style>
-  #blog-section.fullscreen {
-    width: 100vw;
-    height: 100vh;
+  #portfolio-section {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(161, 173, 193, 0.25);
+    margin-top: 1.5em;
+    transition: box-shadow 0.3s ease;
   }
 
-  #blog-section.fullscreen #scrollArea {
-    max-height: 100%;
-    height: 100%;
+  #portfolio-section:hover {
+    box-shadow: 0 0 25px rgba(209, 208, 208, 0.35);
+  }
+
+  #portfolio-section iframe {
+    width: 100%;
+    height: 800px;
+    border: none;
+    display: block;
+  }
+
+  #portfolio-section button {
+    background: rgba(0, 75, 109, 0.85);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  #portfolio-section button:hover {
+    background: rgba(0, 25, 54, 0.95);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 2px;
+    background: var(--bg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    border: 1px solid var(--borderShadowColor);
+    font-size: 0.9em;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
   }
 </style>
-<script src="https://unpkg.com/clusterize.js/clusterize.min.js"></script>
+
 <script>
-  console.log("khawaatir multi-blog Blogger API script loaded");
 
-  const API_KEY = "AIzaSyBuvQ5R51hereHpU65F0FtYi9Uzod_ft3w";
-
-  // --- your blogs ---
   const BLOGS = [
-    { id: "6054040021329953972", name: "فتنة التصوير الضوئي", dir: "rtl" },
-    { id: "671623261151206189", name: "عبد الرحمن بن مِيهوب القَدَّاري", dir: "rtl" },
+    { link: "https://fitnattasweer.blogspot.com", name: "فتنة التصوير الضوئي" },
+    { link: "https://armalqaddaaree.blogspot.com", name: "عبد الرحمن بن مِيهوب القَدَّاري" },
 
-    { id: "359021229544733096", name: "Abdurrahmaan Al-Qaddaaree", dir: "ltr" },
-    { id: "6459273135043304733", name: "The Scourge of Photography", dir: "ltr" }
+    { link: "https://en-armalqaddaaree.blogspot.com", name: "Abdurrahmaan Al-Qaddaaree" },
+    { link: "https://scourgeofphotography.blogspot.com", name: "The Scourge of Photography" }
   ];
 
-  let clusterize = null;
-  let allPosts = [];
-  let allCategories = new Set();
-
-  // --- fetch posts for one blog ---
-  async function loadPosts(blogId, btn)
+  function setBlog(blog)
   {
-    document.getElementById("contentArea").innerHTML = "<div class='clusterize-no-data'>جار التحميل…</div>";
-    document.getElementById("khawaatir-categories").innerHTML = "";
-
-    // highlight selected blog button
-    document.querySelectorAll("#blog-buttons .tag").forEach(b => b.classList.remove("active"));
-    if (btn) btn.classList.add("active");
-
-    try
-    {
-      const res = await fetch(`https://www.googleapis.com/blogger/v3/blogs/${blogId}/posts?key=${API_KEY}&maxResults=50`);
-      const data = await res.json();
-
-      if (!data.items) throw new Error("No posts found");
-
-      const blog = BLOGS.find(b => b.id === blogId);
-    const dir = blog?.dir || "rtl";
-
-    allPosts = data.items.map(post => ({
-      title: post.title,
-      author: post.author.displayName,
-      date: post.published,
-      content: post.content,
-      category: post.labels?.[0] || "عام",
-      url: post.url
-    }));
-
-    buildCategoryBar();
-    renderAllPosts(dir);
-
-    } catch (err)
-    {
-      console.error("Error loading Blogger posts:", err);
-      document.getElementById("contentArea").innerHTML =
-        "<div class='clusterize-no-data'>خطأ في التحميل</div>";
-    }
+    document.getElementById('blogFrame').src = blog
   }
-
-  function buildCategoryBar()
-  {
-    const catBox = document.getElementById("khawaatir-categories");
-    allCategories.clear();
-    allPosts.forEach(p => allCategories.add(p.category));
-
-    catBox.innerHTML =
-      `<button class="tag active" onclick="filterByCategory(null)">الكل</button> ` +
-      Array.from(allCategories).map(c =>
-        `<button class="tag" onclick="filterByCategory('${c}')">${c}</button>`
-      ).join(" ") + `<div style="height:1em;"></div>`;
-  }
-
-  function renderAllPosts(dir = "rtl")
-  {
-    if (clusterize) clusterize.destroy(true);
-    clusterize = new Clusterize({
-      rows: renderPosts(allPosts, dir),
-      scrollId: 'scrollArea',
-      contentId: 'contentArea'
-    });
-  }
-
-  function renderPosts(posts, dir = "rtl")
-  {
-    return posts.map(post => `
-    <div class="telegram-message right" dir="${dir}">
-      <div class="telegram-header" style="text-align:${dir === "rtl" ? "right" : "left"}">
-        <span class="telegram-author">${post.author}</span>
-        <span class="telegram-date">${formatDate(post.date, dir)}</span>
-      </div>
-      <div class="telegram-title">${post.title}</div>
-      <div class="telegram-text">
-        ${post.content}
-        <div><a href="${post.url}" target="_blank">قراءة المزيد</a></div>
-      </div>
-    </div>
-    <div style="height:1em;"></div>
-  `);
-  }
-
-  function formatDate(date, dir)
-  {
-    if (dir === "rtl")
-    {
-      // Arabic / Hijri
-      return new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-      }).format(new Date(date));
-    } else
-    {
-      // English / Gregorian
-      return new Intl.DateTimeFormat("en-US", {
-        day: "numeric",
-        month: "short",
-        year: "numeric"
-      }).format(new Date(date));
-    }
-  }
-
-
-
-  function filterByCategory(category)
-  {
-    const visiblePosts = category ? allPosts.filter(p => p.category === category) : allPosts;
-    if (clusterize) clusterize.update(renderPosts(visiblePosts));
-
-    const tags = document.querySelectorAll("#khawaatir-categories .tag");
-    tags.forEach(tag =>
-    {
-      tag.classList.remove("active");
-      if ((category === null && tag.textContent.trim() === "الكل") || tag.textContent.trim() === category)
-        tag.classList.add("active");
-    });
-  }
-
-  function toHijri(date)
-  {
-    return new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    }).format(new Date(date));
-  }
-
-  loadPosts("6054040021329953972", getElementById("tasweerBlogButton"));
 
   function toggleFullscreen()
   {
