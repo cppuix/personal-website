@@ -244,6 +244,52 @@
 
 <h3 class="title"  dir="ltr" style="direction: ltr !important; text-align: left;"> The Compendium of The Correct Creed </h3>
 
+
+<button type="button" class="collapsible" style="direction: ltr !important; text-align: left;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+Description
+</button>
+
+<div class="content" style="direction: ltr !important; text-align: left;">
+    <div>
+        <p dir="rtl">
+بسم الله الرحمن الرحيم، الحمد لله رب العالمين، وأشهد أن لا إله إلا الله وحده لا شريك له، وأشهد أن محمدا عبده ورسوله.
+</p>
+
+<p><strong>To proceed:</strong></p>
+
+<p>
+This is a translation of <em>“دروس جامع مسائل العقيدة الصحيحة”</em>
+(<em>Duroos Jaami‘ Masaa’il al-‘Aqeedah as-Saheeha</em>).
+The original series is by Dr. Faysal bin Misfir az-Zinaamy al-Waadi’y.
+Translation by Abdurrahmaan bnu Meehoob al-Qaddaary, with permission graciously granted by the author.
+</p>
+
+<p>
+The original audio lessons were transcribed using software, then translated and rephrased for smoother English flow.
+Finally, the translations were recorded with some improvisation.
+</p>
+
+<p>
+<strong>Important:</strong> I am not a shaykh, nor an ustaath.
+I am a seeker of knowledge who understands these lessons and is able to convey them to the English audience in a trustworthy manner.
+</p>
+
+<p dir="rtl">
+والحمد لله.
+</p>
+
+<p>
+May Allaah benefit you and us through these lessons, and reward all of us abundantly in this life and the Hereafter.
+</p>
+
+<p dir="rtl">
+والله المستعان.
+</p>
+
+    </div>
+</div>
+
+
 <ul>
   <!-- If you are using pagination, section.pages will be empty.
        You need to use the paginator object -->  
@@ -255,6 +301,27 @@
   <li  dir="ltr" style="direction: ltr !important; text-align: left;"><a href="https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/lesson3/">Lesson 3</a></li>
   
 </ul>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++)
+    {
+        coll[i].addEventListener("click", function ()
+        {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block")
+            {
+                content.style.display = "none";
+            } else
+            {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>
 
 	</main>
 
