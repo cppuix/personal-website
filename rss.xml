@@ -7,7 +7,15 @@
       <generator>Zola</generator>
       <language>ar</language>
       <atom:link href="https://arm-alqaddari.codeberg.page/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Sat, 20 Dec 2025 20:19:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 30 Dec 2025 01:20:00 +0000</lastBuildDate>
+      <item>
+          <title>Lesson 4</title>
+          <pubDate>Tue, 30 Dec 2025 01:20:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/lesson4/</link>
+          <guid>https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/lesson4/</guid>
+          <description xml:base="https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/lesson4/"></description>
+      </item>
       <item>
           <title>Lesson 3</title>
           <pubDate>Sat, 20 Dec 2025 20:19:00 +0000</pubDate>
