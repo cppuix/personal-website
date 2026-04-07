@@ -1,10 +1,10 @@
-site_url: /
+site_url: https://alqaddari.vercel.app
 
 backend:
   name: github
   repo: cppuix/personal-website
   branch: main
-  base_url: /
+  base_url: https://alqaddari.vercel.app
   auth_endpoint: api/auth
 
 media_folder: "res/images/uploads"
