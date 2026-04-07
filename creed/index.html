@@ -239,18 +239,8 @@
 
 	<!-- <div style="height: 2em;"></div> -->
 	<main>
-		
-
-<h3 class="title"  dir="ltr" style="direction: ltr !important; text-align: left;">
-  Creed
-</h3>
-
-<div dir="ltr" style="direction: ltr !important; text-align: left;">
-<ul>
-<li><a href="/compendiumCorrectCreed">The Compendium of Correct Creed</a>.</li>
-</ul>
-</div>
-
+		<h2 id="page-title"></h2>
+		<ul id="creed-list"></ul>
 	</main>
 
 	<footer>
@@ -259,6 +249,7 @@
 
 	<script src="/js/main.js"></script>
 	<script src="/js/topNavBar.js"></script>
+	<script src="/js/section-loader.js"></script>
 	<!-- <script src="/js/sidebar.js"></script> -->
 
 	<script>
@@ -270,8 +261,6 @@ if (savedScroll !== null) {
 window.addEventListener("beforeunload", () => {
   localStorage.setItem("page-scroll", window.scrollY);
 });
-
-		
 	</script>
 
 </body>

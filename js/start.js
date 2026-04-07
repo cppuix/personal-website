@@ -1,6 +1,4 @@
-let currentIndex = parseInt(localStorage.getItem("lastLesson")) || 0;
-let audios = [];
-let filePrefix = "https://ia600807.us.archive.org/21/items/dorosJami3MasailElAkida/";
+// This file is no longer in use.
 let autoPlay = localStorage.getItem("autoPlay") === "true";
 let isNaturalTimeUpdate = true;
 let isVolumeDragging = false;

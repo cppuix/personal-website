@@ -1,0 +1,65 @@
+{
+  "category": "blog-posts",
+  "items": [
+    {
+      "id": "fitnattasweer",
+      "type": "article",
+      "status": "published",
+      "lang": "ar",
+      "title_ar": "فتنة التصوير الضوئي",
+      "title_en": "Fitnat At-Tasweer",
+      "summary_ar": "مدونة متخصصة في موضوع التصوير الفوتوغرافي وأثره.",
+      "summary_en": "A focused blog on photography-related issues.",
+      "slug": "fitnattasweer",
+      "links": {
+        "external": "https://fitnattasweer.blogspot.com"
+      },
+      "sort_order": 1
+    },
+    {
+      "id": "arm-blog-ar",
+      "type": "article",
+      "status": "published",
+      "lang": "ar",
+      "title_ar": "عبد الرحمن بن مِيهوب القَدَّاري",
+      "title_en": "Abderrahmene Al-Qaddaaree",
+      "summary_ar": "المدونة العربية الرئيسية.",
+      "summary_en": "Main Arabic blog.",
+      "slug": "arm-blog-ar",
+      "links": {
+        "external": "https://armalqaddaaree.blogspot.com"
+      },
+      "sort_order": 2
+    },
+    {
+      "id": "arm-blog-en",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "Abdurrahmaan Al-Qaddaaree",
+      "title_en": "Abdurrahmaan Al-Qaddaaree",
+      "summary_ar": "المدونة الإنجليزية الرئيسية.",
+      "summary_en": "Main English blog.",
+      "slug": "arm-blog-en",
+      "links": {
+        "external": "https://en-armalqaddaaree.blogspot.com"
+      },
+      "sort_order": 3
+    },
+    {
+      "id": "scourge-of-photography",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "The Scourge of Photography",
+      "title_en": "The Scourge of Photography",
+      "summary_ar": "مدونة إنجليزية مرتبطة بموضوع التصوير.",
+      "summary_en": "An English blog related to photography topics.",
+      "slug": "scourge-of-photography",
+      "links": {
+        "external": "https://scourgeofphotography.blogspot.com"
+      },
+      "sort_order": 4
+    }
+  ]
+}

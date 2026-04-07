@@ -1,5 +1,52 @@
 const themeSwitch = document.getElementById("themeSwitch");
 
+function textByLang(arText, enText, useEnglish)
+{
+  if (useEnglish && enText)
+  {
+    return enText;
+  }
+  return arText || enText || "";
+}
+
+async function loadSiteNavigation()
+{
+  const nav = document.getElementById("topNavbar");
+  if (!nav)
+  {
+    return;
+  }
+
+  try
+  {
+    const res = await fetch("/content/site.json", { cache: "no-store" });
+    if (!res.ok)
+    {
+      return;
+    }
+
+    const site = await res.json();
+    if (!Array.isArray(site.nav_links) || site.nav_links.length === 0)
+    {
+      return;
+    }
+
+    const htmlLang = (document.documentElement.lang || "").toLowerCase();
+    const useEnglish = htmlLang.startsWith("en") || site.default_language === "en";
+
+    nav.innerHTML = site.nav_links.map(link =>
+    {
+      const label = textByLang(link.label_ar, link.label_en, useEnglish);
+      const url = link.url || "/";
+      return `<a href="${url}">${label}</a>`;
+    }).join("\n");
+  }
+  catch (err)
+  {
+    console.warn("Navigation content unavailable:", err.message);
+  }
+}
+
 //##################################################
 //                      THEME STUFF
 //##################################################
@@ -42,6 +89,8 @@ function adjustNavbar()
 
 document.addEventListener("DOMContentLoaded", function()
 {
+  loadSiteNavigation().finally(() =>
+  {
     let links = document.querySelectorAll("#topNavbar a");
     let currentPage = window.location.pathname;
 
@@ -52,5 +101,6 @@ document.addEventListener("DOMContentLoaded", function()
             link.classList.add("active");
         }
     });
+  });
 });
 

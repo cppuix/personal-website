@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "title_ar": "بريق الأمل",
+    "title_en": "A Spark of Hope",
+    "body_ar": "هذا النص مؤقت وسيتم استبداله أثناء الترحيل إلى نظام المحتوى الجديد.",
+    "body_en": "This is temporary placeholder text and will be replaced during migration.",
+    "source_label_ar": "المصدر",
+    "source_label_en": "Source",
+    "source_url": "/books/buzoogh/"
+  },
+  "featured_cards": [
+    {
+      "title_ar": "كتب الأطفال",
+      "title_en": "Children's Books",
+      "url": "/books/ebooks/",
+      "featured": true
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title_ar": "مقترحات",
+  "title_en": "Recommendations",
+  "items": [
+    {
+      "category": "العقيدة",
+      "title_ar": "موقع دروس جامع مسائل العقيدة الصحيحة — للأستاذ فيصل بن مسفر الوادعي",
+      "title_en": "Jami Masail Al-Aqidah Lessons Website",
+      "url": "https://jamie-masail-aqida.codeberg.page/"
+    },
+    {
+      "category": "العقيدة",
+      "title_ar": "تطبيق دروس جامع مسائل العقيدة الصحيحة — للأستاذ فيصل بن مسفر الوادعي",
+      "title_en": "Jami Masail Al-Aqidah Lessons App",
+      "url": "https://archive.org/details/appJamieMasailAqida",
+      "note_ar": "ملاحظة: حمّل آخر إصدار، وتعرفه من اسم الملف، إما نسخة الأندرويد أو الويندوز.",
+      "note_en": "Note: Download the latest release based on file name (Android or Windows)."
+    },
+    {
+      "category": "العقيدة",
+      "title_ar": "تطبيق منتقى كنز الأطفال",
+      "title_en": "Muntaqa Kanz Al-Atfaal App",
+      "url": "https://armalqaddaaree.blogspot.com/2025/11/muntaqaa-kanz-al-atfaal-app.html"
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الإمام الألباني",
+      "title_en": "Imam Al-Albani Website",
+      "url": "https://www.al-albany.com/",
+      "note_ar": "ملاحظة: هذا الموقع ينشر صور الإمام الألباني، وهذا من الظلم والوقاحة، لأنه لا يرضى بذلك كما صرح به مرارا، وكما تشهد له سيرته.",
+      "note_en": "Note: The site publishes photos of Imam Al-Albani despite his known rejection of that practice."
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الإمام ابن باز",
+      "title_en": "Imam Ibn Baz Website",
+      "url": "https://binbaz.org.sa/"
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الإمام ابن عثيمين",
+      "title_en": "Imam Ibn Uthaymeen Website",
+      "url": "https://binothaimeen.net/"
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الإمام مقبل بن هادي الوادعي",
+      "title_en": "Imam Muqbil Al-Wadii Website",
+      "url": "https://www.muqbel.net/"
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الشيخ يحيى بن علي الحجوري",
+      "title_en": "Shaykh Yahya Al-Hajuri Website",
+      "url": "https://sh-yahia.net/",
+      "note_ar": "خليفة الشيخ الوادعي بوصية منه. ومن أراد مختصرا حول ما يثار عنه فليطلع على الرابط: https://t.me/salmansalehalemad/4554",
+      "note_en": "A brief reference addressing public claims about him: https://t.me/salmansalehalemad/4554"
+    },
+    {
+      "category": "عام",
+      "title_ar": "موقع الشيخ عمار الحوباني",
+      "title_en": "Shaykh Ammar Al-Hubani Website",
+      "url": "https://sh-ammar.codeberg.page/"
+    }
+  ]
+}

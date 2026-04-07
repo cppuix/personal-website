@@ -1,0 +1,53 @@
+{
+  "category": "apps",
+  "items": [
+    {
+      "id": "jmas",
+      "type": "app",
+      "status": "published",
+      "lang": "ar",
+      "title_ar": "دروس جامع مسائل العقيدة الصحيحة",
+      "title_en": "Jami Masail Al-Aqidah Lessons",
+      "summary_ar": "تطبيق لسلسلة علمية منهجية في العقيدة للأستاذ فيصل بن مسفر الوادعي.",
+      "summary_en": "An app for the structured Aqidah lesson series by Faycal bin Misfar Al-Wadii.",
+      "slug": "jmas",
+      "links": {
+        "site": "/apps/jmas/"
+      },
+      "featured": true,
+      "sort_order": 1
+    },
+    {
+      "id": "muntaqaakanz",
+      "type": "app",
+      "status": "published",
+      "lang": "ar-en",
+      "title_ar": "منتقى كنز الأطفال",
+      "title_en": "Muntaqa Kanz Al-Atfaal",
+      "summary_ar": "تطبيق يقدم كتابا تعليميا للأطفال في العقيدة مع ترجمة إنجليزية.",
+      "summary_en": "A children's creed-learning app with English translation.",
+      "slug": "muntaqaakanz",
+      "links": {
+        "site": "/apps/muntaqaakanz/"
+      },
+      "featured": true,
+      "sort_order": 2
+    },
+    {
+      "id": "vocabularyharvest",
+      "type": "app",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "Vocabulary Harvest",
+      "title_en": "Vocabulary Harvest",
+      "summary_ar": "تطبيق مفردات عربي يعمل دون اتصال مع تكرار متباعد وتمارين متعددة.",
+      "summary_en": "An offline-first Arabic vocabulary app with spaced repetition.",
+      "slug": "vocabularyharvest",
+      "links": {
+        "site": "/apps/vocabularyharvest/"
+      },
+      "featured": true,
+      "sort_order": 3
+    }
+  ]
+}

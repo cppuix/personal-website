@@ -1,0 +1,22 @@
+{
+  "site_name": "عبد الرحمن بن ميهوب القداري",
+  "site_name_en": "Abderrahmene Ben Miehoub Al-Qaddaaree",
+  "tagline_ar": "نشر العلم وتعليمه",
+  "tagline_en": "Publishing and teaching beneficial knowledge",
+  "default_language": "ar",
+  "supported_languages": ["ar", "en"],
+  "nav_links": [
+    { "label_ar": "الرئيسية", "label_en": "Home", "url": "/" },
+    { "label_ar": "الأعمال", "label_en": "Works", "url": "/books/" },
+    { "label_ar": "العقيدة", "label_en": "Creed", "url": "/creed/" },
+    { "label_ar": "المدونة", "label_en": "Blog", "url": "/blog/" },
+    { "label_ar": "المقترحات", "label_en": "Recommendations", "url": "/recommendations/" },
+    { "label_ar": "حول الموقع", "label_en": "About", "url": "/about/" }
+  ],
+  "contact": {
+    "email": "abderrahmene_mhb@proton.me",
+    "telegram": "https://t.me/arm_al_qaddaaree"
+  },
+  "footer_ar": "محتوى الموقع للقراءة والمشاركة مع ذكر المصدر.",
+  "footer_en": "Content may be shared with attribution to source."
+}

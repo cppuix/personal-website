@@ -1,0 +1,83 @@
+{
+  "category": "creed",
+  "items": [
+    {
+      "id": "creedqa1",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "أساس العقيدة — الشهادة",
+      "title_en": "The Foundation — The Shahada",
+      "summary_en": "Understanding the core testimony that anchors Islam.",
+      "slug": "creedqa1",
+      "links": { "site": "/creed/creedqa1/" },
+      "sort_order": 1
+    },
+    {
+      "id": "creedqa2",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "هل تعلم معنى الشهادة واجب؟",
+      "title_en": "Is It Mandatory to Learn the Meaning of the Shahada?",
+      "slug": "creedqa2",
+      "links": { "site": "/creed/creedqa2/" },
+      "sort_order": 2
+    },
+    {
+      "id": "creedqa3",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "الفرق بين الإله والرب",
+      "title_en": "The Difference Between \"God\" and \"Lord\"",
+      "slug": "creedqa3",
+      "links": { "site": "/creed/creedqa3/" },
+      "sort_order": 3
+    },
+    {
+      "id": "creedqa4",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "النفي ثم الإثبات",
+      "title_en": "Negate All — Then Affirm One",
+      "slug": "creedqa4",
+      "links": { "site": "/creed/creedqa4/" },
+      "sort_order": 4
+    },
+    {
+      "id": "creedqa5",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "ما هي الآلهة الزائفة؟",
+      "title_en": "What Are False Gods?",
+      "slug": "creedqa5",
+      "links": { "site": "/creed/creedqa5/" },
+      "sort_order": 5
+    },
+    {
+      "id": "creedqa6",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "الشرك أقرب مما تظن",
+      "title_en": "Shirk — Closer Than You Think",
+      "slug": "creedqa6",
+      "links": { "site": "/creed/creedqa6/" },
+      "sort_order": 6
+    },
+    {
+      "id": "creedqa7",
+      "type": "article",
+      "status": "published",
+      "lang": "en",
+      "title_ar": "ماذا تعني \"إلا الله\"؟",
+      "title_en": "What Does \"Except Allah\" Mean?",
+      "slug": "creedqa7",
+      "links": { "site": "/creed/creedqa7/" },
+      "sort_order": 7
+    }
+  ]
+}

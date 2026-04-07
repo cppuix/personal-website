@@ -1,0 +1,37 @@
+{
+  "category": "books",
+  "items": [
+    {
+      "id": "treatises",
+      "type": "treatise",
+      "status": "published",
+      "lang": "ar",
+      "title_ar": "رسائل علمية",
+      "title_en": "Treatises",
+      "summary_ar": "مجموعة الرسائل العلمية المنشورة في الموقع.",
+      "summary_en": "A collection of treatises published on this website.",
+      "slug": "treatises",
+      "links": {
+        "site": "/books/treatises/"
+      },
+      "featured": true,
+      "sort_order": 1
+    },
+    {
+      "id": "ebooks",
+      "type": "book",
+      "status": "published",
+      "lang": "ar",
+      "title_ar": "كتب أطفال",
+      "title_en": "Children's Books",
+      "summary_ar": "محتوى مبسط مناسب للأطفال.",
+      "summary_en": "Simplified content suitable for children.",
+      "slug": "ebooks",
+      "links": {
+        "site": "/books/ebooks/"
+      },
+      "featured": true,
+      "sort_order": 2
+    }
+  ]
+}

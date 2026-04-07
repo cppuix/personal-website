@@ -1,0 +1,21 @@
+{
+  "category": "translations",
+  "items": [
+    {
+      "id": "muntaqaakanzatfaal",
+      "type": "translation",
+      "status": "published",
+      "lang": "ar-en",
+      "title_ar": "Muntaqaa Kanz al-Atfaal (منتقى كنز الأطفال)",
+      "title_en": "Muntaqaa Kanz al-Atfaal",
+      "summary_ar": "ترجمة كتاب منتقى كنز الأطفال.",
+      "summary_en": "Translation project for Muntaqaa Kanz al-Atfaal.",
+      "slug": "muntaqaakanzatfaal",
+      "links": {
+        "site": "/translations/muntaqaakanzatfaal/"
+      },
+      "featured": true,
+      "sort_order": 1
+    }
+  ]
+}

@@ -239,100 +239,8 @@
 
 	<!-- <div style="height: 2em;"></div> -->
 	<main>
-		
-
-<h3 class="title">تطبيقات</h3>
-
-<section class="apps-grid">
-
-  <div class="app-card">
-    <img src="/res/images/apps/jmas/splash.png">
-    <h4>دروس جامع مسائل العقيدة الصحيحة</h4>
-    <p>
-      هذا التطبيق يقدّم سلسلة جامع مسائل العقيدة الصحيحة للأستاذ فيصل بن مِسْفِر الزنامي الوادعي حفظه الله، وهي دروس صوتية علمية منهجية تهدف إلى جمع أصول العقيدة الإسلامية كما جاءت في الكتاب والسنة بفهم سلف الأمة. 
-    </p>
-    <a href="/apps/jmas" class="app-link" target="_blank" rel="noopener">للمزيد</a>
-  </div>
-
-  <div class="app-card">
-    <img src="/res/images/apps/muntaqaaKanz/splash.png">
-    <h4>منتقى كنز الأطفال</h4>
-    <p>
-      هذا التطبيق يقدم كتابا تعليميا للأطفال والبادئين حول عقيدة أهل السنة والجماعة بعنوان "منتقى كنز الأطفال"، من إعداد الأستاذ فيصل بن مسفر الوادعي، مع ترجمة إنجليزية من قبل عبد الرحمن بن ميهوب القداري.
-    </p>
-    <a href="/apps/muntaqaakanz" class="app-link" target="_blank" rel="noopener">للمزيد</a>
-  </div>
-
-  <div class="app-card" dir="ltr" style="direction: ltr;">
-    <img src="/res/images/apps/vocabularyharvest/logo.png">
-    <h4>Vocabulary Harvest</h4>
-    <p>
-      A beautiful, offline-first Arabic vocabulary app. Full tashkeel, spaced repetition, and three practice modes. Built for serious learners.
-    </p>
-    <a href="/apps/vocabularyharvest" class="app-link" target="_blank" rel="noopener">For more</a>
-  </div>
-
-</section>
-
-<style>
-  .apps-grid {
-    display: grid;
-    gap: 1.5em;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    margin-top: 1.5em;
-  }
-
-  .app-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 12px;
-    padding: 1em;
-    box-shadow: 0 0 12px rgba(0,0,0,0.4);
-    background: var(--bg);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    gap: 2em;
-  }
-
-  .app-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
-  }
-
-  .app-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 0.7em;
-  }
-
-  .app-card h4 {
-    margin: 0.3em 0;
-    font-size: 1.1em;
-  }
-
-  .app-card p {
-    font-size: 0.9em;
-    color: var(--text);
-    margin-bottom: 0.7em;
-  }
-
-  .app-link {
-    display: inline-block;
-    
-    padding: 0.5em 0.9em;
-    border-radius: 6px;
-    border: 1px solid var(--text);
-    color: var(--text);
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .app-link:hover {
-    background: #004b6d;
-    color: #fff;
-  }
-</style>
+		<h3 class="title" id="page-title">تطبيقات</h3>
+		<ul id="apps-list"></ul>
 
 
 	</main>
@@ -342,6 +250,7 @@
 	</footer>
 
 	<script src="/js/main.js"></script>
+	<script src="/js/section-loader.js"></script>
 	<script src="/js/topNavBar.js"></script>
 	<!-- <script src="/js/sidebar.js"></script> -->
 

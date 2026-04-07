@@ -239,125 +239,9 @@
 
 	<!-- <div style="height: 2em;"></div> -->
 	<main>
-		
-
-<h3 class="title">المدونات</h3>
-<p style="font-size:0.9em; opacity:0.9;">
-  اختر مدونة لعرض منشوراتها.
-</p>
-
-<!-- blog selector -->
-<div id="blog-buttons" style="margin-bottom:1em;">
-  <button id="tasweerBlogButton" onclick="setBlog('https\:\/\/fitnattasweer.blogspot.com')" class="tag">فتنة التصوير الضوئي</button>
-  <button onclick="setBlog('https\:\/\/armalqaddaaree.blogspot.com')" class="tag">عبد الرحمن بن مِيهوب القَدَّاري</button>
-  <button onclick="setBlog('https\:\/\/en-armalqaddaaree.blogspot.com')" class="tag">Abdurrahmaan Al-Qaddaaree</button>
-  <button onclick="setBlog('https\:\/\/scourgeofphotography.blogspot.com')" class="tag">The Scourge of Photography</button>
-
-</div>
-
-<div id="blog-section" style="position:relative;">
-  <button onclick="toggleFullscreen()" style="
-      position:absolute;
-      top:0.5em;
-      left:0.5em;
-      z-index:10;
-      padding:0.3em 0.6em;
-      font-size:0.9em;">⛶
-  </button>
-
-  <div id="portfolio-section" style="position:relative;">
-    
-    <iframe id="blogFrame" src="https://armalqaddaaree.blogspot.com" width="100%" height="100vh"
-      style="border:none; overflow:auto;" loading="lazy">
-    </iframe>
-  </div>
-
-  <p>للقراءة من مصادر المدونات، تفقد الروابط التالية:</p>
-<ul id="blog-list" style="list-style:none; padding:0;">
-  <li style="margin:0.3em 0;"></li><a href="https://en-armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">Abdurrahmaan Al-Qaddaaree</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://fitnattasweer.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">فتنة التصوير الضوئي</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://scourgeofphotography.blogspot.com"
-    rel="nofollow noopener noreferrer" target="_blank">The Scourge of Photography</a></li>
-  <li style="margin:0.3em 0;"></li><a href="https://armalqaddaaree.blogspot.com" rel="nofollow noopener noreferrer"
-    target="_blank">عبد الرحمن بن ميهوب القداري</a></li>
-</ul>
-</div>
-
-
-<style>
-  #portfolio-section {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(161, 173, 193, 0.25);
-    margin-top: 1.5em;
-    transition: box-shadow 0.3s ease;
-  }
-
-  #portfolio-section:hover {
-    box-shadow: 0 0 25px rgba(209, 208, 208, 0.35);
-  }
-
-  #portfolio-section iframe {
-    width: 100%;
-    height: 800px;
-    border: none;
-    display: block;
-  }
-
-  #portfolio-section button {
-    background: rgba(0, 75, 109, 0.85);
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  #portfolio-section button:hover {
-    background: rgba(0, 25, 54, 0.95);
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 4px 8px;
-    margin: 2px;
-    background: var(--bg);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    border-radius: 6px;
-    border: 1px solid var(--borderShadowColor);
-    font-size: 0.9em;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s, color 0.2s;
-  }
-</style>
-
-<script>
-
-  const BLOGS = [
-    { link: "https://fitnattasweer.blogspot.com", name: "فتنة التصوير الضوئي" },
-    { link: "https://armalqaddaaree.blogspot.com", name: "عبد الرحمن بن مِيهوب القَدَّاري" },
-
-    { link: "https://en-armalqaddaaree.blogspot.com", name: "Abdurrahmaan Al-Qaddaaree" },
-    { link: "https://scourgeofphotography.blogspot.com", name: "The Scourge of Photography" }
-  ];
-
-  function setBlog(blog)
-  {
-    document.getElementById('blogFrame').src = blog
-  }
-
-  function toggleFullscreen()
-  {
-    const elem = document.getElementById("blog-section");
-    if (!document.fullscreenElement)
-      elem.requestFullscreen().catch(err => console.error(err));
-    else
-      document.exitFullscreen();
-  }
-</script>
+		<h3 class="title" id="page-title">المدونات</h3>
+		<p>اختر مدونة لعرض منشوراتها.</p>
+		<ul id="blog-posts-list"></ul>
 
 
 	</main>
@@ -367,6 +251,7 @@
 	</footer>
 
 	<script src="/js/main.js"></script>
+	<script src="/js/section-loader.js"></script>
 	<script src="/js/topNavBar.js"></script>
 	<!-- <script src="/js/sidebar.js"></script> -->
 

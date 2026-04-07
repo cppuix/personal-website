@@ -1,0 +1,190 @@
+site_url: /
+
+backend:
+  name: github
+  repo: YOUR_ORG_OR_USER/YOUR_REPO
+  branch: main
+  base_url: /
+  auth_endpoint: api/auth
+
+media_folder: "res/images/uploads"
+public_folder: "/res/images/uploads"
+
+collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Global Site"
+        file: "content/site.json"
+        fields:
+          - { label: "Site Name (AR)", name: "site_name", widget: "string" }
+          - { label: "Site Name (EN)", name: "site_name_en", widget: "string", required: false }
+          - { label: "Tagline (AR)", name: "tagline_ar", widget: "string" }
+          - { label: "Tagline (EN)", name: "tagline_en", widget: "string", required: false }
+          - { label: "Default Language", name: "default_language", widget: "select", options: ["ar", "en"] }
+          - label: "Supported Languages"
+            name: "supported_languages"
+            widget: "list"
+            allow_add: false
+            field: { label: "Language", name: "lang", widget: "select", options: ["ar", "en"] }
+          - label: "Navigation Links"
+            name: "nav_links"
+            widget: "list"
+            fields:
+              - { label: "Label (AR)", name: "label_ar", widget: "string" }
+              - { label: "Label (EN)", name: "label_en", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string", required: false }
+              - { label: "Telegram", name: "telegram", widget: "string", required: false }
+          - { label: "Footer Text (AR)", name: "footer_ar", widget: "text" }
+          - { label: "Footer Text (EN)", name: "footer_en", widget: "text", required: false }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "content/home.json"
+        fields:
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Title (AR)", name: "title_ar", widget: "string" }
+              - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+              - { label: "Body (AR)", name: "body_ar", widget: "text" }
+              - { label: "Body (EN)", name: "body_en", widget: "text", required: false }
+              - { label: "Source Label (AR)", name: "source_label_ar", widget: "string", required: false }
+              - { label: "Source Label (EN)", name: "source_label_en", widget: "string", required: false }
+              - { label: "Source URL", name: "source_url", widget: "string", required: false }
+          - label: "Featured Cards"
+            name: "featured_cards"
+            widget: "list"
+            fields:
+              - { label: "Title (AR)", name: "title_ar", widget: "string" }
+              - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+
+      - name: "about"
+        label: "About"
+        file: "content/about.json"
+        fields:
+          - { label: "Title (AR)", name: "title_ar", widget: "string" }
+          - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+          - { label: "Body (AR)", name: "body_ar", widget: "markdown" }
+          - { label: "Body (EN)", name: "body_en", widget: "markdown", required: false }
+          - label: "Contact Items"
+            name: "contact_items"
+            widget: "list"
+            fields:
+              - { label: "Type", name: "type", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+
+      - name: "recommendations"
+        label: "Recommendations"
+        file: "content/recommendations.json"
+        fields:
+          - { label: "Title (AR)", name: "title_ar", widget: "string" }
+          - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Category", name: "category", widget: "string", required: false }
+              - { label: "Title (AR)", name: "title_ar", widget: "string" }
+              - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Note (AR)", name: "note_ar", widget: "text", required: false }
+              - { label: "Note (EN)", name: "note_en", widget: "text", required: false }
+
+  - name: "works"
+    label: "Works"
+    files:
+      - name: "books"
+        label: "Works - Books"
+        file: "content/works/books.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "books" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.type}} - {{fields.title_ar}}"
+            fields: &work_fields
+              - { label: "ID", name: "id", widget: "string", required: false }
+              - { label: "Type", name: "type", widget: "select", options: ["book", "treatise", "app", "translation", "article", "other"], default: "book" }
+              - { label: "Status", name: "status", widget: "select", options: ["published", "draft", "archived"], default: "published" }
+              - { label: "Language", name: "lang", widget: "select", options: ["ar", "en", "ar-en"], default: "ar-en" }
+              - { label: "Title (AR)", name: "title_ar", widget: "string" }
+              - { label: "Title (EN)", name: "title_en", widget: "string", required: false }
+              - { label: "Summary (AR)", name: "summary_ar", widget: "text", required: false }
+              - { label: "Summary (EN)", name: "summary_en", widget: "text", required: false }
+              - { label: "Slug", name: "slug", widget: "string" }
+              - { label: "Tags", name: "tags", widget: "list", required: false }
+              - { label: "Cover", name: "cover", widget: "image", required: false }
+              - label: "Links"
+                name: "links"
+                widget: "object"
+                required: false
+                fields:
+                  - { label: "Site", name: "site", widget: "string", required: false }
+                  - { label: "Download", name: "download", widget: "string", required: false }
+                  - { label: "External", name: "external", widget: "string", required: false }
+              - { label: "Featured", name: "featured", widget: "boolean", default: false }
+              - { label: "Published At", name: "published_at", widget: "datetime", required: false }
+              - { label: "Sort Order", name: "sort_order", widget: "number", value_type: "int", required: false }
+
+      - name: "treatises"
+        label: "Works - Treatises"
+        file: "content/works/treatises.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "treatises" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields: *work_fields
+
+      - name: "apps"
+        label: "Works - Apps"
+        file: "content/works/apps.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "apps" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields: *work_fields
+
+      - name: "translations"
+        label: "Works - Translations"
+        file: "content/works/translations.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "translations" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields: *work_fields
+
+      - name: "creed"
+        label: "Works - Creed"
+        file: "content/works/creed.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "creed" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields: *work_fields
+
+      - name: "blog_posts"
+        label: "Works - Blog Posts"
+        file: "content/works/blog-posts.json"
+        fields:
+          - { label: "Category", name: "category", widget: "hidden", default: "blog-posts" }
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            fields: *work_fields
