@@ -2,7 +2,7 @@ site_url: /
 
 backend:
   name: github
-  repo: YOUR_ORG_OR_USER/YOUR_REPO
+  repo: cppuix/personal-website
   branch: main
   base_url: /
   auth_endpoint: api/auth
