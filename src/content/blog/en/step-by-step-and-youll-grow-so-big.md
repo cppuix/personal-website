@@ -1,0 +1,9 @@
+---
+title: "Step By Step, And You'll Grow So Big"
+date: "2026-04-19T22:47:00.000Z"
+description: "Remember, do not think about tasks whole—your brain will choke.\"You mad?!\", said the brain.\"Release depression and failure hormones!!!\", the brain as well.Divide a single task into sub-tasks.فرق، تسود…"
+tags: []
+featured: false
+---
+
+<p>Remember, do not think about tasks whole—your brain will choke.<br /><br />"You mad?!", said the brain.<br />"Release depression and failure hormones!!!", the brain as well.<br /><br />Divide a single task into sub-tasks.<br /><br /></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">فرق، تسود</span><br /></p><p>Farriq, tasood.<br />Divide them, and you'll conquer them.<br /><br />"Ohh....that's more like it!", says the brain.<br />"Ok ok ok, kill the depression switch, this human is back into his mind, being reasonable and all", the brain as well.<br /><br />Humans love jumping to conclusions, it's easier, requires less effort, less scary.<br /><br />1+1=11<br /><br />Why do maths if you can stick them together?<br /><br />That's what happens when you don't think through decisions and conclusions.<br /><br />One decision like that after another, they snowball, and now you think you're a failure who's behind everyone and can't seem to be motivated to do anything. It always ends up locked...<br /><br />Slow down, step by step, and you'll get there.<br /><br />In Algeria, we tell toddlers who try to walk:<br /></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">"داداش، تكبر قداش"</span><br /></p><p>"Dāddāsh, tekber qaddāsh"<br />It's baby talk, not really Arabic.<br />Meaning, step by step, and you'll grow so big.<br /><br />Imagine that toddler thinking about racing in the Olympics or whatever.<br /><br />I can imagine the life draining out of their eyes. Such a huge gap.<br /><br />But even the fastest runner was a toddler once.</p>

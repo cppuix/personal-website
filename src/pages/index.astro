@@ -1,0 +1,134 @@
+---
+import { getCollection } from "astro:content";
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import BookCard from '../components/BookCard.astro';
+import { translations } from '../i18n/translations.js';
+
+const blogPosts = await getCollection("blog", ({ id }) => id.startsWith("en/"));
+const recentPosts = blogPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const allBooks = await getCollection("books");
+const featuredBooks = allBooks
+  .filter(book => book.data.featured)
+  .slice(0, 4);
+---
+
+<Base title="عبد الرحمن بن ميهوب القداري" description="A place for books, writings, translations, and tools.">
+  <Nav />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__name-arabic" data-i18n="hero.greeting">عَبْدُ الرَّحْمَنِ بْنُ مِيهُوبَ القَدَّارِيُّ</p>
+        <h1 class="hero__title">
+          <span data-i18n="hero.role">A <em>Knowledge</em> Seeker</span>
+        </h1>
+        <p class="hero__desc" data-i18n="hero.desc">
+          A place for books, writings, translations, and tools — gathered here so they are not lost.
+        </p>
+        <a href="/library" class="hero__cta">
+          <span data-i18n="hero.cta">Explore the library →</span>
+        </a>
+      </div>
+
+      <div class="hero__watermark" aria-hidden="true">ب</div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">· · ·</div>
+
+  <!-- RECENT BLOG POSTS -->
+  <section class="section">
+    <div class="container">
+      <p class="section__label">Essays & Notes</p>
+      <h2 class="section__title">Latest Writings</h2>
+      <div class="book-grid">
+        {recentPosts.map((post) => {
+          const slug = post.id.split("/").pop();
+          return (
+            <a href={`/blog/${slug}`} class="book-card" style="text-decoration:none; color:inherit;">
+              <div class="book-card__tags">
+                {post.data.tags?.slice(0, 2).map(tag => (
+                  <span class="book-tag book-tag--cat">{tag}</span>
+                ))}
+              </div>
+              <h3 class="book-card__title">{post.data.title}</h3>
+              <p class="book-card__author">
+                {post.data.date.toLocaleDateString("en", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+              <div class="book-card__footer">
+                <span class="book-card__open">Read →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+      <a href="/blog" style="display:inline-block; margin-top:1.5rem; color:var(--accent); font-family:var(--font-ui); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">View all posts →</a>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">· · ·</div>
+
+  <!-- FEATURED BOOKS -->
+  <section class="section">
+    <div class="container">
+      <p class="section__label">Books & PDFs</p>
+      <h2 class="section__title">Featured Books</h2>
+      <div class="book-grid">
+        {featuredBooks.map((book) => (
+          <BookCard book={book.data} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">· · ·</div>
+
+  <!-- APPS & TRANSLATIONS (static teasers) -->
+  <section class="section">
+    <div class="container">
+      <p class="section__label">Built Things</p>
+      <h2 class="section__title">Tools & Apps</h2>
+      <div class="card-grid">
+        <a href="/apps" class="card" style="text-decoration:none">
+          <p class="card__tag">Built Things</p>
+          <h3 class="card__title">See the tools →</h3>
+          <p class="card__desc">Apps and utilities built for the community.</p>
+        </a>
+        <a href="/translations" class="card" style="text-decoration:none">
+          <p class="card__tag">Translations</p>
+          <h3 class="card__title">Browse translations →</h3>
+          <p class="card__desc">Translated texts and works.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p data-i18n="footer.text">May Allah make it beneficial.</p>
+    </div>
+  </footer>
+
+  <script define:vars={{ translations }}>
+    function applyI18n(lang) {
+      const tr = translations[lang] || translations['en'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const keys = el.getAttribute('data-i18n').split('.');
+        let val = tr;
+        for (const k of keys) val = val?.[k];
+        if (val && typeof val === 'string') el.textContent = val;
+      });
+    }
+    applyI18n(window.__settings?.lang || 'en');
+    window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
+  </script>
+</Base>

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "pdfUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "archiveUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "coverImage": {
+      "type": "string",
+      "format": "uri"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "description",
+    "category",
+    "language",
+    "pdfUrl",
+    "archiveUrl"
+  ]
+}

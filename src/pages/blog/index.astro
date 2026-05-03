@@ -1,0 +1,128 @@
+---
+import { getCollection } from "astro:content";
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+
+const allPosts = await getCollection("blog");
+const posts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title="Blog — عبد الرحمن القدّاري" description="Essays, translations, and reflections.">
+  <Nav />
+
+  <main style="position:relative; z-index:1;">
+    <!-- Hero -->
+    <div class="lib-hero">
+      <div class="container">
+        <p class="lib-hero__label">Essays & Notes</p>
+        <h1 class="lib-hero__title">Blog</h1>
+        <p class="lib-hero__sub" id="results-count"></p>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="lib-filters-bar">
+      <div class="container">
+        <div class="search-bar">
+          <span class="search-bar__icon">⌕</span>
+          <input type="text" id="search-input" placeholder="Search titles, tags…" autocomplete="off" spellcheck="false" />
+          <button class="search-bar__clear" id="search-clear" aria-label="Clear">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post list -->
+    <div style="padding: 1rem 0 7rem;">
+      <div class="container">
+        <div class="blog-list" id="blog-list">
+          {posts.map((post) => {
+            const slug = post.id.split("/").pop();
+            const tags = post.data.tags || [];
+            return (
+              <article
+                class="book-card"
+                data-title={(post.data.title || '').toLowerCase()}
+                data-tags={tags.join(' ').toLowerCase()}
+                style="cursor:pointer"
+                onclick={`location.href='/blog/${slug}'`}
+              >
+                <div class="book-card__tags">
+                  {tags.slice(0, 2).map(tag => {
+                    const isArabic = /[\u0600-\u06FF]/.test(tag);
+                    return (
+                      <span
+                        class="book-tag book-tag--cat"
+                        style={isArabic ? "font-family: var(--font-arabic);" : ""}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  })}
+                </div>
+                <h3 class="book-card__title">{post.data.title}</h3>
+                <p class="book-card__author">
+                  {post.data.date.toLocaleDateString("en", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+                <div class="book-card__footer">
+                  <span class="book-card__open">Read →</span>
+                </div>
+              </article>
+            );
+          })}
+          <div class="book-grid__empty" id="empty-state" style="display:none">
+            No posts found
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="position:relative;z-index:1;">
+    <div class="container">
+      <p data-i18n="footer.text">May Allah make it beneficial.</p>
+    </div>
+  </footer>
+
+  <!-- Search script -->
+  <script>
+    const cards = Array.from(document.querySelectorAll('.book-card'));
+    const searchInput = document.getElementById('search-input');
+    const clearBtn = document.getElementById('search-clear');
+    const emptyState = document.getElementById('empty-state');
+    const resultsCount = document.getElementById('results-count');
+
+    function applySearch() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const title = card.dataset.title || '';
+        const tags = card.dataset.tags || '';
+        const show = !query || title.includes(query) || tags.includes(query);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      emptyState.style.display = visible === 0 ? 'block' : 'none';
+      resultsCount.textContent = `${visible} post${visible !== 1 ? 's' : ''}`;
+    }
+
+    searchInput.addEventListener('input', () => {
+      clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+      applySearch();
+    });
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      clearBtn.classList.remove('visible');
+      applySearch();
+    });
+
+    // Initial count
+    applySearch();
+  </script>
+</Base>

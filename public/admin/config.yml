@@ -1,0 +1,71 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # Books (already working)
+  - name: "books"
+    label: "Books"
+    label_singular: "Book"
+    folder: "src/content/books"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    summary: "{{title}} — {{author}}"
+    fields:
+      - { label: "Title",           name: "title",         widget: "string" }
+      - { label: "Author",          name: "author",        widget: "string" }
+      - { label: "Description",     name: "description",   widget: "text",    required: false }
+      - { label: "Category",        name: "category",      widget: "select",
+          options: ["aqeedah","fiqh","hadith","tafsir","seerah","manhaj","fitan","other"] }
+      - { label: "Language",        name: "language",      widget: "select",
+          options: ["ar","en","mixed"] }
+      - { label: "File Size",       name: "size",          widget: "string",  required: false }
+      - { label: "PDF URL",         name: "pdfUrl",        widget: "string",
+          hint: "Direct link to the PDF file (e.g. from Archive.org)" }
+      - { label: "Archive.org page",name: "archiveUrl",    widget: "string",  required: false,
+          hint: "Link to the item page on Archive.org" }
+      - { label: "Featured",        name: "featured",      widget: "boolean", default: false }
+
+  # Blog (English)
+  - name: "blog_en"
+    label: "Blog (English)"
+    label_singular: "Post (English)"
+    folder: "src/content/blog/en"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: "Title",       name: "title",       widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Date",        name: "date",        widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Tags",        name: "tags",        widget: "list",      required: false, default: [] }
+      - { label: "Featured",    name: "featured",    widget: "boolean",   default: false }
+      - { label: "Body",        name: "body",        widget: "markdown" }
+
+  # Blog (Arabic)
+  - name: "blog_ar"
+    label: "Blog (Arabic)"
+    label_singular: "Post (Arabic)"
+    folder: "src/content/blog/ar"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: "Title",       name: "title",       widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Date",        name: "date",        widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Tags",        name: "tags",        widget: "list",      required: false, default: [] }
+      - { label: "Featured",    name: "featured",    widget: "boolean",   default: false }
+      - { label: "Body",        name: "body",        widget: "markdown" }

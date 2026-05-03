@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import '../styles/blog-content.css';
+import Twinkles from '../components/Twinkles.astro';
+
+const { title = 'عبد الرحمن بن ميهوب القدّاري', description = '' } = Astro.props;
+---
+<!DOCTYPE html>
+<html data-theme="default" data-mode="light" data-fontsize="md">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Settings engine: runs FIRST, before anything renders, to avoid flicker -->
+  <script is:inline>
+    (function() {
+      var html = document.documentElement;
+
+      var DEFAULTS = { theme: 'default', mode: 'light', lang: null, fontsize: 'md' };
+
+      function detectLang() {
+        var langs = navigator.languages || [navigator.language || 'en'];
+        for (var i = 0; i < langs.length; i++) {
+          if (langs[i].startsWith('ar')) return 'ar';
+        }
+        return 'en';
+      }
+
+      function applySettings(s) {
+        html.setAttribute('data-theme',    s.theme);
+        html.setAttribute('data-mode',     s.mode);
+        html.setAttribute('data-fontsize', s.fontsize);
+        html.setAttribute('lang', s.lang === 'ar' ? 'ar' : 'en');
+        html.setAttribute('dir',  s.lang === 'ar' ? 'rtl' : 'ltr');
+      }
+
+      function loadSettings() {
+        try {
+          var stored = JSON.parse(localStorage.getItem('site-settings') || '{}');
+          return {
+            theme:    stored.theme    || DEFAULTS.theme,
+            mode:     stored.mode     || DEFAULTS.mode,
+            lang:     stored.lang     || detectLang(),
+            fontsize: stored.fontsize || DEFAULTS.fontsize,
+          };
+        } catch(e) {
+          return { theme: DEFAULTS.theme, mode: DEFAULTS.mode, lang: detectLang(), fontsize: DEFAULTS.fontsize };
+        }
+      }
+
+      function saveSettings(s) {
+        try { localStorage.setItem('site-settings', JSON.stringify(s)); } catch(e) {}
+      }
+
+      window.__settings = loadSettings();
+      applySettings(window.__settings);
+
+      window.__DEFAULTS = DEFAULTS;
+
+      window.updateSetting = function(key, value) {
+        window.__settings[key] = value;
+        saveSettings(window.__settings);
+        applySettings(window.__settings);
+        if (key === 'lang') window.dispatchEvent(new Event('lang-change'));
+      };
+
+      window.resetSettings = function() {
+        var fresh = { theme: DEFAULTS.theme, mode: DEFAULTS.mode, lang: detectLang(), fontsize: DEFAULTS.fontsize };
+        window.__settings = fresh;
+        saveSettings(fresh);
+        applySettings(fresh);
+        window.dispatchEvent(new Event('lang-change'));
+        window.dispatchEvent(new Event('settings-reset'));
+      };
+    })();
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div style="position: relative; min-height: 100vh;">
+    <Twinkles />
+    <slot />
+  </div>
+</body>
+</html>

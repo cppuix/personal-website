@@ -1,0 +1,31 @@
+---
+export interface Props {
+  archiveUrl: string;
+  title: string;
+}
+
+const { archiveUrl, title } = Astro.props;
+
+// Extract archive.org identifier from the URL
+let coverUrl = '';
+try {
+  const url = new URL(archiveUrl);
+  const pathParts = url.pathname.split('/');
+  // Path is typically /details/{identifier}
+  const identifier = pathParts[2];
+  if (identifier) {
+    coverUrl = `https://archive.org/download/${identifier}/page/cover_thumb.jpg`;
+  }
+} catch (e) {
+  // invalid URL — leave coverUrl empty
+}
+---
+
+<img
+  src={coverUrl}
+  alt={`Cover of ${title}`}
+  class="book-cover"
+  loading="lazy"
+  onerror="this.style.display='none'"
+  style="width: 100%; height: auto; aspect-ratio: 2/3; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 0.75rem; background: var(--bg-secondary);"
+/>

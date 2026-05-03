@@ -1,0 +1,100 @@
+---
+// Twinkles — rare, peaceful fireflies with organic rising + drifting
+---
+<div class="twinkle-field" id="twinkle-field" aria-hidden="true"></div>
+
+<style is:global>
+  .twinkle-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .twinkle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    /* vertical rise + opacity from CSS, horizontal drift from JS */
+    animation: firefly-rise var(--spark-dur, 7s) ease-in-out var(--spark-delay, 0s) infinite;
+    background: radial-gradient(circle,
+      var(--spark-color, #f0a050) 0%,
+      transparent 70%);
+    box-shadow:
+      0 0 var(--spark-glow, 25px) var(--spark-color, #f0a050),
+      0 0 calc(var(--spark-glow, 25px) * 2.8) color-mix(in srgb,
+        var(--spark-color, #f0a050) 40%, transparent);
+  }
+
+  @keyframes firefly-rise {
+    0%   { opacity: 0;    transform: translateY(0)     scale(0.7); }
+    12%  { opacity: 0.85; transform: translateY(calc(var(--spark-rise, -12px) * 0.35)) scale(1); }
+    40%  { opacity: 0.5;  transform: translateY(calc(var(--spark-rise, -12px) * 0.65)) scale(0.95); }
+    70%  { opacity: 0.15; transform: translateY(var(--spark-rise, -20px)) scale(0.85); }
+    100% { opacity: 0;    transform: translateY(calc(var(--spark-rise, -20px) * 1.5)) scale(0.7); }
+  }
+</style>
+
+<script>
+  (function () {
+    const field = document.getElementById('twinkle-field');
+    if (!field) return;
+
+    const COUNT = 20;            // you can change this
+    const BASE_COLOR = '#f0a050';
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    for (let i = 0; i < COUNT; i++) {
+      const el = document.createElement('div');
+      el.className = 'twinkle';
+
+      const hueShift = rand(-8, 8);
+      const color = `hsl(${35 + hueShift}, 90%, 100%)`;
+      const size = rand(3, 6);
+      const glow = rand(15, 30);
+      const dur = rand(6, 12);
+      const delay = rand(0, 10);
+      const rise = -rand(10, 28);          // how high it drifts (negative = upward)
+      const startX = rand(5, 95);
+      const startY = rand(10, 80);
+
+      // Horizontal wander: each firefly gets a tiny constant sideways speed
+      const driftSpeed = (Math.random() - 0.5) * 0.015;  // % per frame (very slow)
+
+      el.style.cssText = `
+        left: ${startX}%;
+        top: ${startY}%;
+        width: ${size}px;
+        height: ${size}px;
+        --spark-color: ${color};
+        --spark-glow: ${glow}px;
+        --spark-dur: ${dur}s;
+        --spark-delay: ${delay}s;
+        --spark-rise: ${rise}px;
+      `;
+
+      field.appendChild(el);
+
+      // Store drift data on the element
+      el._driftSpeed = driftSpeed;
+      el._left = startX;
+    }
+
+    function updateDrift() {
+      const fireflies = document.querySelectorAll('.twinkle');
+      for (const el of fireflies) {
+        if (!el._driftSpeed) continue;
+        el._left += el._driftSpeed;
+        // Wrap around or soft boundary
+        if (el._left < 2) el._left = 98;
+        if (el._left > 98) el._left = 2;
+        el.style.left = `${el._left}%`;
+      }
+      requestAnimationFrame(updateDrift);
+    }
+
+    requestAnimationFrame(updateDrift);
+  })();
+</script>

@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    { "source": "/creed/lesson:slug/:path*", "destination": "/works/creed/lesson:slug", "permanent": true },
+    { "source": "/creed/creedqa1/:path*", "destination": "/works/creed/lesson1", "permanent": true },
+    { "source": "/creed/creedqa2/:path*", "destination": "/works/creed/lesson2", "permanent": true },
+    { "source": "/creed/creedqa3/:path*", "destination": "/works/creed/lesson3", "permanent": true },
+    { "source": "/creed/creedqa4/:path*", "destination": "/works/creed/lesson4", "permanent": true },
+    { "source": "/creed/creedqa5/:path*", "destination": "/works/creed/lesson5", "permanent": true },
+    { "source": "/creed/creedqa6/:path*", "destination": "/works/creed/lesson5", "permanent": true },
+    { "source": "/creed/creedqa7/:path*", "destination": "/works/creed/lesson5", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/config.yml", "destination": "/admin/config.yml" },
     { "source": "/admin/", "destination": "/admin/index.html" },

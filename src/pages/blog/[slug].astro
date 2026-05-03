@@ -1,0 +1,60 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => {
+    const slug = post.id.split("/").pop();
+    return { params: { slug } };
+  });
+}
+
+const { slug } = Astro.params;
+const post = (await getCollection("blog")).find(
+  (p) => p.id.split("/").pop() === slug
+);
+
+if (!post) return Astro.redirect("/blog");
+
+const { Content } = await render(post);
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <Nav />
+
+  <main style="position:relative; z-index:1;">
+    <article class="blog-post container" style="max-width: 800px; margin: 0 auto; padding: 4rem 1rem 6rem;">
+      <!-- Article header -->
+      <header class="blog-post__header">
+        <div class="book-card__tags" style="margin-bottom:1rem;">
+          {post.data.tags?.map(tag => (
+            <span class="book-tag book-tag--cat">{tag}</span>
+          ))}
+        </div>
+        <h1 class="lib-hero__title" style="text-align:left; font-size:2.2rem; margin-bottom:0.75rem;">
+          {post.data.title}
+        </h1>
+        <time datetime={post.data.date.toISOString()} style="color:var(--text-muted); font-family:var(--font-ui); font-size:0.9rem;">
+          {post.data.date.toLocaleDateString("en", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </time>
+      </header>
+
+      <!-- Rendered content -->
+      <div class="blog-content" style="margin-top:2rem; line-height:1.8;">
+        <Content />
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer" style="position:relative;z-index:1;">
+    <div class="container">
+      <p data-i18n="footer.text">May Allah make it beneficial.</p>
+    </div>
+  </footer>
+</Base>

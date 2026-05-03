@@ -1,0 +1,14 @@
+---
+title: "Read Taareekh Al-Islaam By Ath-Thahaby"
+date: "2025-12-13T15:56:00.000Z"
+description: "There's something in the tone of the early scholars that recalibrates you. Not volume. Not theatrics. Just gravity. When you hear it or read it, you feel your inner noise settle. Standards rise. Words…"
+tags: []
+featured: false
+---
+
+<p>There's something in the tone of the early scholars that recalibrates you. Not volume. Not theatrics. Just gravity. When you hear it or read it, you feel your inner noise settle. Standards rise. Words weigh more.</p>
+<p data-end="520" data-start="304">That's why I keep recommending <i data-end="355" data-start="335">Taareekh al-Islaam</i>&nbsp;by ath-Thahaby. Not as a casual read, and not as a nostalgia trip. As a reset. In times like these, most people don't need new opinions. They need their internal compass repaired.</p>
+<p data-end="770" data-start="522">You don't have to read all of it. Start with the first three centuries. That alone is enough to remind you what clarity sounds like, how disagreement used to breathe, how knowledge carried humility without weakness and firmness without performance.</p><p data-end="858" data-start="772">Read it slowly. Let the tone work on you.<br data-end="816" data-start="813" />
+It won't flatter you. It will correct you.&nbsp;</p><p dir="rtl" style="text-align: right;"></p><blockquote><div><span style="font-family: Amiri;"><br /></span></div><div dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">قَالَ شَقِيْقٌ البَلْخِيُّ: قِيْلَ لابْنِ المُبَارَكِ: إِذَا أَنْتَ صَلَّيْتَ لِمَ لاَ تَجْلِسُ مَعَنَا؟<br />قَالَ: أَجلِسُ مَعَ الصَّحَابَةِ وَالتَّابِعِيْنَ، أَنْظُرُ فِي كُتُبِهِم وَآثَارِهِم، فَمَا أَصْنَعُ مَعَكُم؟ أَنْتُم تَغْتَابُوْنَ النَّاسَ.<br />[الذهبي، شمس الدين ,سير أعلام النبلاء ط الرسالة ,8/398]</span></div></blockquote><p>Shaqeeq al-Balkhy said: Ibn al-Mubaarak was once told: "When you finish praying, why don’t you sit with us?"<br /><br />He said: "I sit with the Companions and the Taabi'een. I look into their books and their transmitted accounts. What would I do sitting with you? You backbite people".<br /><br />[ath-Thahaby, Shams ad-Deen, Siyar A'laam an-Nubalaa', ar-Risaalah ed., 8/398]<br /><br /><br />Translated by: Al-Qaddaary.</p><p data-end="858" data-start="772">&nbsp;</p><p data-end="858" data-start="772">Link to the Arabic book: <a href="https://archive.org/download/alQaddaareeBooksStorage/taareekhIslaamTawfeeqiyyah.pdf" target="_blank">click here</a>&nbsp;</p><p data-end="858" data-start="772">To read it directly:&nbsp;</p>
+
+<iframe allowfullscreen="" src="https://archive.org/download/alQaddaareeBooksStorage/taareekhIslaamTawfeeqiyyah.pdf" style="height: 100vh; width: 100%;"></iframe>

@@ -1,0 +1,77 @@
+---
+export interface Props {
+  book: {
+    id?: string;
+    title: string;
+    author: string;
+    description?: string;
+    category: string;
+    language: string;
+    featured?: boolean;
+    pdfUrl?: string;
+    archiveUrl: string;
+    size?: string;
+  };
+}
+
+const { book } = Astro.props;
+
+// Build cover URL from PDF filename — replace .pdf with .png
+let coverUrl = '';
+if (book.pdfUrl) {
+  try {
+    const url = new URL(book.pdfUrl);
+    const pathParts = url.pathname.split('/');
+    if (pathParts.length >= 4) {
+      const identifier = pathParts[2];
+      const encodedFilename = pathParts[3]; // already percent-encoded
+      const jpgFilename = encodedFilename.replace(/\.pdf$/i, '.jpg');
+      coverUrl = `https://archive.org/download/${identifier}/${jpgFilename}`;
+    }
+  } catch (e) {
+    // invalid URL — no cover
+  }
+}
+---
+
+<div
+  class="book-card"
+  data-id={book.id}
+  data-cat={book.category}
+  data-lang={book.language}
+  data-featured={book.featured ? 'true' : 'false'}
+  data-title={(book.title || '').toLowerCase()}
+  data-author={(book.author || '').toLowerCase()}
+  data-desc={(book.description || '').toLowerCase()}
+  data-pdf={book.pdfUrl}
+  data-archive={book.archiveUrl || ''}
+  data-display-title={book.title}
+  data-display-author={book.author}
+  data-size={book.size || ''}
+>
+  {coverUrl && (
+    <img
+      src={coverUrl}
+      alt={`Cover of ${book.title}`}
+      class="book-card__cover"
+      loading="lazy"
+      onerror="this.style.display='none'"
+    />
+  )}
+  <div class="book-card__tags">
+    <span class="book-tag book-tag--cat">{book.category}</span>
+    <span class="book-tag book-tag--lang">
+      {book.language === 'ar' ? 'عربي' : book.language === 'en' ? 'English' : 'Mixed'}
+    </span>
+    {book.featured && (
+      <span class="book-tag" style="border-color:var(--accent-soft);color:var(--accent-soft);">★</span>
+    )}
+  </div>
+  <h3 class="book-card__title">{book.title}</h3>
+  <p class="book-card__author">{book.author}</p>
+  {book.description && <p class="book-card__desc">{book.description}</p>}
+  <div class="book-card__footer">
+    <span class="book-card__size">{book.size || ''}</span>
+    <span class="book-card__open">Read →</span>
+  </div>
+</div>
