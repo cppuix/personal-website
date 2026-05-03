@@ -8,6 +8,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/vercel": "^10.0.6",
     "astro": "^6.2.1",
     "xml2js": "^0.6.2"
   }
