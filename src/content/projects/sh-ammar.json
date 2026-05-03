@@ -1,0 +1,10 @@
+{
+  "title": "sh-ammar",
+  "description": "A personal website and portfolio for a creative developer.",
+  "href": "https://sh-ammar.codeberg.page/",
+  "coverImage": "/projects/sh-ammar.svg",
+  "type": "Website",
+  "note": "Static, privacy-friendly, and content-led",
+  "featured": false,
+  "order": 4
+}

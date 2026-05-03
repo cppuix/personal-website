@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350">
+  <rect width="560" height="350" rx="28" fill="#f3f1f2"/>
+  <rect x="32" y="32" width="496" height="286" rx="20" fill="#e8e3e7"/>
+  <text x="50%" y="42%" text-anchor="middle" font-family="Inter,ui-sans-serif" font-size="32" fill="#5a4356">sh-ammar</text>
+  <text x="50%" y="62%" text-anchor="middle" font-family="Inter,ui-sans-serif" font-size="18" fill="#7a5e73">Developer portfolio</text>
+</svg>

@@ -6,12 +6,13 @@ export const translations = {
       blog:         'Blog',
       translations: 'Translations',
       apps:         'Apps',
+      projects:     'Projects',
       settings:     'Settings',
     },
     hero: {
       greeting: 'Abdurrahman ibn Mihoub al-Qaddari',
       role:     'Knowledge Seeker',
-      desc:     'A place for books, writings, translations, and tools — gathered here so they are not lost.',
+      desc:     'A place for books, writings, and tools — gathered here so they are not lost.',
       cta:      'Explore the library →',
     },
     sections: {
@@ -58,12 +59,13 @@ export const translations = {
       blog:         'المقالات',
       translations: 'الترجمات',
       apps:         'التطبيقات',
+      projects:     'المشروعات',
       settings:     'الإعدادات',
     },
     hero: {
       greeting: 'عبد الرحمن بن ميهوب القدّاري',
       role:     'طالب علم',
-      desc:     'موضع للكتب والمقالات والترجمات والأدوات — جمعتها هنا حتى لا تضيع.',
+      desc:     'موضع للكتب والمقالات والأدوات — جمعتها هنا حتى لا تضيع.',
       cta:      'تصفّح المكتبة →',
     },
     sections: {

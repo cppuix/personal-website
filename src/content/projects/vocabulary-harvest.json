@@ -1,0 +1,10 @@
+{
+  "title": "Vocabulary Harvest",
+  "description": "A vocabulary practice PWA for stronger word retention.",
+  "href": "https://vocabulary-harvest.vercel.app/",
+  "coverImage": "/projects/vocabulary-harvest.svg",
+  "type": "PWA",
+  "note": "Built for repeated study sessions",
+  "featured": false,
+  "order": 3
+}

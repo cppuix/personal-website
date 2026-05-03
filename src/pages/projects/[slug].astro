@@ -1,0 +1,46 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id } }));
+}
+
+const { slug } = Astro.params;
+const project = await getEntry('projects', slug);
+if (!project) {
+  throw new Error(`Project not found: ${slug}`);
+}
+---
+<Base title={`${project.data.title} — Digital Project`}>
+  <Nav />
+  <main style="padding: 4rem 0 6rem;">
+    <div class="container">
+      <section class="project-detail">
+        {project.data.coverImage && (
+          <img
+            src={project.data.coverImage}
+            alt={`Cover for ${project.data.title}`}
+            class="project-detail__cover"
+            loading="lazy"
+          />
+        )}
+
+        <div class="project-detail__header">
+          {project.data.featured && <span class="card__tag card__tag--featured">Featured</span>}
+          <span class="card__tag">{project.data.type}</span>
+          <h1 class="project-detail__title">{project.data.title}</h1>
+          <p class="project-detail__desc">{project.data.description}</p>
+          {project.data.note && <p class="project-detail__note">{project.data.note}</p>}
+          <div class="project-detail__actions">
+            <a class="btn" href={project.data.href} target="_blank" rel="noopener noreferrer">Visit site</a>
+            <a class="btn btn--secondary" href="/apps">Back to projects</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><div class="container"><p>May Allah make it beneficial.</p></div></footer>
+</Base>

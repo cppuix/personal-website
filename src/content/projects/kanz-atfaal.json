@@ -1,0 +1,10 @@
+{
+  "title": "Kanz Atfaal",
+  "description": "A child-friendly Quran learning app with a calm interface.",
+  "href": "https://kanz-atfaal.vercel.app/",
+  "coverImage": "/projects/kanz-atfaal.svg",
+  "type": "PWA",
+  "note": "Designed for mobile learning",
+  "featured": false,
+  "order": 2
+}

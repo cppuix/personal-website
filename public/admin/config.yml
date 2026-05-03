@@ -25,15 +25,41 @@ collections:
       - { label: "Author",          name: "author",        widget: "string" }
       - { label: "Description",     name: "description",   widget: "text",    required: false }
       - { label: "Category",        name: "category",      widget: "select",
-          options: ["aqeedah","fiqh","hadith","tafsir","seerah","manhaj","fitan","other"] }
+          options: ["aqeedah","fiqh","hadith","tafsir","seerah","manhaj","fitan","translations","other"] }
       - { label: "Language",        name: "language",      widget: "select",
           options: ["ar","en","mixed"] }
       - { label: "File Size",       name: "size",          widget: "string",  required: false }
       - { label: "PDF URL",         name: "pdfUrl",        widget: "string",
           hint: "Direct link to the PDF file (e.g. from Archive.org)" }
+      - { label: "Cover Image URL", name: "coverImage",    widget: "string",  required: false,
+          hint: "Direct link to a cover image (JPEG/PNG) from Archive.org or elsewhere" }
       - { label: "Archive.org page",name: "archiveUrl",    widget: "string",  required: false,
           hint: "Link to the item page on Archive.org" }
       - { label: "Featured",        name: "featured",      widget: "boolean", default: false }
+
+  # Projects
+  - name: "projects"
+    label: "Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    identifier_field: "title"
+    summary: "{{title}} — {{type}}"
+    fields:
+      - { label: "Title",       name: "title",       widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Type",        name: "type",        widget: "select",
+          options: ["PWA","Website"] }
+      - { label: "Link",        name: "href",        widget: "string" }
+      - { label: "Cover Image", name: "coverImage",  widget: "string", required: false,
+          hint: "Use a public image path like /projects/example.svg" }
+      - { label: "Featured",   name: "featured",    widget: "boolean", default: false }
+      - { label: "Order",      name: "order",       widget: "number",  required: false,
+          hint: "Lower values appear earlier in the list." }
+      - { label: "Note",        name: "note",        widget: "string", required: false }
 
   # Blog (English)
   - name: "blog_en"

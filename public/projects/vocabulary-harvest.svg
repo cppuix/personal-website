@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350">
+  <rect width="560" height="350" rx="28" fill="#eef3f7"/>
+  <rect x="32" y="32" width="496" height="286" rx="20" fill="#e7eef4"/>
+  <text x="50%" y="42%" text-anchor="middle" font-family="Inter,ui-sans-serif" font-size="32" fill="#3a5a77">Vocabulary</text>
+  <text x="50%" y="62%" text-anchor="middle" font-family="Inter,ui-sans-serif" font-size="18" fill="#5b7f9c">Harvest your words</text>
+</svg>

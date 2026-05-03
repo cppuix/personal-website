@@ -1,0 +1,10 @@
+{
+  "title": "Duroos",
+  "description": "A lesson PWA for Arabic learners and families.",
+  "href": "https://duroos-jmas.vercel.app/",
+  "coverImage": "/projects/duroos-jmas.svg",
+  "type": "PWA",
+  "note": "Offline-ready and installable",
+  "featured": false,
+  "order": 1
+}

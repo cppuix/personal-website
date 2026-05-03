@@ -1,0 +1,32 @@
+---
+export interface Props {
+  project: {
+    title: string;
+    desc: string;
+    detailUrl: string;
+    href: string;
+    cover?: string;
+    type: string;
+    featured?: boolean;
+    note?: string;
+  };
+}
+const { project } = Astro.props;
+---
+
+<a class="card project-card" href={project.detailUrl}>
+  {project.cover && (
+    <img
+      src={project.cover}
+      alt={`Cover for ${project.title}`}
+      class="project-card__cover"
+      loading="lazy"
+      onerror="this.style.display='none'"
+    />
+  )}
+  {project.featured && <span class="card__tag card__tag--featured">Featured</span>}
+  <span class="card__tag">{project.type}</span>
+  <h3 class="card__title">{project.title}</h3>
+  <p class="card__desc">{project.desc}</p>
+  {project.note && <p class="card__note">{project.note}</p>}
+</a>

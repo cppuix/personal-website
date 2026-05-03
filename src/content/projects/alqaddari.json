@@ -1,0 +1,10 @@
+{
+  "title": "alqaddari",
+  "description": "This personal website: library, writings, and community tools.",
+  "href": "https://alqaddari.vercel.app/",
+  "coverImage": "/projects/alqaddari.svg",
+  "type": "Website",
+  "note": "Built as a clean digital publishing platform",
+  "featured": true,
+  "order": 5
+}
