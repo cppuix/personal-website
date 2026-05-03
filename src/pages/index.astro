@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import BookCard from '../components/BookCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { translations } from '../i18n/translations.js';
 
 const blogPosts = await getCollection("blog", ({ id }) => id.startsWith("en/"));
@@ -14,6 +15,16 @@ const allBooks = await getCollection("books");
 const featuredBooks = allBooks
   .filter(book => book.data.featured)
   .slice(0, 4);
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(project => project.data.featured)
+  .slice(0, 3)
+  .map(project => ({
+    ...project.data,
+    cover: project.data.coverImage,
+    detailUrl: `/projects/${project.id}`,
+  }));
 ---
 
 <Base title="عبد الرحمن بن ميهوب القداري" description="A place for books, writings, translations, and tools.">
@@ -44,8 +55,13 @@ const featuredBooks = allBooks
   <!-- RECENT BLOG POSTS -->
   <section class="section">
     <div class="container">
-      <p class="section__label">Essays & Notes</p>
-      <h2 class="section__title">Latest Writings</h2>
+      <div class="section__header">
+        <div>
+          <p class="section__label">Essays & Notes</p>
+          <h2 class="section__title">Latest Writings</h2>
+        </div>
+        <a href="/blog">See all posts →</a>
+      </div>
       <div class="book-grid">
         {recentPosts.map((post) => {
           const slug = post.id.split("/").pop();
@@ -71,7 +87,6 @@ const featuredBooks = allBooks
           );
         })}
       </div>
-      <a href="/blog" style="display:inline-block; margin-top:1.5rem; color:var(--accent); font-family:var(--font-ui); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em;">View all posts →</a>
     </div>
   </section>
 
@@ -80,8 +95,13 @@ const featuredBooks = allBooks
   <!-- FEATURED BOOKS -->
   <section class="section">
     <div class="container">
-      <p class="section__label">Books & PDFs</p>
-      <h2 class="section__title">Featured Books</h2>
+      <div class="section__header">
+        <div>
+          <p class="section__label">Books & PDFs</p>
+          <h2 class="section__title">Featured Books</h2>
+        </div>
+        <a href="/library">See all books →</a>
+      </div>
       <div class="book-grid">
         {featuredBooks.map((book) => (
           <BookCard book={book.data} />
@@ -92,17 +112,19 @@ const featuredBooks = allBooks
 
   <div class="divider" aria-hidden="true">· · ·</div>
 
-  <!-- APPS & TRANSLATIONS (static teasers) -->
+  <!-- FEATURED PROJECTS -->
   <section class="section">
     <div class="container">
-      <p class="section__label">Built Things</p>
-      <h2 class="section__title">Digital Projects</h2>
+      <div class="section__header">
+        <div>
+          <h2 class="section__title">Featured Digital Projects</h2>
+        </div>
+        <a href="/apps">See all projects →</a>
+      </div>
       <div class="card-grid">
-        <a href="/apps" class="card" style="text-decoration:none">
-          <p class="card__tag">Projects</p>
-          <h3 class="card__title">See the digital projects →</h3>
-          <p class="card__desc">Websites, PWAs, and crafted web experiences.</p>
-        </a>
+        {featuredProjects.map(project => (
+          <ProjectCard project={project} />
+        ))}
       </div>
     </div>
   </section>

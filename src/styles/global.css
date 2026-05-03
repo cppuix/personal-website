@@ -659,6 +659,25 @@ a:hover
   letter-spacing: -0.025em;
 }
 
+.section__header
+{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.section__header a
+{
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 /* ─── CARDS ──────────────────────────────────────────────────────────────────── */
 
 .card-grid
@@ -754,7 +773,7 @@ a:hover
   color: var(--text-muted);
 }
 
-..project-card__cover
+.project-card__cover
 {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -809,8 +828,10 @@ a:hover
 
 .project-detail__header
 {
-  display: grid;
-  gap: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .project-detail__title
