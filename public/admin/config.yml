@@ -2,8 +2,8 @@ backend:
   name: github
   repo: cppuix/personal-website
   branch: main
-  auth_endpoint: /api/auth/start   # redirect to your start endpoint
-  base_url: ${SITE}                # optional, but keep consistent,,,idk why i followed this one....well oh well
+  base_url: https://alqaddari.vercel.app
+  auth_endpoint: /api/auth/start
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
