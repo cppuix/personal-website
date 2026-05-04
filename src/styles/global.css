@@ -1042,6 +1042,63 @@ a:hover
   text-align: right;
 }
 
+[dir="rtl"] .section__header
+{
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  direction: rtl;
+}
+
+[dir="rtl"] .section__header > div
+{
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: right;
+}
+
+[dir="rtl"] .section__header .section__title,
+[dir="rtl"] .section__header .section__label
+{
+  display: block;
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="rtl"] .section__header a
+{
+  order: 2;
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="rtl"] .book-card__footer
+{
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .share-bar__inner
+{
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .share-bar__buttons
+{
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .filter-group__options
+{
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .reader-header__actions,
+[dir="rtl"] .reader-footer__meta
+{
+  flex-direction: row-reverse;
+}
+
 /* ─── SAVED TOAST ────────────────────────────────────────────────────────────── */
 
 #saved-toast
@@ -1314,6 +1371,81 @@ a:hover
   display: none;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
+}
+
+.share-bar {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-soft);
+  padding: 1.25rem 0;
+}
+
+.share-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.share-bar__label {
+  margin: 0 0 0.35rem 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.share-bar__help {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.share-bar__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.share-bar--compact {
+  padding: 0.75rem 0;
+}
+
+.share-bar--compact .share-bar__inner {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.share-bar--compact .share-bar__buttons {
+  justify-content: flex-start;
+}
+
+.share-bar__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.8rem;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.share-bar__button:hover,
+.share-bar__button:focus {
+  border-color: var(--accent);
+  background: var(--bg-surface);
+  transform: translateY(-1px);
+}
+
+.share-bar__button:focus {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 2px;
 }
 
 .filters-advanced.open

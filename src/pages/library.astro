@@ -27,16 +27,14 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
   <div class="container">
     <div class="search-bar" id="search-bar">
       <span class="search-bar__icon">⌕</span>
-      <input type="text" id="search-input" placeholder="Search titles, authors..." autocomplete="off" spellcheck="false" />
-      <button class="search-bar__clear" id="search-clear" aria-label="Clear">✕</button>
-      <button class="search-bar__toggle" id="filters-toggle" aria-label="Toggle filters">
+      <input type="text" id="search-input" data-i18n="library.searchPlaceholder" placeholder="Search titles, authors..." autocomplete="off" spellcheck="false" />
         <span class="filters-toggle-icon">☰</span>
       </button>
     </div>
 
     <div class="filters-panel" id="filters-panel">
       <div class="filters-main" id="cat-filters">
-        <button class="filter-chip all active" data-cat="all">All</button>
+        <button class="filter-chip all active" data-cat="all" data-i18n="library.filterAll">All</button>
         {CATEGORIES.map(cat => (
           <button class="filter-chip" data-cat={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</button>
         ))}
@@ -44,26 +42,26 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
 
       <div class="filters-advanced" id="adv-panel" style="display:grid;">
         <div>
-          <p class="filter-group__label">Language</p>
+          <p class="filter-group__label" data-i18n="library.language">Language</p>
           <div class="filter-group__options" id="lang-filters">
-            <button class="filter-chip all active" data-lang="all">All</button>
-            <button class="filter-chip" data-lang="ar">Arabic</button>
-            <button class="filter-chip" data-lang="en">English</button>
-            <button class="filter-chip" data-lang="mixed">Mixed</button>
+            <button class="filter-chip all active" data-lang="all" data-i18n="library.filterAll">All</button>
+            <button class="filter-chip" data-lang="ar" data-i18n="library.filterArabic">Arabic</button>
+            <button class="filter-chip" data-lang="en" data-i18n="library.filterEnglish">English</button>
+            <button class="filter-chip" data-lang="mixed" data-i18n="library.filterMixed">Mixed</button>
           </div>
         </div>
         <div>
-          <p class="filter-group__label">Sort by</p>
+          <p class="filter-group__label" data-i18n="library.sortBy">Sort by</p>
           <div class="filter-group__options" id="sort-filters">
-            <button class="filter-chip active" data-sort="title">Title</button>
-            <button class="filter-chip" data-sort="author">Author</button>
-            <button class="filter-chip" data-sort="category">Category</button>
+            <button class="filter-chip active" data-sort="title" data-i18n="library.sortTitle">Title</button>
+            <button class="filter-chip" data-sort="author" data-i18n="library.sortAuthor">Author</button>
+            <button class="filter-chip" data-sort="category" data-i18n="library.sortCategory">Category</button>
           </div>
         </div>
         <div>
-          <p class="filter-group__label">Show only</p>
+          <p class="filter-group__label" data-i18n="library.showOnly">Show only</p>
           <div class="filter-group__options">
-            <button class="filter-chip" id="featured-filter" data-featured="false">Featured</button>
+            <button class="filter-chip" id="featured-filter" data-featured="false" data-i18n="library.featuredOnly">Featured</button>
           </div>
         </div>
       </div>
@@ -98,10 +96,14 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
           <p class="reader-header__author" id="reader-author">—</p>
         </div>
         <div class="reader-header__actions">
-          <a class="reader-btn" id="reader-archive-link" href="#" target="_blank" rel="noopener noreferrer">
+          <a class="reader-btn" id="reader-archive-link" href="#" target="_blank" rel="noopener noreferrer" data-i18n="library.readerArchive">
             ↗ Archive.org
           </a>
-          <a class="reader-btn reader-btn--primary" id="reader-download-link" href="#" target="_blank" rel="noopener noreferrer">
+          <a class="reader-btn" id="reader-share-telegram" href="#" target="_blank" rel="noopener noreferrer" data-i18n="shareBar.telegram">Telegram</a>
+          <a class="reader-btn" id="reader-share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" data-i18n="shareBar.whatsapp">WhatsApp</a>
+          <a class="reader-btn" id="reader-share-email" href="#" target="_blank" rel="noopener noreferrer" data-i18n="shareBar.email">Email</a>
+          <button class="reader-btn" id="reader-share-copy" type="button" data-i18n="shareBar.copyLink">Copy link</button>
+          <a class="reader-btn reader-btn--primary" id="reader-download-link" href="#" target="_blank" rel="noopener noreferrer" data-i18n="library.readerDownload">
             ↓ Download
           </a>
           <button class="reader-btn--close" id="reader-close" aria-label="Close reader">✕</button>
@@ -145,7 +147,12 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const keys = el.getAttribute('data-i18n').split('.');
         let val = tr; for (const k of keys) val = val?.[k];
-        if (val && typeof val === 'string') el.textContent = val;
+        if (!val || typeof val !== 'string') return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = val;
+          return;
+        }
+        el.textContent = val;
       });
     }
     applyI18n(window.__settings?.lang || 'en');
@@ -188,7 +195,9 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       });
 
       emptyState.style.display = visible === 0 ? 'block' : 'none';
-      const label = `${visible} book${visible !== 1 ? 's' : ''}`;
+      const lang = window.__settings?.lang || 'en';
+      const tr = translations[lang] || translations['en'];
+      const label = `${visible} ${visible === 1 ? tr.library.booksSingular : tr.library.booksPlural}`;
       countBar.textContent = label;
       const heroCount = document.getElementById('results-count');
       if (heroCount) heroCount.textContent = label;
@@ -256,6 +265,10 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
     const readerAuthor = document.getElementById('reader-author');
     const archiveLink  = document.getElementById('reader-archive-link');
     const downloadLink = document.getElementById('reader-download-link');
+    const shareTelegram = document.getElementById('reader-share-telegram');
+    const shareWhatsapp = document.getElementById('reader-share-whatsapp');
+    const shareEmail = document.getElementById('reader-share-email');
+    const shareCopy = document.getElementById('reader-share-copy');
     const catTag       = document.getElementById('reader-cat-tag');
     const langTag      = document.getElementById('reader-lang-tag');
     const sizeTag      = document.getElementById('reader-size-tag');
@@ -266,6 +279,8 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       const archiveUrl = card.dataset.archive || '#';
       const title      = card.dataset.displayTitle || card.dataset.title;
       const author     = card.dataset.displayAuthor || card.dataset.author;
+      const bookId     = card.dataset.id;
+      const shareUrl   = `${window.location.origin}${window.location.pathname}?book=${encodeURIComponent(bookId)}`;
 
       readerTitle.textContent  = title;
       readerAuthor.textContent = author;
@@ -277,6 +292,19 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       archiveLink.style.display = archiveUrl && archiveUrl !== '#' ? '' : 'none';
 
       downloadLink.href = pdfUrl;
+      if (shareTelegram) shareTelegram.href = 'https://t.me/share/url?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent(title);
+      if (shareWhatsapp) shareWhatsapp.href = 'https://wa.me/?text=' + encodeURIComponent(title + ' ' + shareUrl);
+      if (shareEmail) shareEmail.href = 'mailto:?subject=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(author + '\n\n' + shareUrl);
+      if (shareCopy) {
+        shareCopy.onclick = function() {
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(shareUrl).then(function() {
+            const original = shareCopy.textContent;
+            shareCopy.textContent = 'Copied';
+            setTimeout(function() { shareCopy.textContent = original; }, 1500);
+          });
+        };
+      }
 
       // Load PDF
       loading.style.display = 'flex';
@@ -295,6 +323,19 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       iframe.style.opacity  = '1';
     });
 
+    function openBookFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const requestedId = params.get('book');
+      if (!requestedId) return;
+
+      const card = cards.find(c => c.dataset.id === requestedId);
+      if (!card) return;
+
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      openReader(card);
+    }
+
+
     function closeReader() {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
@@ -312,5 +353,7 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
       card.addEventListener('click', () => openReader(card));
       card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openReader(card); });
     });
+
+    openBookFromQuery();
   </script>
 </Base>

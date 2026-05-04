@@ -14,7 +14,7 @@ export interface Props {
 const { project } = Astro.props;
 ---
 
-<a class="card project-card" href={project.detailUrl}>
+<a class="card project-card" href={project.detailUrl} data-type={project.type?.toLowerCase()} data-title={project.title?.toLowerCase()} data-desc={project.desc?.toLowerCase()}>
   {project.cover && (
     <img
       src={project.cover}

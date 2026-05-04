@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
+import ShareControls from '../../components/ShareControls.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -19,9 +20,22 @@ const post = (await getCollection("blog")).find(
 if (!post) return Astro.redirect("/blog");
 
 const { Content } = await render(post);
+const publishedTime = post.data.date?.toISOString();
+const canonicalUrl = `https://alqaddari.vercel.app/blog/${slug}`;
+const ogImage = post.data.coverImage || '/og/default.svg';
 ---
 
-<Base title={post.data.title} description={post.data.description}>
+<Base
+  title={post.data.title}
+  description={post.data.description}
+  canonical={canonicalUrl}
+  image={ogImage}
+  ogType="article"
+  articlePublishedTime={publishedTime}
+  articleModifiedTime={publishedTime}
+  articleTags={post.data.tags ?? []}
+  articleAuthor={post.data.author}
+>
   <Nav />
 
   <main style="position:relative; z-index:1;">
@@ -48,6 +62,10 @@ const { Content } = await render(post);
       <!-- Rendered content -->
       <div class="blog-content" style="margin-top:2rem; line-height:1.8;">
         <Content />
+      </div>
+
+      <div class="article-share" style="margin-top:2.5rem;">
+        <ShareControls url={canonicalUrl} title={post.data.title} description={post.data.description} variant="compact" />
       </div>
     </article>
   </main>

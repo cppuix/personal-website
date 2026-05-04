@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Nav  from '../components/Nav.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { translations } from '../i18n/translations.js';
 
 const posts = await getCollection('projects');
 const sortedPosts = posts
@@ -14,6 +15,7 @@ const sortedPosts = posts
     if (orderDelta !== 0) return orderDelta;
     return a.data.title.localeCompare(b.data.title, 'en', { sensitivity: 'base' });
   });
+const projectTypes = Array.from(new Set(sortedPosts.map(project => project.data.type))).sort() as string[];
 const pwas = sortedPosts
   .filter(project => project.data.type === 'PWA')
   .map(project => ({
@@ -35,26 +37,117 @@ const websites = sortedPosts
   <Nav />
   <main style="padding: 4rem 0 6rem;">
     <div class="container">
-      <p class="section__label">Digital Projects</p>
-      <h1 style="font-size:2.5rem;margin-bottom:1rem;">Websites & PWAs</h1>
-      <p style="color:var(--text-muted); max-width:42rem; margin-bottom:2rem;">
+      <p class="section__label" data-i18n="apps.headline">Digital Projects</p>
+      <h1 style="font-size:2.5rem;margin-bottom:1rem;" data-i18n="apps.headline">Websites & PWAs</h1>
+      <p style="color:var(--text-muted); max-width:42rem; margin-bottom:2rem;" data-i18n="apps.intro">
         A curated collection of progressive apps and websites built for learning, privacy, and modern publishing.
       </p>
 
+      <div class="project-filters">
+        <div class="search-bar" style="width:100%; max-width:42rem;">
+          <span class="search-bar__icon" aria-hidden="true">🔎</span>
+          <input id="project-search" type="search" data-i18n="apps.searchPlaceholder" placeholder="Search by title or description" aria-label="Search projects" />
+          <button id="clear-search" type="button" class="search-bar__clear" aria-label="Clear search">×</button>
+        </div>
+
+        <div class="filters-main" id="project-filter-chips" style="margin-top:1rem;">
+          <button type="button" class="filter-chip all active" data-filter="all" data-i18n="apps.filterAll">All</button>
+          {projectTypes.map(type => (
+            <button type="button" class="filter-chip" data-filter={type.toLowerCase()}>{type}</button>
+          ))}
+        </div>
+      </div>
+
       <div style="margin-bottom: 3rem;">
-        <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;">Progressive Web Apps</h2>
-        <div class="card-grid">
+        <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;" data-i18n="apps.sectionPwa">Progressive Web Apps</h2>
+        <div class="card-grid project-cards">
           {pwas.map(project => <ProjectCard project={project} />)}
         </div>
       </div>
 
       <div>
-        <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;">Websites</h2>
-        <div class="card-grid">
+        <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;" data-i18n="apps.sectionSites">Websites</h2>
+        <div class="card-grid project-cards">
           {websites.map(project => <ProjectCard project={project} />)}
         </div>
       </div>
+
+      <p id="no-projects" style="color: var(--text-muted); margin-top: 1.5rem; display: none;" data-i18n="apps.noResults">No projects match your search.</p>
     </div>
   </main>
   <footer class="footer"><div class="container"><p>May Allah make it beneficial.</p></div></footer>
+
+  <script define:vars={{ translations }}>
+    function applyI18n(lang) {
+      const tr = translations[lang] || translations['en'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const keys = el.getAttribute('data-i18n').split('.');
+        let val = tr;
+        for (const k of keys) val = val?.[k];
+        if (!val || typeof val !== 'string') return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = val;
+          return;
+        }
+        el.textContent = val;
+      });
+    }
+    applyI18n(window.__settings?.lang || 'en');
+    window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
+  </script>
+  <script>
+    const searchInput = document.getElementById('project-search');
+    const clearButton = document.getElementById('clear-search');
+    const filterButtons = Array.from(document.querySelectorAll('.filter-chip'));
+    const projectCards = Array.from(document.querySelectorAll('.project-card'));
+    const noProjectsMessage = document.getElementById('no-projects');
+
+    function updateProjectFilter() {
+      if (!(searchInput instanceof HTMLInputElement) || !(noProjectsMessage instanceof HTMLElement)) return;
+      const query = searchInput.value.trim().toLowerCase();
+      const activeTypeElement = document.querySelector('.filter-chip.active');
+      const activeType = activeTypeElement instanceof HTMLElement ? activeTypeElement.dataset.filter : 'all';
+      let visibleCount = 0;
+
+      projectCards.forEach(card => {
+        if (!(card instanceof HTMLElement)) return;
+        const title = card.dataset.title || '';
+        const desc = card.dataset.desc || '';
+        const matchesType = activeType === 'all' || card.dataset.type === activeType;
+        const matchesQuery = query === '' || `${title} ${desc}`.includes(query);
+        const isVisible = matchesType && matchesQuery;
+
+        card.style.display = isVisible ? '' : 'none';
+        if (isVisible) visibleCount += 1;
+      });
+
+      noProjectsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    filterButtons.forEach(button => {
+      if (!(button instanceof HTMLElement)) return;
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => {
+          if (btn instanceof HTMLElement) btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        updateProjectFilter();
+      });
+    });
+
+    if (searchInput instanceof HTMLInputElement) {
+      searchInput.addEventListener('input', updateProjectFilter);
+    }
+
+    if (clearButton instanceof HTMLElement) {
+      clearButton.addEventListener('click', () => {
+        if (!(searchInput instanceof HTMLInputElement)) return;
+        searchInput.value = '';
+        updateProjectFilter();
+        searchInput.focus();
+      });
+    }
+
+    updateProjectFilter();
+  </script>
 </Base>

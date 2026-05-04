@@ -14,10 +14,12 @@ import { translations } from '../i18n/translations.js';
     </a>
 
     <ul class="nav__links" id="nav-links">
-    <li><a href="/" data-i18n="nav.home">Home</a></li>
-      <li><a href="/library"      data-i18n="nav.library">Library</a></li>
-      <li><a href="/blog"         data-i18n="nav.blog">Blog</a></li>
-      <li><a href="/apps"         data-i18n="nav.projects">Projects</a></li>
+      <li><a href="/" data-i18n="nav.home">Home</a></li>
+      <li><a href="/library" data-i18n="nav.library">Library</a></li>
+      <li><a href="/blog" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="/apps" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="/about" data-i18n="nav.about">About</a></li>
+      <li><a href="/contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
 
     <div class="nav__actions">
@@ -57,8 +59,10 @@ import { translations } from '../i18n/translations.js';
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.querySelector('.nav__links');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    hamburger.classList.toggle('open');
-  });
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+  }
 </script>

@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import AboutContent, { frontmatter as aboutFrontmatter } from '../content/pages/about.md';
+---
+<Base
+    title={aboutFrontmatter.title}
+    description={aboutFrontmatter.description}
+    canonical="https://alqaddari.vercel.app/about"
+    image="/og/default.png"
+    ogType="website"
+  >
+  <Nav />
+  <main style="padding: 4rem 0 6rem;">
+    <div class="container--narrow">
+      <article class="blog-content" style="line-height:1.85;">
+        <AboutContent />
+      </article>
+    </div>
+  </main>
+  <footer class="footer"><div class="container"><p>May Allah make it beneficial.</p></div></footer>
+</Base>

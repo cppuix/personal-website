@@ -61,6 +61,22 @@ collections:
           hint: "Lower values appear earlier in the list." }
       - { label: "Note",        name: "note",        widget: "string", required: false }
 
+  # Pages
+  - name: "pages"
+    label: "Static Pages"
+    label_singular: "Page"
+    folder: "src/content/pages"
+    create: true
+    delete: false
+    extension: "md"
+    format: "frontmatter"
+    identifier_field: "title"
+    summary: "{{title}}"
+    fields:
+      - { label: "Title",       name: "title",       widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body",        name: "body",        widget: "markdown" }
+
   # Blog (English)
   - name: "blog_en"
     label: "Blog (English)"

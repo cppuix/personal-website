@@ -6,8 +6,13 @@ import BookCard from '../components/BookCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { translations } from '../i18n/translations.js';
 
-const blogPosts = await getCollection("blog", ({ id }) => id.startsWith("en/"));
-const recentPosts = blogPosts
+const blogPosts = await getCollection("blog");
+const recentPostsEn = blogPosts
+  .filter((post) => post.id.startsWith("en/"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const recentPostsAr = blogPosts
+  .filter((post) => post.id.startsWith("ar/"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
@@ -27,7 +32,13 @@ const featuredProjects = allProjects
   }));
 ---
 
-<Base title="عبد الرحمن بن ميهوب القداري" description="A place for books, writings, translations, and tools.">
+<Base
+    title="عبد الرحمن بن ميهوب القداري"
+    description="A place for books, writings, translations, and tools."
+    canonical="https://alqaddari.vercel.app"
+    image="/og/default.svg"
+    ogType="website"
+  >
   <Nav />
 
   <!-- HERO -->
@@ -57,31 +68,32 @@ const featuredProjects = allProjects
     <div class="container">
       <div class="section__header">
         <div>
-          <p class="section__label">Essays & Notes</p>
-          <h2 class="section__title">Latest Writings</h2>
+          <p class="section__label" data-i18n="sections.blogLabel">Essays & Notes</p>
+          <h2 class="section__title" data-i18n="sections.landingLatestWritings">Latest Writings</h2>
         </div>
-        <a href="/blog">See all posts →</a>
+        <a href="/blog" data-i18n="sections.blogBrowse">See all posts →</a>
       </div>
       <div class="book-grid">
-        {recentPosts.map((post) => {
+        {[...recentPostsEn, ...recentPostsAr].map((post) => {
           const slug = post.id.split("/").pop();
+          const postLang = post.id.split("/")[0];
+          const rawDate = post.data.date.toISOString();
+          const defaultDate = post.data.date.toLocaleDateString("en", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
           return (
-            <a href={`/blog/${slug}`} class="book-card" style="text-decoration:none; color:inherit;">
+            <a href={`/blog/${slug}`} class="book-card home-post" data-blog-lang={postLang} style="text-decoration:none; color:inherit;">
               <div class="book-card__tags">
                 {post.data.tags?.slice(0, 2).map(tag => (
                   <span class="book-tag book-tag--cat">{tag}</span>
                 ))}
               </div>
               <h3 class="book-card__title">{post.data.title}</h3>
-              <p class="book-card__author">
-                {post.data.date.toLocaleDateString("en", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
+              <p class="book-card__author" data-date={rawDate}>{defaultDate}</p>
               <div class="book-card__footer">
-                <span class="book-card__open">Read →</span>
+                <span class="book-card__open" data-i18n="common.read">Read →</span>
               </div>
             </a>
           );
@@ -97,15 +109,20 @@ const featuredProjects = allProjects
     <div class="container">
       <div class="section__header">
         <div>
-          <p class="section__label">Books & PDFs</p>
-          <h2 class="section__title">Featured Books</h2>
+          <p class="section__label" data-i18n="sections.libraryLabel">Books & PDFs</p>
+          <h2 class="section__title" data-i18n="sections.landingFeaturedBooks">Featured Books</h2>
         </div>
-        <a href="/library">See all books →</a>
+        <a href="/library" data-i18n="sections.landingSeeAllBooks">See all books →</a>
       </div>
       <div class="book-grid">
-        {featuredBooks.map((book) => (
-          <BookCard book={book.data} />
-        ))}
+        {featuredBooks.map((book) => {
+          const link = `/library?book=${encodeURIComponent(book.id)}`;
+          return (
+            <a href={link} class="book-card-link home-book-link" data-book-lang={book.data.language} style="text-decoration:none;color:inherit;">
+              <BookCard book={{ id: book.id, ...book.data }} />
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -117,9 +134,9 @@ const featuredProjects = allProjects
     <div class="container">
       <div class="section__header">
         <div>
-          <h2 class="section__title">Featured Digital Projects</h2>
+          <h2 class="section__title" data-i18n="sections.landingFeaturedProjects">Featured Digital Projects</h2>
         </div>
-        <a href="/apps">See all projects →</a>
+        <a href="/apps" data-i18n="sections.landingSeeAllProjects">See all projects →</a>
       </div>
       <div class="card-grid">
         {featuredProjects.map(project => (
@@ -145,7 +162,44 @@ const featuredProjects = allProjects
         if (val && typeof val === 'string') el.textContent = val;
       });
     }
-    applyI18n(window.__settings?.lang || 'en');
-    window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
+
+    function formatHomeDates(lang) {
+      document.querySelectorAll('.home-post .book-card__author[data-date]').forEach(el => {
+        const raw = el.dataset.date;
+        if (!raw) return;
+        const date = new Date(raw);
+        const formatted = new Intl.DateTimeFormat(lang, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(date);
+        el.textContent = formatted;
+      });
+    }
+
+    function filterHomeContent(lang) {
+      const postCards = document.querySelectorAll('.home-post');
+      postCards.forEach(card => {
+        const cardLang = card.dataset.blogLang || 'en';
+        const show = cardLang === lang;
+        card.style.display = show ? '' : 'none';
+      });
+
+      const bookLinks = document.querySelectorAll('.home-book-link');
+      bookLinks.forEach(link => {
+        const bookLang = link.dataset.bookLang || 'en';
+        const show = bookLang === lang;
+        link.style.display = show ? '' : 'none';
+      });
+    }
+
+    function applyHomeSettings(lang) {
+      applyI18n(lang);
+      formatHomeDates(lang);
+      filterHomeContent(lang);
+    }
+
+    applyHomeSettings(window.__settings?.lang || 'en');
+    window.addEventListener('lang-change', () => applyHomeSettings(window.__settings?.lang || 'en'));
   </script>
 </Base>

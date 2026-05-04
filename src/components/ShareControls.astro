@@ -1,0 +1,55 @@
+---
+export interface Props {
+  url: string;
+  title: string;
+  description?: string;
+  variant?: 'bar' | 'compact';
+}
+
+const { url, title, description = '', variant = 'bar' } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+const encodedDesc = encodeURIComponent(description);
+const telegramHref = `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`;
+const whatsappHref = `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
+const emailHref = `mailto:?subject=${encodedTitle}&body=${encodedDesc}%0A%0A${encodedUrl}`;
+const idBase = `share-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class={`share-bar share-bar--${variant}`} id={idBase}>
+  {variant === 'bar' ? (
+    <>
+      <div>
+        <p class="share-bar__label" data-i18n="shareBar.label">Share this page</p>
+        <p class="share-bar__help" data-i18n="shareBar.help">Send it via Telegram, WhatsApp, email, or copy the link.</p>
+      </div>
+      <div class="share-bar__buttons">
+        <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.telegram">Telegram</a>
+        <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.whatsapp">WhatsApp</a>
+        <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.email">Email</a>
+        <button class="share-bar__button" id={`${idBase}-copy`} type="button" data-i18n="shareBar.copyLink">Copy link</button>
+      </div>
+    </>
+  ) : (
+    <div class="share-bar__buttons share-bar__buttons--compact">
+      <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.telegram">Telegram</a>
+      <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.whatsapp">WhatsApp</a>
+      <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.email">Email</a>
+      <button class="share-bar__button" id={`${idBase}-copy`} type="button" data-i18n="shareBar.copyLink">Copy link</button>
+    </div>
+  )}
+</div>
+
+<script is:inline>
+  (function() {
+    var button = document.getElementById('{idBase}-copy');
+    if (!button) return;
+    button.addEventListener('click', function() {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText('{url}').then(function() {
+        var original = button.textContent;
+        button.textContent = 'Copied';
+        setTimeout(function() { button.textContent = original; }, 1500);
+      });
+    });
+  })();
+</script>
