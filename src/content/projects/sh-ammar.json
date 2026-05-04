@@ -1,10 +1,13 @@
 {
   "title": "sh-ammar",
+  "titleAr": "ش-عمار",
   "description": "A personal website and portfolio for a creative developer.",
+  "descriptionAr": "موقع شخصي ومحفظة أعمال لمطور مبدع.",
   "href": "https://sh-ammar.codeberg.page/",
   "coverImage": "/projects/sh-ammar.svg",
   "type": "Website",
   "note": "Static, privacy-friendly, and content-led",
+  "noteAr": "ثابت، يحترم الخصوصية، ويركز على المحتوى.",
   "featured": false,
   "order": 4
 }

@@ -1,10 +1,13 @@
 {
   "title": "alqaddari",
+  "titleAr": "القدّاري",
   "description": "This personal website: library, writings, and community tools.",
+  "descriptionAr": "هذا الموقع الشخصي: مكتبة، مقالات، وأدوات للمجتمع.",
   "href": "https://alqaddari.vercel.app/",
   "coverImage": "/projects/alqaddari.svg",
   "type": "Website",
   "note": "Built as a clean digital publishing platform",
+  "noteAr": "بُني كمنصة نشر رقمية نظيفة.",
   "featured": true,
   "order": 5
 }

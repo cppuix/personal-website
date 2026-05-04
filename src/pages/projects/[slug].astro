@@ -40,10 +40,21 @@ const ogImage = project.data.coverImage || '/og/default.svg';
 
         <div class="project-detail__header">
           {project.data.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
-          <span class="card__tag">{project.data.type}</span>
-          <h1 class="project-detail__title">{project.data.title}</h1>
-          <p class="project-detail__desc">{project.data.description}</p>
-          {project.data.note && <p class="project-detail__note">{project.data.note}</p>}
+          <span class="card__tag" data-i18n={`projectType.${project.data.type.toLowerCase()}`}>{project.data.type}</span>
+          <h1 class="project-detail__title">
+            <span class="en">{project.data.title}</span>
+            <span class="ar">{project.data.titleAr || project.data.title}</span>
+          </h1>
+          <p class="project-detail__desc">
+            <span class="en">{project.data.description}</span>
+            <span class="ar">{project.data.descriptionAr || project.data.description}</span>
+          </p>
+          {(project.data.note || project.data.noteAr) && (
+            <p class="project-detail__note">
+              <span class="en">{project.data.note}</span>
+              <span class="ar">{project.data.noteAr || project.data.note}</span>
+            </p>
+          )}
           <div class="project-detail__actions">
             <a class="btn" href={project.data.href} target="_blank" rel="noopener noreferrer" data-i18n="projectDetail.visitSite">Visit site</a>
             <a class="btn btn--secondary" href="/apps" data-i18n="projectDetail.back">Back to projects</a>

@@ -1,10 +1,13 @@
 {
   "title": "Vocabulary Harvest",
+  "titleAr": "حصاد المفردات",
   "description": "A vocabulary practice PWA for stronger word retention.",
+  "descriptionAr": "تطبيق ويب تدريبي للمفردات يساعد على تثبيت الكلمات بقوة.",
   "href": "https://vocabulary-harvest.vercel.app/",
   "coverImage": "/projects/vocabulary-harvest.svg",
   "type": "PWA",
   "note": "Built for repeated study sessions",
+  "noteAr": "مصمّم لجلسات دراسة متكررة.",
   "featured": false,
   "order": 3
 }

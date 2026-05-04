@@ -49,17 +49,20 @@ collections:
     identifier_field: "title"
     summary: "{{title}} — {{type}}"
     fields:
-      - { label: "Title",       name: "title",       widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Type",        name: "type",        widget: "select",
+      - { label: "Title",         name: "title",         widget: "string" }
+      - { label: "Title (Arabic)", name: "titleAr",       widget: "string", required: false }
+      - { label: "Description",   name: "description",   widget: "text" }
+      - { label: "Description (Arabic)", name: "descriptionAr", widget: "text", required: false }
+      - { label: "Type",          name: "type",          widget: "select",
           options: ["PWA","Website"] }
-      - { label: "Link",        name: "href",        widget: "string" }
-      - { label: "Cover Image", name: "coverImage",  widget: "string", required: false,
+      - { label: "Link",          name: "href",          widget: "string" }
+      - { label: "Cover Image",   name: "coverImage",    widget: "string", required: false,
           hint: "Use a public image path like /projects/example.svg" }
-      - { label: "Featured",   name: "featured",    widget: "boolean", default: false }
-      - { label: "Order",      name: "order",       widget: "number",  required: false,
+      - { label: "Featured",      name: "featured",      widget: "boolean", default: false }
+      - { label: "Order",         name: "order",         widget: "number",  required: false,
           hint: "Lower values appear earlier in the list." }
-      - { label: "Note",        name: "note",        widget: "string", required: false }
+      - { label: "Note",          name: "note",          widget: "string", required: false }
+      - { label: "Note (Arabic)", name: "noteAr",        widget: "string", required: false }
 
   # Pages
   - name: "pages"

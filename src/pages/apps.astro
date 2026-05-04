@@ -53,7 +53,7 @@ const websites = sortedPosts
         <div class="filters-main" id="project-filter-chips" style="margin-top:1rem;">
           <button type="button" class="filter-chip all active" data-filter="all" data-i18n="apps.filterAll">All</button>
           {projectTypes.map(type => (
-            <button type="button" class="filter-chip" data-filter={type.toLowerCase()}>{type}</button>
+            <button type="button" class="filter-chip" data-filter={type.toLowerCase()} data-i18n={`projectType.${type.toLowerCase()}`}>{type}</button>
           ))}
         </div>
       </div>

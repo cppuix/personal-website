@@ -5,7 +5,13 @@
     "title": {
       "type": "string"
     },
+    "titleAr": {
+      "type": "string"
+    },
     "description": {
+      "type": "string"
+    },
+    "descriptionAr": {
       "type": "string"
     },
     "href": {
@@ -29,6 +35,9 @@
       "type": "number"
     },
     "note": {
+      "type": "string"
+    },
+    "noteAr": {
       "type": "string"
     },
     "$schema": {

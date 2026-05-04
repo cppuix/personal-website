@@ -84,6 +84,10 @@ export const translations = {
     common: {
       read: 'Read →',
     },
+    projectType: {
+      pwa: 'PWA',
+      website: 'Website',
+    },
     projectDetail: {
       featured: 'Featured',
       visitSite: 'Visit site',
@@ -196,6 +200,10 @@ export const translations = {
     },
     common: {
       read: 'اقرأ ←',
+    },
+    projectType: {
+      pwa: 'تطبيق ويب',
+      website: 'موقع إلكتروني',
     },
     projectDetail: {
       featured: 'مميزة',

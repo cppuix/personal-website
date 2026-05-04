@@ -1,10 +1,13 @@
 {
   "title": "Kanz Atfaal",
+  "titleAr": "كنز أطفال",
   "description": "A child-friendly Quran learning app with a calm interface.",
+  "descriptionAr": "تطبيق لتعليم القرآن مناسب للأطفال بواجهة هادئة.",
   "href": "https://kanz-atfaal.vercel.app/",
   "coverImage": "/projects/kanz-atfaal.svg",
   "type": "PWA",
   "note": "Designed for mobile learning",
+  "noteAr": "مصمّم للتعلّم على الهاتف المحمول.",
   "featured": false,
   "order": 2
 }

@@ -47,7 +47,9 @@ const featuredProjects = allProjects
       <div class="hero__content">
         <p class="hero__name-arabic" data-i18n="hero.greeting">عَبْدُ الرَّحْمَنِ بْنُ مِيهُوبَ القَدَّارِيُّ</p>
         <h1 class="hero__title">
-          <span data-i18n="hero.role">A <em>Knowledge</em> Seeker</span>
+          <!-- Use .en/.ar so dir-attribute CSS handles switching — preserves <em> -->
+          <span class="en">A <em>Knowledge</em> Seeker</span>
+          <span class="ar">طالب علم</span>
         </h1>
         <p class="hero__desc" data-i18n="hero.desc">
           A place for books, writings, and tools — gathered here so they are not lost.
@@ -188,7 +190,8 @@ const featuredProjects = allProjects
       const bookLinks = document.querySelectorAll('.home-book-link');
       bookLinks.forEach(link => {
         const bookLang = link.dataset.bookLang || 'en';
-        const show = bookLang === lang;
+        // 'mixed' books are relevant to all readers
+        const show = bookLang === lang || bookLang === 'mixed';
         link.style.display = show ? '' : 'none';
       });
     }

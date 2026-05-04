@@ -2,19 +2,27 @@
 export interface Props {
   project: {
     title: string;
+    titleAr?: string;
     desc: string;
+    descAr?: string;
     detailUrl: string;
     href: string;
     cover?: string;
     type: string;
     featured?: boolean;
     note?: string;
+    noteAr?: string;
   };
 }
 const { project } = Astro.props;
+const titleAr = project.titleAr || project.title;
+const descAr = project.descAr || project.desc;
+const noteAr = project.noteAr || project.note;
+const searchTitle = `${project.title} ${titleAr}`.toLowerCase();
+const searchDesc = `${project.desc} ${descAr}`.toLowerCase();
 ---
 
-<a class="card project-card" href={project.detailUrl} data-type={project.type?.toLowerCase()} data-title={project.title?.toLowerCase()} data-desc={project.desc?.toLowerCase()}>
+<a class="card project-card" href={project.detailUrl} data-type={project.type?.toLowerCase()} data-title={searchTitle} data-desc={searchDesc}>
   {project.cover && (
     <img
       src={project.cover}
@@ -24,9 +32,20 @@ const { project } = Astro.props;
       onerror="this.style.display='none'"
     />
   )}
-  {project.featured && <span class="card__tag card__tag--featured">Featured</span>}
-  <span class="card__tag">{project.type}</span>
-  <h3 class="card__title">{project.title}</h3>
-  <p class="card__desc">{project.desc}</p>
-  {project.note && <p class="card__note">{project.note}</p>}
+  {project.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
+  <span class="card__tag" data-i18n={`projectType.${project.type.toLowerCase()}`}>{project.type}</span>
+  <h3 class="card__title">
+    <span class="en">{project.title}</span>
+    <span class="ar">{titleAr}</span>
+  </h3>
+  <p class="card__desc">
+    <span class="en">{project.desc}</span>
+    <span class="ar">{descAr}</span>
+  </p>
+  {(project.note || project.noteAr) && (
+    <p class="card__note">
+      <span class="en">{project.note}</span>
+      <span class="ar">{noteAr}</span>
+    </p>
+  )}
 </a>
