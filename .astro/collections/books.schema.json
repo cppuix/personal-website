@@ -12,10 +12,31 @@
       "type": "string"
     },
     "category": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "aqeedah",
+        "fiqh",
+        "hadith",
+        "tafsir",
+        "seerah",
+        "manhaj",
+        "fitan",
+        "translations",
+        "other"
+      ]
     },
     "language": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "ar",
+        "en"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "featured": {
       "default": false,
@@ -32,6 +53,9 @@
     "coverImage": {
       "type": "string",
       "format": "uri"
+    },
+    "size": {
+      "type": "string"
     },
     "$schema": {
       "type": "string"

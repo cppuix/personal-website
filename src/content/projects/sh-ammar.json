@@ -9,5 +9,10 @@
   "note": "Static, privacy-friendly, and content-led",
   "noteAr": "ثابت، يحترم الخصوصية، ويركز على المحتوى.",
   "featured": false,
-  "order": 4
+  "order": 4,
+  "category": "publishing",
+  "tags": [
+    "website",
+    "privacy"
+  ]
 }

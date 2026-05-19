@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/blog-content.css';
 import Twinkles from '../components/Twinkles.astro';
+import Footer from '../components/Footer.astro';
 
 const {
   title = 'عبد الرحمن بن ميهوب القدّاري',
@@ -124,9 +125,10 @@ const jsonLd = {
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div style="position: relative; min-height: 100vh;">
-    <Twinkles />
+  <Twinkles />
+  <div class="page-main">
     <slot />
   </div>
+  <Footer />
 </body>
 </html>

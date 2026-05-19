@@ -9,5 +9,11 @@
   "note": "Offline-ready and installable",
   "noteAr": "جاهز للعمل دون اتصال وقابل للتثبيت.",
   "featured": false,
-  "order": 1
+  "order": 1,
+  "category": "education",
+  "tags": [
+    "pwa",
+    "learning",
+    "offline"
+  ]
 }

@@ -8,6 +8,7 @@ const allPosts = await getCollection("blog");
 const posts = allPosts.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
+const categories = Array.from(new Set(posts.map((post) => post.data.category).filter(Boolean))).sort() as string[];
 ---
 
 <Base title="Blog — عبد الرحمن القدّاري" description="Essays, translations, and reflections.">
@@ -31,6 +32,19 @@ const posts = allPosts.sort(
           <input type="text" id="search-input" data-i18n="blog.searchPlaceholder" placeholder="Search titles, tags…" autocomplete="off" spellcheck="false" />
           <button class="search-bar__clear" id="search-clear" aria-label="Clear">✕</button>
         </div>
+        {categories.length > 0 && (
+          <>
+            <p class="filter-group__label" data-i18n="blog.filterCategory">Category</p>
+            <div class="filters-main" id="blog-category-chips">
+              <button type="button" class="filter-chip all active" data-category="all" data-i18n="blog.filterAll">All</button>
+              {categories.map((category) => (
+                <button type="button" class="filter-chip" data-category={category} data-i18n={`blog.category.${category}`}>
+                  {category}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
 
@@ -41,22 +55,27 @@ const posts = allPosts.sort(
           {posts.map((post) => {
             const slug = post.id.split("/").pop();
             const tags = post.data.tags || [];
+            const category = post.data.category;
+            const lang = post.id.split("/")[0] === 'ar' ? 'ar' : 'en';
             return (
               <article
                 class="book-card"
                 data-title={(post.data.title || '').toLowerCase()}
                 data-tags={tags.join(' ').toLowerCase()}
+                data-category={(category || '').toLowerCase()}
+                data-lang={lang}
                 style="cursor:pointer"
                 onclick={`location.href='/blog/${slug}'`}
               >
                 <div class="book-card__tags">
+                  {category && (
+                    <span class="book-tag book-tag--cat" data-i18n={`blog.category.${category}`}>
+                      {category}
+                    </span>
+                  )}
                   {tags.slice(0, 2).map(tag => {
-                    const isArabic = /[\u0600-\u06FF]/.test(tag);
                     return (
-                      <span
-                        class="book-tag book-tag--cat"
-                        style={isArabic ? "font-family: var(--font-arabic);" : ""}
-                      >
+                      <span class="book-tag book-tag--cat" data-tag={tag} data-tag-original={tag}>
                         {tag}
                       </span>
                     );
@@ -80,17 +99,121 @@ const posts = allPosts.sort(
             No posts found
           </div>
         </div>
+        <div class="blog-pagination" id="blog-pagination" style="display:none">
+          <div class="blog-pagination__summary" id="pagination-summary"></div>
+          <div class="blog-pagination__controls" id="pagination-controls"></div>
+        </div>
       </div>
     </div>
   </main>
 
-  <footer class="footer" style="position:relative;z-index:1;">
-    <div class="container">
-      <p data-i18n="footer.text">May Allah make it beneficial.</p>
-    </div>
-  </footer>
+  <style global>
+    .blog-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 18px 40px var(--shadow-warm);
+    }
+
+    .blog-pagination__summary {
+      color: var(--text-secondary);
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      min-width: min(100%, 240px);
+    }
+
+    .blog-pagination__controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: flex-end;
+      align-items: center;
+      width: min(100%, 100%);
+    }
+
+    .blog-pagination__button {
+      border: 1px solid var(--border-soft);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      padding: 0.26rem 0.5rem;
+      border-radius: 14px;
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      text-transform: none;
+      min-width: 2.8rem;
+      transition: border-color var(--transition), color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .blog-pagination__button:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-pagination__button--active {
+      background: var(--accent);
+      color: var(--bg-primary);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .blog-pagination__button--active:hover:not(:disabled) {
+      border-color: var(--accent-soft);
+      color: var(--bg-primary);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-pagination__button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      border-color: var(--border);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      box-shadow: none;
+    }
+
+    .blog-pagination__button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 640px) {
+      .blog-pagination {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .blog-pagination__summary {
+        width: 100%;
+      }
+
+      .blog-pagination__controls {
+        justify-content: center;
+      }
+    }
+  </style>
 
   <script define:vars={{ translations }}>
+    function normalizeTagKey(value) {
+      return (value || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\u0600-\u06ff]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+    }
+
     function applyI18n(lang) {
       const tr = translations[lang] || translations['en'];
       document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -104,42 +227,143 @@ const posts = allPosts.sort(
         }
         el.textContent = val;
       });
+
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        const original = el.getAttribute('data-tag-original') || el.getAttribute('data-tag') || '';
+        const key = normalizeTagKey(original);
+        const localized = tr.blog?.tags?.[key];
+        el.textContent = localized || original;
+      });
     }
     applyI18n(window.__settings?.lang || 'en');
-    window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
+    window.addEventListener('lang-change', () => {
+      applyI18n(window.__settings?.lang || 'en');
+      applySearch();
+    });
   </script>
   <!-- Search script -->
   <script define:vars={{ translations }}>
     const cards = Array.from(document.querySelectorAll('.book-card'));
     const searchInput = document.getElementById('search-input');
-    const clearBtn = document.getElementById('clear-search');
+    const clearBtn = document.getElementById('search-clear');
     const emptyState = document.getElementById('empty-state');
     const resultsCount = document.getElementById('results-count');
+    const categoryButtons = Array.from(document.querySelectorAll('#blog-category-chips .filter-chip'));
+    const paginationControls = document.getElementById('pagination-controls');
+    const paginationWrapper = document.getElementById('blog-pagination');
+    const paginationSummary = document.getElementById('pagination-summary');
+    const PAGE_SIZE = 8;
+    const state = { category: 'all', page: 1, lang: null };
+
+    function getCurrentLang() {
+      return window.__settings?.lang === 'ar' ? 'ar' : 'en';
+    }
+
+    function formatNumber(value, lang) {
+      return new Intl.NumberFormat(lang === 'ar' ? 'ar-EG' : 'en-US').format(value);
+    }
+
+    function renderPagination(totalPages, totalItems) {
+      if (!paginationWrapper || !paginationControls || !paginationSummary) return;
+      if (totalPages <= 1) {
+        paginationWrapper.style.display = 'none';
+        return;
+      }
+
+      const lang = getCurrentLang();
+      paginationWrapper.style.display = '';
+      paginationSummary.textContent = `Page ${formatNumber(state.page, lang)} of ${formatNumber(totalPages, lang)} · ${formatNumber(totalItems, lang)} items`;
+      paginationControls.innerHTML = '';
+
+      const createButton = (text, disabled, onClick, active = false) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `blog-pagination__button${active ? ' blog-pagination__button--active' : ''}`;
+        button.textContent = text;
+        button.disabled = disabled;
+        button.addEventListener('click', onClick);
+        return button;
+      };
+
+      paginationControls.appendChild(createButton('Previous', state.page === 1, () => {
+        if (state.page > 1) {
+          state.page -= 1;
+          applySearch();
+        }
+      }));
+
+      for (let page = 1; page <= totalPages; page += 1) {
+        paginationControls.appendChild(createButton(formatNumber(page, lang), false, () => {
+          state.page = page;
+          applySearch();
+        }, page === state.page));
+      }
+
+      paginationControls.appendChild(createButton('Next', state.page === totalPages, () => {
+        if (state.page < totalPages) {
+          state.page += 1;
+          applySearch();
+        }
+      }));
+    }
 
     function applySearch() {
       if (!(searchInput instanceof HTMLInputElement) || !(emptyState instanceof HTMLElement) || !(resultsCount instanceof HTMLElement)) return;
       const query = searchInput.value.trim().toLowerCase();
+      const lang = getCurrentLang();
       let visible = 0;
-      const lang = window.__settings?.lang || 'en';
+      const matchingCards = [];
       const tr = translations[lang] || translations['en'];
       const singular = tr.blog.postSingular || 'post';
       const plural = tr.blog.postPlural || 'posts';
+
+      if (state.lang !== lang) {
+        state.lang = lang;
+        state.page = 1;
+      }
+
       cards.forEach(card => {
         const element = card instanceof HTMLElement ? card : null;
         if (!element) return;
         const title = element.dataset.title || '';
         const tags = element.dataset.tags || '';
-        const show = !query || title.includes(query) || tags.includes(query);
-        element.style.display = show ? '' : 'none';
-        if (show) visible++;
+        const category = element.dataset.category || '';
+        const cardLang = (element.dataset.lang || 'en').toLowerCase();
+        const matchesLanguage = cardLang === lang;
+        const matchesCategory = state.category === 'all' || category === state.category;
+        const matchesQuery = !query || title.includes(query) || tags.includes(query) || category.includes(query);
+        const visibleOnPage = matchesLanguage && matchesCategory && matchesQuery;
+
+        if (visibleOnPage) {
+          matchingCards.push(element);
+        } else {
+          element.style.display = 'none';
+        }
       });
+
+      const totalPages = Math.max(1, Math.ceil(matchingCards.length / PAGE_SIZE));
+      if (state.page > totalPages) state.page = totalPages;
+      const start = (state.page - 1) * PAGE_SIZE;
+      const end = start + PAGE_SIZE;
+
+      matchingCards.forEach((card, index) => {
+        card.style.display = index >= start && index < end ? '' : 'none';
+      });
+
+      visible = matchingCards.length;
+      const visibleText = formatNumber(visible, lang);
       emptyState.style.display = visible === 0 ? 'block' : 'none';
-      resultsCount.textContent = `${visible} ${visible === 1 ? singular : plural}`;
+      resultsCount.textContent = lang === 'ar'
+        ? `${visibleText} ${singular}`
+        : `${visibleText} ${visibleText === '1' ? singular : plural}`;
+
+      renderPagination(totalPages, visible);
     }
 
     if (searchInput instanceof HTMLInputElement) {
       searchInput.addEventListener('input', () => {
         if (clearBtn instanceof HTMLElement) clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+        state.page = 1;
         applySearch();
       });
     }
@@ -148,9 +372,23 @@ const posts = allPosts.sort(
       clearBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearBtn.classList.remove('visible');
+        state.page = 1;
         applySearch();
       });
     }
+
+    categoryButtons.forEach((button) => {
+      if (!(button instanceof HTMLElement)) return;
+      button.addEventListener('click', () => {
+        categoryButtons.forEach((btn) => {
+          if (btn instanceof HTMLElement) btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        state.category = button.dataset.category || 'all';
+        state.page = 1;
+        applySearch();
+      });
+    });
 
     // Initial count
     applySearch();

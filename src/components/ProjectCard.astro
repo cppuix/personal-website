@@ -5,6 +5,8 @@ export interface Props {
     titleAr?: string;
     desc: string;
     descAr?: string;
+    category?: string;
+    tags?: string[];
     detailUrl: string;
     href: string;
     cover?: string;
@@ -18,11 +20,12 @@ const { project } = Astro.props;
 const titleAr = project.titleAr || project.title;
 const descAr = project.descAr || project.desc;
 const noteAr = project.noteAr || project.note;
+const tagSearch = (project.tags || []).join(' ');
 const searchTitle = `${project.title} ${titleAr}`.toLowerCase();
-const searchDesc = `${project.desc} ${descAr}`.toLowerCase();
+const searchDesc = `${project.desc} ${descAr} ${tagSearch} ${project.category || ''}`.toLowerCase();
 ---
 
-<a class="card project-card" href={project.detailUrl} data-type={project.type?.toLowerCase()} data-title={searchTitle} data-desc={searchDesc}>
+<a class="card project-card" href={project.detailUrl} data-type={project.type?.toLowerCase()} data-category={(project.category || '').toLowerCase()} data-tags={(project.tags || []).join(' ').toLowerCase()} data-title={searchTitle} data-desc={searchDesc}>
   {project.cover && (
     <img
       src={project.cover}
@@ -32,8 +35,14 @@ const searchDesc = `${project.desc} ${descAr}`.toLowerCase();
       onerror="this.style.display='none'"
     />
   )}
-  {project.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
-  <span class="card__tag" data-i18n={`projectType.${project.type.toLowerCase()}`}>{project.type}</span>
+  <div class="project-card__tags">
+    {project.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
+    <span class="card__tag" data-i18n={`projectType.${project.type.toLowerCase()}`}>{project.type}</span>
+    {project.category && <span class="card__tag" data-i18n={`projectCategory.${project.category}`}>{project.category}</span>}
+    {(project.tags || []).slice(0, 2).map((tag) => (
+      <span class="card__tag" data-i18n={`projectTag.${tag}`}>{tag}</span>
+    ))}
+  </div>
   <h3 class="card__title">
     <span class="en">{project.title}</span>
     <span class="ar">{titleAr}</span>

@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import ShareControls from '../../components/ShareControls.astro';
+import { translations } from '../../i18n/translations.js';
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -43,8 +44,13 @@ const ogImage = post.data.coverImage || '/og/default.svg';
       <!-- Article header -->
       <header class="blog-post__header">
         <div class="book-card__tags" style="margin-bottom:1rem;">
+          {post.data.category && (
+            <span class="book-tag book-tag--cat" data-i18n={`blog.category.${post.data.category}`}>
+              {post.data.category}
+            </span>
+          )}
           {post.data.tags?.map(tag => (
-            <span class="book-tag book-tag--cat">{tag}</span>
+            <span class="book-tag book-tag--cat" data-tag={tag} data-tag-original={tag}>{tag}</span>
           ))}
         </div>
         <h1 class="lib-hero__title" style="text-align:left; font-size:2.2rem; margin-bottom:0.75rem;">
@@ -70,9 +76,34 @@ const ogImage = post.data.coverImage || '/og/default.svg';
     </article>
   </main>
 
-  <footer class="footer" style="position:relative;z-index:1;">
-    <div class="container">
-      <p data-i18n="footer.text">May Allah make it beneficial.</p>
-    </div>
-  </footer>
+  <script define:vars={{ translations }}>
+    function normalizeTagKey(value) {
+      return (value || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\u0600-\u06ff]+/g, '_')
+        .replace(/^_+|_+$/g, '');
+    }
+
+    function applyI18n(lang) {
+      const tr = translations[lang] || translations['en'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const keys = el.getAttribute('data-i18n').split('.');
+        let val = tr;
+        for (const k of keys) val = val?.[k];
+        if (!val || typeof val !== 'string') return;
+        el.textContent = val;
+      });
+
+      document.querySelectorAll('[data-tag]').forEach(el => {
+        const original = el.getAttribute('data-tag-original') || el.getAttribute('data-tag') || '';
+        const key = normalizeTagKey(original);
+        const localized = tr.blog?.tags?.[key];
+        el.textContent = localized || original;
+      });
+    }
+
+    applyI18n(window.__settings?.lang || 'en');
+    window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
+  </script>
 </Base>

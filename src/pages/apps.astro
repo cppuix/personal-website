@@ -16,6 +16,8 @@ const sortedPosts = posts
     return a.data.title.localeCompare(b.data.title, 'en', { sensitivity: 'base' });
   });
 const projectTypes = Array.from(new Set(sortedPosts.map(project => project.data.type))).sort() as string[];
+const projectCategories = Array.from(new Set(sortedPosts.map(project => project.data.category).filter(Boolean))).sort() as string[];
+const projectTags = Array.from(new Set(sortedPosts.flatMap(project => project.data.tags || []))).sort() as string[];
 const pwas = sortedPosts
   .filter(project => project.data.type === 'PWA')
   .map(project => ({
@@ -38,25 +40,53 @@ const websites = sortedPosts
   <main style="padding: 4rem 0 6rem;">
     <div class="container">
       <p class="section__label" data-i18n="apps.headline">Digital Projects</p>
-      <h1 style="font-size:2.5rem;margin-bottom:1rem;" data-i18n="apps.headline">Websites & PWAs</h1>
+      <h1 style="font-size:2.5rem;margin-bottom:1rem;" data-i18n="apps.title">Websites & PWAs</h1>
       <p style="color:var(--text-muted); max-width:42rem; margin-bottom:2rem;" data-i18n="apps.intro">
         A curated collection of progressive apps and websites built for learning, privacy, and modern publishing.
       </p>
+      <p id="project-results-count" style="color:var(--text-muted); margin-top:-1rem; margin-bottom:1.5rem;"></p>
 
       <div class="project-filters">
         <div class="search-bar" style="width:100%; max-width:42rem;">
-          <span class="search-bar__icon" aria-hidden="true">🔎</span>
+          <span class="search-bar__icon" aria-hidden="true" style="color:var(--text-muted);">⌕</span>
           <input id="project-search" type="search" data-i18n="apps.searchPlaceholder" placeholder="Search by title or description" aria-label="Search projects" />
           <button id="clear-search" type="button" class="search-bar__clear" aria-label="Clear search">×</button>
         </div>
 
-        <div class="filters-main" id="project-filter-chips" style="margin-top:1rem;">
+        <p class="filter-group__label" data-i18n="apps.filterType">Type</p>
+        <div class="filters-main" id="project-type-chips">
           <button type="button" class="filter-chip all active" data-filter="all" data-i18n="apps.filterAll">All</button>
           {projectTypes.map(type => (
             <button type="button" class="filter-chip" data-filter={type.toLowerCase()} data-i18n={`projectType.${type.toLowerCase()}`}>{type}</button>
           ))}
         </div>
+
+        {projectCategories.length > 0 && (
+          <>
+            <p class="filter-group__label" data-i18n="apps.filterCategory">Category</p>
+            <div class="filters-main" id="project-category-chips">
+              <button type="button" class="filter-chip all active" data-category="all" data-i18n="apps.filterAll">All</button>
+              {projectCategories.map(category => (
+                <button type="button" class="filter-chip" data-category={category.toLowerCase()} data-i18n={`projectCategory.${category}`}>{category}</button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {projectTags.length > 0 && (
+          <>
+            <p class="filter-group__label" data-i18n="apps.filterTag">Tag</p>
+            <div class="filters-main" id="project-tag-chips">
+              <button type="button" class="filter-chip all active" data-tag="all" data-i18n="apps.filterAll">All</button>
+              {projectTags.map(tag => (
+                <button type="button" class="filter-chip" data-tag={tag.toLowerCase()} data-i18n={`projectTag.${tag}`}>{tag}</button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
+
+      <hr style="border:none; border-top:1px solid var(--border-soft); margin: 3rem 0;" />
 
       <div style="margin-bottom: 3rem;">
         <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;" data-i18n="apps.sectionPwa">Progressive Web Apps</h2>
@@ -75,7 +105,7 @@ const websites = sortedPosts
       <p id="no-projects" style="color: var(--text-muted); margin-top: 1.5rem; display: none;" data-i18n="apps.noResults">No projects match your search.</p>
     </div>
   </main>
-  <footer class="footer"><div class="container"><p>May Allah make it beneficial.</p></div></footer>
+
 
   <script define:vars={{ translations }}>
     function applyI18n(lang) {
@@ -95,42 +125,100 @@ const websites = sortedPosts
     applyI18n(window.__settings?.lang || 'en');
     window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
   </script>
-  <script>
+  <script define:vars={{ translations }}>
     const searchInput = document.getElementById('project-search');
     const clearButton = document.getElementById('clear-search');
-    const filterButtons = Array.from(document.querySelectorAll('.filter-chip'));
+    const typeButtons = Array.from(document.querySelectorAll('#project-type-chips .filter-chip'));
+    const categoryButtons = Array.from(document.querySelectorAll('#project-category-chips .filter-chip'));
+    const tagButtons = Array.from(document.querySelectorAll('#project-tag-chips .filter-chip'));
     const projectCards = Array.from(document.querySelectorAll('.project-card'));
     const noProjectsMessage = document.getElementById('no-projects');
+    const resultsCount = document.getElementById('project-results-count');
+
+    const state = {
+      type: 'all',
+      category: 'all',
+      tag: 'all',
+    };
+
+    function getCurrentLang() {
+      const settings = window.__settings || {};
+      return settings.lang === 'ar' ? 'ar' : 'en';
+    }
+
+    function formatNumber(value, lang) {
+      return new Intl.NumberFormat(lang === 'ar' ? 'ar-EG' : 'en-US').format(value);
+    }
 
     function updateProjectFilter() {
       if (!(searchInput instanceof HTMLInputElement) || !(noProjectsMessage instanceof HTMLElement)) return;
       const query = searchInput.value.trim().toLowerCase();
-      const activeTypeElement = document.querySelector('.filter-chip.active');
-      const activeType = activeTypeElement instanceof HTMLElement ? activeTypeElement.dataset.filter : 'all';
+      const lang = getCurrentLang();
+      const tr = translations[lang] || translations['en'];
       let visibleCount = 0;
 
       projectCards.forEach(card => {
         if (!(card instanceof HTMLElement)) return;
         const title = card.dataset.title || '';
         const desc = card.dataset.desc || '';
-        const matchesType = activeType === 'all' || card.dataset.type === activeType;
+        const matchesType = state.type === 'all' || card.dataset.type === state.type;
+        const matchesCategory = state.category === 'all' || card.dataset.category === state.category;
+        const tags = card.dataset.tags || '';
+        const matchesTag = state.tag === 'all' || tags.split(/\s+/).includes(state.tag);
         const matchesQuery = query === '' || `${title} ${desc}`.includes(query);
-        const isVisible = matchesType && matchesQuery;
+        const isVisible = matchesType && matchesCategory && matchesTag && matchesQuery;
 
         card.style.display = isVisible ? '' : 'none';
         if (isVisible) visibleCount += 1;
       });
 
       noProjectsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+      if (resultsCount instanceof HTMLElement) {
+        const countText = formatNumber(visibleCount, lang);
+        const singular = tr.apps?.projectSingular || 'project';
+        const plural = tr.apps?.projectPlural || 'projects';
+        resultsCount.textContent = lang === 'ar'
+          ? `${countText} ${visibleCount === 1 ? singular : plural}`
+          : `${countText} ${visibleCount === 1 ? singular : plural}`;
+      }
+
+      if (clearButton instanceof HTMLElement && searchInput instanceof HTMLInputElement) {
+        clearButton.classList.toggle('visible', searchInput.value.length > 0);
+      }
     }
 
-    filterButtons.forEach(button => {
+    typeButtons.forEach(button => {
       if (!(button instanceof HTMLElement)) return;
       button.addEventListener('click', () => {
-        filterButtons.forEach(btn => {
+        typeButtons.forEach(btn => {
           if (btn instanceof HTMLElement) btn.classList.remove('active');
         });
         button.classList.add('active');
+        state.type = button.dataset.filter || 'all';
+        updateProjectFilter();
+      });
+    });
+
+    categoryButtons.forEach(button => {
+      if (!(button instanceof HTMLElement)) return;
+      button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => {
+          if (btn instanceof HTMLElement) btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        state.category = button.dataset.category || 'all';
+        updateProjectFilter();
+      });
+    });
+
+    tagButtons.forEach(button => {
+      if (!(button instanceof HTMLElement)) return;
+      button.addEventListener('click', () => {
+        tagButtons.forEach(btn => {
+          if (btn instanceof HTMLElement) btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        state.tag = button.dataset.tag || 'all';
         updateProjectFilter();
       });
     });
@@ -147,6 +235,8 @@ const websites = sortedPosts
         searchInput.focus();
       });
     }
+
+    window.addEventListener('lang-change', updateProjectFilter);
 
     updateProjectFilter();
   </script>

@@ -15,6 +15,9 @@ export interface Props {
 }
 
 const { book } = Astro.props;
+const searchTitle = (book.title || '').toLowerCase();
+const searchAuthor = (book.author || '').toLowerCase();
+const searchDesc = (book.description || '').toLowerCase();
 
 // Build cover URL from PDF filename — replace .pdf with .png
 let coverUrl = '';
@@ -40,9 +43,9 @@ if (book.pdfUrl) {
   data-cat={book.category}
   data-lang={book.language}
   data-featured={book.featured ? 'true' : 'false'}
-  data-title={(book.title || '').toLowerCase()}
-  data-author={(book.author || '').toLowerCase()}
-  data-desc={(book.description || '').toLowerCase()}
+  data-title={searchTitle}
+  data-author={searchAuthor}
+  data-desc={searchDesc}
   data-pdf={book.pdfUrl}
   data-archive={book.archiveUrl || ''}
   data-display-title={book.title}
@@ -59,12 +62,10 @@ if (book.pdfUrl) {
     />
   )}
   <div class="book-card__tags">
-    <span class="book-tag book-tag--cat">{book.category}</span>
-    <span class="book-tag book-tag--lang">
-      {book.language === 'ar' ? 'عربي' : book.language === 'en' ? 'English' : 'Mixed'}
-    </span>
+    <span class="book-tag book-tag--cat" data-i18n={`library.category.${book.category}`}>{book.category}</span>
+    <span class="book-tag book-tag--lang" data-i18n={`library.lang.${book.language}`}>{book.language === 'ar' ? 'عربي' : book.language === 'en' ? 'English' : 'Mixed'}</span>
     {book.featured && (
-      <span class="book-tag" style="border-color:var(--accent-soft);color:var(--accent-soft);">★</span>
+      <span class="book-tag book-tag--featured">FEATURED</span>
     )}
   </div>
   <h3 class="book-card__title">{book.title}</h3>

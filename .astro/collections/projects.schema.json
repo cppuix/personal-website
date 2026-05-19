@@ -20,6 +20,23 @@
     "coverImage": {
       "type": "string"
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "education",
+        "library",
+        "publishing",
+        "community",
+        "tool",
+        "other"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "type": {
       "type": "string",
       "enum": [

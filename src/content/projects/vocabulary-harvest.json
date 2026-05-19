@@ -9,5 +9,11 @@
   "note": "Built for repeated study sessions",
   "noteAr": "مصمّم لجلسات دراسة متكررة.",
   "featured": false,
-  "order": 3
+  "order": 3,
+  "category": "education",
+  "tags": [
+    "pwa",
+    "learning",
+    "search"
+  ]
 }

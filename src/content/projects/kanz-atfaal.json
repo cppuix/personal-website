@@ -9,5 +9,11 @@
   "note": "Designed for mobile learning",
   "noteAr": "مصمّم للتعلّم على الهاتف المحمول.",
   "featured": false,
-  "order": 2
+  "order": 2,
+  "category": "education",
+  "tags": [
+    "pwa",
+    "learning",
+    "offline"
+  ]
 }

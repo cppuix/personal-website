@@ -12,6 +12,18 @@
       "type": "string",
       "format": "date-time"
     },
+    "category": {
+      "type": "string",
+      "enum": [
+        "aqeedah",
+        "fiqh",
+        "manhaj",
+        "translation",
+        "reflection",
+        "announcement",
+        "other"
+      ]
+    },
     "tags": {
       "type": "array",
       "items": {

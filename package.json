@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "import-blog": "node import-blog.js"
+    "import-blog": "node import-blog.js",
+    "check:taxonomy": "node scripts/check-taxonomy.mjs"
   },
   "dependencies": {
     "@astrojs/vercel": "^10.0.6",

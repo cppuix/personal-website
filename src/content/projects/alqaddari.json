@@ -9,5 +9,11 @@
   "note": "Built as a clean digital publishing platform",
   "noteAr": "بُني كمنصة نشر رقمية نظيفة.",
   "featured": true,
-  "order": 5
+  "order": 5,
+  "category": "publishing",
+  "tags": [
+    "website",
+    "archive",
+    "community"
+  ]
 }

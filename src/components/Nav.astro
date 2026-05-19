@@ -3,14 +3,8 @@ import { translations } from '../i18n/translations.js';
 ---
 <nav class="nav">
   <div class="nav__inner">
-  <button class="nav__hamburger" id="hamburger" aria-label="Menu">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
     <a href="/" class="nav__logo" aria-label="Home">
-      <span>عَبْدُ الرَّحْمَنِ بْنُ مِيهُوبَ القَدَّارِيُّ</span>
-      <span class="en-name">Abdurraḥmān bnu Mīhūb al-Qaddārī</span>
+      <span>القَدَّارِي</span>
     </a>
 
     <ul class="nav__links" id="nav-links">
@@ -23,10 +17,30 @@ import { translations } from '../i18n/translations.js';
     </ul>
 
     <div class="nav__actions">
-      <button class="btn-icon" id="lang-toggle" aria-label="Switch language">AR / EN</button>
-      <button class="btn-icon" id="mode-toggle" aria-label="Toggle dark mode">◐</button>
-      <a href="/settings" class="btn-icon" aria-label="Settings">⚙</a>
+      <div class="settings-menu-wrapper">
+        <button class="btn-icon settings-menu-toggle" id="settings-toggle" aria-label="Settings & preferences" aria-expanded="false" aria-haspopup="menu">⚙</button>
+        <div class="settings-menu" id="settings-menu" role="menu">
+          <button id="lang-toggle" role="menuitem" aria-label="Switch language" data-state="">
+            <span class="settings-menu__icon" aria-hidden="true"></span>
+            <span class="settings-menu__label" data-i18n="nav.language">Language</span>
+          </button>
+          <button id="mode-toggle" role="menuitem" aria-label="Toggle dark mode" data-state="">
+            <span class="settings-menu__icon" aria-hidden="true"></span>
+            <span class="settings-menu__label" data-i18n="nav.darkMode">Dark Mode</span>
+          </button>
+          <a href="/settings" role="menuitem" aria-label="Settings page">
+            <span class="settings-menu__icon" aria-hidden="true">⚙</span>
+            <span class="settings-menu__label" data-i18n="nav.settings">Settings</span>
+          </a>
+        </div>
+      </div>
     </div>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav__hamburger-menu" id="hamburger-menu" role="menu" aria-hidden="true"></div>
   </div>
 </nav>
 
@@ -42,27 +56,201 @@ import { translations } from '../i18n/translations.js';
   }
 
   applyI18n(window.__settings?.lang || 'en');
-
-  document.getElementById('lang-toggle')?.addEventListener('click', () => {
-    const next = (window.__settings?.lang || 'en') === 'ar' ? 'en' : 'ar';
-    window.updateSetting('lang', next);
-    applyI18n(next);
-  });
-
-  document.getElementById('mode-toggle')?.addEventListener('click', () => {
-    const next = (window.__settings?.mode || 'light') === 'light' ? 'dark' : 'light';
-    window.updateSetting('mode', next);
-  });
-
   window.addEventListener('lang-change', () => applyI18n(window.__settings?.lang || 'en'));
 </script>
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.querySelector('.nav__links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      hamburger.classList.toggle('open');
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const navInner = document.querySelector('.nav__inner');
+  const navLogo = document.querySelector('.nav__logo');
+  const navActions = document.querySelector('.nav__actions');
+  const settingsToggle = document.getElementById('settings-toggle');
+  const settingsMenu = document.getElementById('settings-menu');
+  const langToggle = document.getElementById('lang-toggle');
+  const modeToggle = document.getElementById('mode-toggle');
+
+  function getWindowSettings() {
+    return (window as any).__settings || { lang: 'en', mode: 'light' };
+  }
+
+  function updateSetting(key: string, value: string) {
+    const updater = (window as any).updateSetting;
+    if (typeof updater === 'function') {
+      updater(key, value);
+    }
+  }
+
+  // Settings menu toggle
+  if (settingsToggle && settingsMenu) {
+    settingsToggle.addEventListener('click', () => {
+      const isOpen = settingsMenu.classList.toggle('open');
+      settingsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target instanceof Node && !settingsToggle.contains(e.target) && !settingsMenu.contains(e.target)) {
+        settingsMenu.classList.remove('open');
+        settingsToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
+
+  // Language toggle
+  function updateToggleStates() {
+    const settings = getWindowSettings();
+    const mode = settings.mode || 'light';
+    if (langToggle) {
+      const icon = langToggle.querySelector('.settings-menu__icon');
+      if (icon) icon.textContent = '🌐';
+    }
+    if (modeToggle) {
+      const icon = modeToggle.querySelector('.settings-menu__icon');
+      if (icon) icon.textContent = mode === 'dark' ? '🌙' : '☀️';
+    }
+  }
+  
+  updateToggleStates();
+  
+  langToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const next = (getWindowSettings().lang || 'en') === 'ar' ? 'en' : 'ar';
+    updateSetting('lang', next);
+    updateToggleStates();
+  });
+
+  // Dark mode toggle
+  modeToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const next = (getWindowSettings().mode || 'light') === 'light' ? 'dark' : 'light';
+    updateSetting('mode', next);
+    updateToggleStates();
+  });
+
+  // Set aria-current="page" on matching nav link
+  function setCurrentPage() {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav__links a').forEach(link => {
+      link.removeAttribute('aria-current');
+      const href = link.getAttribute('href') || '';
+      if (href === '/' && currentPath === '/') {
+        link.setAttribute('aria-current', 'page');
+      } else if (href !== '/' && currentPath.startsWith(href)) {
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+
+  setCurrentPage();
+
+  function isMobileNav() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function closeHamburgerMenu() {
+    if (!(hamburger instanceof HTMLElement) || !(hamburgerMenu instanceof HTMLElement)) return;
+    hamburger.classList.remove('open');
+    hamburgerMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburgerMenu.setAttribute('aria-hidden', 'true');
+  }
+
+  function buildHamburgerMenu(overflowItems) {
+    if (!(hamburgerMenu instanceof HTMLElement)) return;
+    hamburgerMenu.innerHTML = '';
+
+    overflowItems.forEach(item => {
+      const link = item.querySelector('a');
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const clonedNode = link.cloneNode(true);
+      if (!(clonedNode instanceof HTMLAnchorElement)) return;
+      const clonedLink = clonedNode;
+      clonedLink.setAttribute('role', 'menuitem');
+      clonedLink.addEventListener('click', () => {
+        closeHamburgerMenu();
+      });
+      hamburgerMenu.appendChild(clonedLink);
+    });
+  }
+
+  function updateNavOverflow() {
+    if (!(navLinks instanceof HTMLElement) || !(hamburger instanceof HTMLElement) || !(hamburgerMenu instanceof HTMLElement) || !(navInner instanceof HTMLElement) || !(navLogo instanceof HTMLElement) || !(navActions instanceof HTMLElement)) return;
+
+    const navItems = Array.from(navLinks.querySelectorAll('li'));
+    navItems.forEach(item => item.classList.remove('hidden'));
+    hamburgerMenu.innerHTML = '';
+
+    if (isMobileNav()) {
+      hamburger.classList.add('visible');
+      navLinks.style.display = 'none';
+      buildHamburgerMenu(navItems);
+      return;
+    }
+
+    const gap = parseFloat(getComputedStyle(navLinks).gap || '0') || 0;
+    const navLinksMargin = parseFloat(getComputedStyle(navLinks).marginLeft || '0') + parseFloat(getComputedStyle(navLinks).marginRight || '0');
+    
+    // Get actual hamburger button width (with padding)
+    const hamburgerButton = document.querySelector('.nav__hamburger');
+    const hamburgerWidth = hamburgerButton ? hamburgerButton.getBoundingClientRect().width : 50;
+    const hamburgerGap = 8; // gap between links and hamburger
+    
+    // Calculate available width: nav__inner - logo - actions - gaps - hamburger
+    const availableForLinks = navInner.clientWidth - navLogo.offsetWidth - navActions.offsetWidth - navLinksMargin - hamburgerWidth - hamburgerGap;
+    
+    // Calculate total width of all items
+    const itemWidths = navItems.map(item => item.getBoundingClientRect().width);
+    let totalLinksWidth = itemWidths.reduce((sum, width) => sum + width, 0) + Math.max(0, navItems.length - 1) * gap;
+
+    // If everything fits, show all links and hide hamburger
+    if (totalLinksWidth <= availableForLinks) {
+      hamburger.classList.remove('visible');
+      navLinks.style.display = '';
+      closeHamburgerMenu();
+      return;
+    }
+
+    // Links don't fit: start hiding from the right, one item at a time
+    const overflowItems: HTMLLIElement[] = [];
+    for (let i = navItems.length - 1; i >= 0 && totalLinksWidth > availableForLinks; i--) {
+      navItems[i].classList.add('hidden');
+      overflowItems.unshift(navItems[i]);
+      totalLinksWidth -= itemWidths[i] + gap;
+    }
+
+    // Show hamburger and populate menu with overflow items
+    if (overflowItems.length > 0) {
+      hamburger.classList.add('visible');
+      navLinks.style.display = '';
+      buildHamburgerMenu(overflowItems);
+    } else {
+      hamburger.classList.remove('visible');
+      navLinks.style.display = '';
+    }
+  }
+
+  if (hamburger instanceof HTMLElement && navLinks instanceof HTMLElement) {
+    hamburger.addEventListener('click', () => {
+      if (!(hamburgerMenu instanceof HTMLElement) || hamburgerMenu.children.length === 0) return;
+      const isOpen = hamburgerMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerMenu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target instanceof Node && !hamburger.contains(e.target) && !(hamburgerMenu instanceof HTMLElement && hamburgerMenu.contains(e.target))) {
+        closeHamburgerMenu();
+      }
+    });
+
+    hamburgerMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeHamburgerMenu();
+      });
+    });
+  }
+
+  window.addEventListener('resize', updateNavOverflow);
+  window.addEventListener('load', updateNavOverflow);
 </script>

@@ -26,8 +26,9 @@ collections:
       - { label: "Description",     name: "description",   widget: "text",    required: false }
       - { label: "Category",        name: "category",      widget: "select",
           options: ["aqeedah","fiqh","hadith","tafsir","seerah","manhaj","fitan","translations","other"] }
+        - { label: "Tags",            name: "tags",          widget: "list", required: false, default: [] }
       - { label: "Language",        name: "language",      widget: "select",
-          options: ["ar","en","mixed"] }
+          options: ["ar","en"] }
       - { label: "File Size",       name: "size",          widget: "string",  required: false }
       - { label: "PDF URL",         name: "pdfUrl",        widget: "string",
           hint: "Direct link to the PDF file (e.g. from Archive.org)" }
@@ -53,6 +54,9 @@ collections:
       - { label: "Title (Arabic)", name: "titleAr",       widget: "string", required: false }
       - { label: "Description",   name: "description",   widget: "text" }
       - { label: "Description (Arabic)", name: "descriptionAr", widget: "text", required: false }
+        - { label: "Category",      name: "category",      widget: "select", required: false,
+          options: ["education","library","publishing","community","tool","other"] }
+        - { label: "Tags",          name: "tags",          widget: "list", required: false, default: [] }
       - { label: "Type",          name: "type",          widget: "select",
           options: ["PWA","Website"] }
       - { label: "Link",          name: "href",          widget: "string" }
@@ -78,6 +82,8 @@ collections:
     fields:
       - { label: "Title",       name: "title",       widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category",    name: "category",    widget: "string", required: false }
+      - { label: "Tags",        name: "tags",        widget: "list", required: false, default: [] }
       - { label: "Body",        name: "body",        widget: "markdown" }
 
   # Blog (English)
@@ -94,6 +100,8 @@ collections:
     fields:
       - { label: "Title",       name: "title",       widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category",    name: "category",    widget: "select", required: false,
+          options: ["aqeedah","fiqh","manhaj","translation","reflection","announcement","other"] }
       - { label: "Date",        name: "date",        widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Tags",        name: "tags",        widget: "list",      required: false, default: [] }
       - { label: "Featured",    name: "featured",    widget: "boolean",   default: false }
@@ -113,6 +121,8 @@ collections:
     fields:
       - { label: "Title",       name: "title",       widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category",    name: "category",    widget: "select", required: false,
+          options: ["aqeedah","fiqh","manhaj","translation","reflection","announcement","other"] }
       - { label: "Date",        name: "date",        widget: "datetime", default: "", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Tags",        name: "tags",        widget: "list",      required: false, default: [] }
       - { label: "Featured",    name: "featured",    widget: "boolean",   default: false }

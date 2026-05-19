@@ -41,6 +41,10 @@ const ogImage = project.data.coverImage || '/og/default.svg';
         <div class="project-detail__header">
           {project.data.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
           <span class="card__tag" data-i18n={`projectType.${project.data.type.toLowerCase()}`}>{project.data.type}</span>
+          {project.data.category && <span class="card__tag" data-i18n={`projectCategory.${project.data.category}`}>{project.data.category}</span>}
+          {(project.data.tags || []).map((tag) => (
+            <span class="card__tag" data-i18n={`projectTag.${tag}`}>{tag}</span>
+          ))}
           <h1 class="project-detail__title">
             <span class="en">{project.data.title}</span>
             <span class="ar">{project.data.titleAr || project.data.title}</span>
@@ -67,7 +71,7 @@ const ogImage = project.data.coverImage || '/og/default.svg';
       </section>
     </div>
   </main>
-  <footer class="footer"><div class="container"><p>May Allah make it beneficial.</p></div></footer>
+
 
   <script define:vars={{ translations }}>
     function applyI18n(lang) {
