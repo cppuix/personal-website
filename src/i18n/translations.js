@@ -295,6 +295,7 @@ export const translations = {
       filterAll:      'الكل',
       filterArabic:   'العربية',
       filterEnglish:  'الإنجليزية',
+      filterMixed:    'مختلط',
       language:       'اللغة',
       sortBy:         'رتّب حسب',
       sortTitle:      'العنوان',
@@ -313,6 +314,7 @@ export const translations = {
       lang: {
         ar: 'عربي',
         en: 'إنجليزي',
+        mixed: 'مختلط',
       },
       category: {
         aqeedah: 'العقيدة',
@@ -366,6 +368,8 @@ export const translations = {
       theme:        'السمة',
       mode:         'الوضع',
       language:     'اللغة',
+      langEnglish:  'إنجليزي',
+      langArabic:   'عربي',
       fontSize:     'حجم الخط',
       light:        'فاتح',
       dark:         'داكن',
