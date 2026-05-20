@@ -42,9 +42,9 @@
     if (!field) return;
 
     const COUNT = 20;            // you can change this
-    const BASE_COLOR = '#f0a050';
+    const driftState = new WeakMap();
 
-    function rand(min, max) { return Math.random() * (max - min) + min; }
+    function rand(min: number, max: number) { return Math.random() * (max - min) + min; }
 
     for (let i = 0; i < COUNT; i++) {
       const el = document.createElement('div');
@@ -77,20 +77,21 @@
 
       field.appendChild(el);
 
-      // Store drift data on the element
-      el._driftSpeed = driftSpeed;
-      el._left = startX;
+      driftState.set(el, { driftSpeed, left: startX });
     }
 
     function updateDrift() {
       const fireflies = document.querySelectorAll('.twinkle');
       for (const el of fireflies) {
-        if (!el._driftSpeed) continue;
-        el._left += el._driftSpeed;
+        if (!(el instanceof HTMLDivElement)) continue;
+        const state = driftState.get(el);
+        if (!state) continue;
+
+        state.left += state.driftSpeed;
         // Wrap around or soft boundary
-        if (el._left < 2) el._left = 98;
-        if (el._left > 98) el._left = 2;
-        el.style.left = `${el._left}%`;
+        if (state.left < 2) state.left = 98;
+        if (state.left > 98) state.left = 2;
+        el.style.left = `${state.left}%`;
       }
       requestAnimationFrame(updateDrift);
     }
