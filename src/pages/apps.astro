@@ -1,35 +1,55 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Nav  from '../components/Nav.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { translations } from '../i18n/translations.js';
 
 const posts = await getCollection('projects');
+type ProjectCardModel = {
+  title: string;
+  titleAr?: string;
+  desc: string;
+  descAr?: string;
+  category?: string;
+  tags?: string[];
+  detailUrl: string;
+  href: string;
+  cover?: string;
+  type: string;
+  featured?: boolean;
+  note?: string;
+  noteAr?: string;
+};
 const sortedPosts = posts
   .slice()
-  .sort((a, b) => {
+  .sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => {
     const featuredDelta = (b.data.featured ? 1 : 0) - (a.data.featured ? 1 : 0);
     if (featuredDelta !== 0) return featuredDelta;
     const orderDelta = (a.data.order ?? 0) - (b.data.order ?? 0);
     if (orderDelta !== 0) return orderDelta;
     return a.data.title.localeCompare(b.data.title, 'en', { sensitivity: 'base' });
   });
-const projectTypes = Array.from(new Set(sortedPosts.map(project => project.data.type))).sort() as string[];
-const projectCategories = Array.from(new Set(sortedPosts.map(project => project.data.category).filter(Boolean))).sort() as string[];
-const projectTags = Array.from(new Set(sortedPosts.flatMap(project => project.data.tags || []))).sort() as string[];
-const pwas = sortedPosts
-  .filter(project => project.data.type === 'PWA')
-  .map(project => ({
+const projectTypes = Array.from(new Set(sortedPosts.map((project: CollectionEntry<'projects'>) => project.data.type))).sort() as string[];
+const projectCategories = Array.from(new Set(sortedPosts.map((project: CollectionEntry<'projects'>) => project.data.category).filter(Boolean))).sort() as string[];
+const projectTags = Array.from(new Set(sortedPosts.flatMap((project: CollectionEntry<'projects'>) => project.data.tags || []))).sort() as string[];
+const pwas: ProjectCardModel[] = sortedPosts
+  .filter((project: CollectionEntry<'projects'>) => project.data.type === 'PWA')
+  .map((project: CollectionEntry<'projects'>) => ({
     ...project.data,
+    desc: project.data.description,
+    descAr: project.data.descriptionAr,
     cover: project.data.coverImage,
     detailUrl: `/projects/${project.id}`,
     href: project.data.href,
   }));
-const websites = sortedPosts
-  .filter(project => project.data.type === 'Website')
-  .map(project => ({
+const websites: ProjectCardModel[] = sortedPosts
+  .filter((project: CollectionEntry<'projects'>) => project.data.type === 'Website')
+  .map((project: CollectionEntry<'projects'>) => ({
     ...project.data,
+    desc: project.data.description,
+    descAr: project.data.descriptionAr,
     cover: project.data.coverImage,
     detailUrl: `/projects/${project.id}`,
     href: project.data.href,
@@ -91,14 +111,14 @@ const websites = sortedPosts
       <div style="margin-bottom: 3rem;">
         <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;" data-i18n="apps.sectionPwa">Progressive Web Apps</h2>
         <div class="card-grid project-cards">
-          {pwas.map(project => <ProjectCard project={project} />)}
+          {pwas.map((project) => <ProjectCard project={project} />)}
         </div>
       </div>
 
       <div>
         <h2 class="section__title" style="font-size:2rem; margin-top:0; margin-bottom:1.5rem;" data-i18n="apps.sectionSites">Websites</h2>
         <div class="card-grid project-cards">
-          {websites.map(project => <ProjectCard project={project} />)}
+          {websites.map((project) => <ProjectCard project={project} />)}
         </div>
       </div>
 

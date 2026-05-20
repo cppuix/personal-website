@@ -1,14 +1,15 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import { translations } from '../../i18n/translations.js';
 
 const allPosts = await getCollection("blog");
-const posts = allPosts.sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+const posts: CollectionEntry<'blog'>[] = allPosts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-const categories = Array.from(new Set(posts.map((post) => post.data.category).filter(Boolean))).sort() as string[];
+const categories = Array.from(new Set(posts.map((post: CollectionEntry<'blog'>) => post.data.category).filter(Boolean))).sort() as string[];
 ---
 
 <Base title="Blog — عبد الرحمن القدّاري" description="Essays, translations, and reflections.">
@@ -54,7 +55,7 @@ const categories = Array.from(new Set(posts.map((post) => post.data.category).fi
         <div class="blog-list" id="blog-list">
           {posts.map((post) => {
             const slug = post.id.split("/").pop();
-            const tags = post.data.tags || [];
+            const tags: string[] = post.data.tags || [];
             const category = post.data.category;
             const lang = post.id.split("/")[0] === 'ar' ? 'ar' : 'en';
             return (
@@ -73,7 +74,7 @@ const categories = Array.from(new Set(posts.map((post) => post.data.category).fi
                       {category}
                     </span>
                   )}
-                  {tags.slice(0, 2).map(tag => {
+                  {tags.slice(0, 2).map((tag) => {
                     return (
                       <span class="book-tag book-tag--cat" data-tag={tag} data-tag-original={tag}>
                         {tag}
@@ -107,7 +108,7 @@ const categories = Array.from(new Set(posts.map((post) => post.data.category).fi
     </div>
   </main>
 
-  <style global>
+  <style is:global>
     .blog-pagination {
       display: flex;
       align-items: center;

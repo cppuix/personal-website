@@ -4,9 +4,11 @@ import Nav  from '../components/Nav.astro';
 import BookCard from '../components/BookCard.astro';
 import { translations } from '../i18n/translations.js';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 const rawBooks = await getCollection('books');
-const books = rawBooks.map(b => ({ id: b.id, ...b.data }));
+type LibraryBook = CollectionEntry<'books'>['data'] & { id: string };
+const books: LibraryBook[] = rawBooks.map((b: CollectionEntry<'books'>) => ({ id: b.id, ...b.data }));
 const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan','translations','other'];
 ---
 <Base title="Library — عبد الرحمن القدّاري" description="A library of Islamic PDFs — searchable, readable, downloadable.">
@@ -73,7 +75,7 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
     <div style="padding: 1rem 0 7rem;">
       <div class="container">
         <div class="book-grid" id="book-grid">
-          {books.map(book => (
+          {books.map((book) => (
             <BookCard book={book} />
           ))}
           <div class="book-grid__empty" id="empty-state" style="display:none" data-i18n="library.emptyState">
@@ -106,12 +108,13 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
         <div class="reader-error" id="reader-error" hidden>
           <p id="reader-error-text"></p>
         </div>
-        <!-- Direct PDF in iframe — clean, no Archive.org chrome -->
+        <!-- Hybrid viewer: native iframe for remote PDFs, PDF.js canvas for same-origin PDFs -->
         <iframe
           id="reader-iframe"
           title="PDF Reader"
-          style="width:100%;height:100%;border:none;display:block;"
+          style="width:100%;height:100%;border:none;display:none;"
         ></iframe>
+        <canvas id="pdf-canvas" style="width:100%;height:100%;display:none;background:#fff;"></canvas>
       </div>
       <div class="reader-footer">
         <div class="reader-footer__meta">
@@ -327,6 +330,7 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
     // ── READER (zoom removed – plain iframe) ─────────────────────────────────────
     const overlay      = document.getElementById('reader-overlay');
     const iframe       = document.getElementById('reader-iframe');
+    const pdfCanvas    = document.getElementById('pdf-canvas');
     const loading      = document.getElementById('reader-loading');
     const readerTitle  = document.getElementById('reader-title');
     const readerAuthor = document.getElementById('reader-author');
@@ -345,7 +349,7 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
     const sizeTag      = document.getElementById('reader-size-tag');
     const closeBtn     = document.getElementById('reader-close');
 
-    function openReader(card) {
+    async function openReader(card) {
       const pdfUrl     = card.dataset.pdf;
       const archiveUrl = card.dataset.archive || '#';
       const lang       = window.__settings?.lang || 'en';
@@ -381,10 +385,8 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
         };
       }
 
-      // Load PDF
+      // PDF.js rendering
       loading.style.display = 'flex';
-      iframe.style.opacity  = '0';
-      iframe.removeAttribute('src');
       if (readerError) {
         readerError.hidden = true;
         readerErrorText.textContent = '';
@@ -394,41 +396,60 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
 
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
+      iframe.removeAttribute('src');
+      iframe.style.display = 'none';
+      pdfCanvas.style.display = 'block';
 
-      let previewUrl = '';
-      if (pdfUrl) {
-        previewUrl = pdfUrl.replace(/#.*$/, '') + '#view=FitH';
+      // Clear previous canvas
+      const ctx = pdfCanvas.getContext('2d');
+      ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+
+      if (!pdfUrl) {
+        loading.style.display = 'none';
+        if (readerError) {
+          readerError.hidden = false;
+          readerErrorText.textContent = tr.library.readerPreviewError || 'No PDF found.';
+        }
+        return;
       }
 
-      let readerLoaded = false;
-      const onIframeLoad = () => {
-        if (readerLoaded) return;
-        if (!iframe.src || iframe.src === 'about:blank') return;
+      try {
+        const parsedPdfUrl = new URL(pdfUrl, window.location.origin);
+        const isSameOriginPdf = parsedPdfUrl.origin === window.location.origin;
+        const effectivePdfUrl = isSameOriginPdf
+          ? parsedPdfUrl.toString()
+          : '/api/pdf-proxy?url=' + encodeURIComponent(parsedPdfUrl.toString());
 
-        readerLoaded = true;
-        clearTimeout(loadTimeout);
+        const pdfjs = await import('/pdfjs/pdf.mjs');
+        pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
+        const loadingTask = pdfjs.getDocument({
+          url: effectivePdfUrl,
+          disableRange: true,
+          disableStream: true,
+          disableAutoFetch: true
+        });
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 1 });
+        const container = pdfCanvas.parentElement;
+        const width = container.clientWidth;
+        const scale = width / viewport.width;
+        const scaledViewport = page.getViewport({ scale });
+        pdfCanvas.width = scaledViewport.width;
+        pdfCanvas.height = scaledViewport.height;
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: scaledViewport
+        };
+        await page.render(renderContext).promise;
         loading.style.display = 'none';
-        readerError.hidden = true;
-        iframe.style.opacity = '1';
-        iframe.removeEventListener('load', onIframeLoad);
-      };
-
-      iframe.addEventListener('load', onIframeLoad);
-
-      const loadTimeout = setTimeout(() => {
-        if (readerLoaded) return;
-        readerLoaded = true;
+      } catch (err) {
         loading.style.display = 'none';
-        iframe.style.opacity = '1';
         if (readerError) {
           readerError.hidden = false;
           readerErrorText.textContent = tr.library.readerPreviewError || 'Unable to preview this PDF. Please download it instead.';
         }
-      }, 12000);
-
-      setTimeout(() => {
-        iframe.src = previewUrl;
-      }, 80);
+      }
     }
 
     function openBookFromQuery() {
@@ -451,7 +472,12 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
         sharePopup.classList.remove('open', 'top');
         sharePopup.setAttribute('aria-hidden', 'true');
       }
-      setTimeout(() => { iframe.src = ''; }, 350);
+      iframe.removeAttribute('src');
+      iframe.style.display = 'none';
+      // Clear PDF.js canvas
+      const ctx = pdfCanvas.getContext('2d');
+      ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
+      pdfCanvas.style.display = 'none';
     }
 
     closeBtn.addEventListener('click', closeReader);

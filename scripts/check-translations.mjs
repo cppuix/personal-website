@@ -1,6 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
-import { translations } from "../src/i18n/translations.js";
+
+const EN_PATH = path.resolve("src/content/i18n/en.json");
+const AR_PATH = path.resolve("src/content/i18n/ar.json");
+const translations = {
+  en: JSON.parse(fs.readFileSync(EN_PATH, "utf8")),
+  ar: JSON.parse(fs.readFileSync(AR_PATH, "utf8")),
+};
 
 const REQUIRED_LANGS = ["en", "ar"];
 const SOURCE_ROOT = path.resolve("src");
@@ -61,6 +67,7 @@ function collectI18nUsages() {
 
   const staticPattern = /data-i18n\s*=\s*(["'`])([^"'`{}]+?)\1/g;
   const dynamicPattern = /data-i18n\s*=\s*`([^`$]+)\$\{/g;
+  const dynamicAstroPattern = /data-i18n\s*=\s*\{\s*`([^`$]+)\$\{/g;
 
   for (const filePath of files) {
     const content = fs.readFileSync(filePath, "utf8");
@@ -70,6 +77,10 @@ function collectI18nUsages() {
     }
 
     for (const match of content.matchAll(dynamicPattern)) {
+      dynamicPrefixes.add(match[1].trim());
+    }
+
+    for (const match of content.matchAll(dynamicAstroPattern)) {
       dynamicPrefixes.add(match[1].trim());
     }
   }

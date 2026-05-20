@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "home": "Home",
+    "library": "Library",
+    "blog": "Blog",
+    "translations": "Translations",
+    "apps": "Apps",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "settings": "Settings"
+  },
+  "hero": {
+    "greeting": "Abdurrahman ibn Mihoub al-Qaddari",
+    "role": "Knowledge Seeker",
+    "desc": "A place for books, writings, and tools — gathered here so they are not lost.",
+    "cta": "Explore the library →"
+  },
+  "sections": {
+    "library": "Library",
+    "libraryLabel": "Books & PDFs",
+    "libraryDesc": "PDFs, books, and transcripts — searchable and downloadable.",
+    "libraryBrowse": "Browse the full library →",
+    "blog": "Writings",
+    "blogLabel": "Essays & Notes",
+    "blogDesc": "Articles, reflections, and notes.",
+    "blogBrowse": "Read the writings →",
+    "apps": "Tools & Apps",
+    "appsLabel": "Built Things",
+    "appsDesc": "Apps and utilities built for the community.",
+    "appsBrowse": "See the tools →",
+    "translationsLabel": "Translations",
+    "translationsDesc": "Translated texts and works.",
+    "translationsBrowse": "Browse translations →",
+    "landingLatestWritings": "Latest Writings",
+    "landingFeaturedBooks": "Featured Books",
+    "landingSeeAllBooks": "See all books →",
+    "landingFeaturedProjects": "Featured Digital Projects",
+    "landingSeeAllProjects": "See all projects →"
+  },
+  "shareBar": {
+    "label": "Share",
+    "help": "Send it via Telegram, WhatsApp, email, or copy the link.",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "copyLink": "Copy link"
+  },
+  "apps": {
+    "headline": "Digital Projects",
+    "title": "Websites & PWAs",
+    "intro": "A curated collection of progressive apps and websites built for learning, privacy, and modern publishing.",
+    "searchPlaceholder": "Search by title or description",
+    "filterAll": "All",
+    "filterType": "Type",
+    "filterCategory": "Category",
+    "filterTag": "Tag",
+    "sectionPwa": "Progressive Web Apps",
+    "sectionSites": "Websites",
+    "projectSingular": "project",
+    "projectPlural": "projects",
+    "noResults": "No projects match your search."
+  },
+  "blog": {
+    "headline": "Blog",
+    "searchPlaceholder": "Search titles, tags…",
+    "filterAll": "All",
+    "filterCategory": "Category",
+    "noPostsFound": "No posts found",
+    "postSingular": "post",
+    "postPlural": "posts",
+    "tags": {
+      "aqeedah": "Aqeedah",
+      "fiqh": "Fiqh",
+      "manhaj": "Manhaj",
+      "المنهج": "Manhaj",
+      "translation": "Translation",
+      "reflection": "Reflection",
+      "announcement": "Announcement",
+      "photography": "Photography",
+      "education": "Education",
+      "التربية": "Education",
+      "scholars": "Scholars",
+      "quote": "Quote",
+      "tajdid": "Tajdid"
+    },
+    "category": {
+      "aqeedah": "Aqeedah",
+      "fiqh": "Fiqh",
+      "manhaj": "Manhaj",
+      "translation": "Translation",
+      "reflection": "Reflection",
+      "announcement": "Announcement",
+      "other": "Other"
+    }
+  },
+  "library": {
+    "searchPlaceholder": "Search titles, authors...",
+    "filterAll": "All",
+    "filterArabic": "Arabic",
+    "filterEnglish": "English",
+    "filterMixed": "Mixed",
+    "language": "Language",
+    "sortBy": "Sort by",
+    "sortTitle": "Title",
+    "sortAuthor": "Author",
+    "sortCategory": "Category",
+    "showOnly": "Show only",
+    "featuredOnly": "Featured",
+    "readerArchive": "Archive.org",
+    "readerDownload": "↓ Download",
+    "readerLoading": "Loading PDF…",
+    "readerClose": "Close reader",
+    "readerAuthorLabel": "Author:",
+    "readerPreviewError": "Unable to preview this PDF. Please download it instead.",
+    "filtersToggle": "Toggle filters",
+    "emptyState": "No results found",
+    "lang": {
+      "ar": "Arabic",
+      "en": "English",
+      "mixed": "Mixed"
+    },
+    "category": {
+      "aqeedah": "Aqeedah",
+      "fiqh": "Fiqh",
+      "hadith": "Hadith",
+      "tafsir": "Tafsir",
+      "seerah": "Seerah",
+      "manhaj": "Manhaj",
+      "fitan": "Fitan",
+      "translations": "Translations",
+      "other": "Other"
+    },
+    "booksSingular": "book",
+    "booksPlural": "books"
+  },
+  "common": {
+    "read": "Read →",
+    "clear": "Clear search"
+  },
+  "projectType": {
+    "pwa": "PWA",
+    "website": "Website"
+  },
+  "projectCategory": {
+    "education": "Education",
+    "library": "Library",
+    "publishing": "Publishing",
+    "community": "Community",
+    "tool": "Tool",
+    "other": "Other"
+  },
+  "projectTag": {
+    "pwa": "PWA",
+    "website": "Website",
+    "community": "Community",
+    "offline": "Offline",
+    "privacy": "Privacy",
+    "search": "Search",
+    "archive": "Archive",
+    "learning": "Learning",
+    "other": "Other"
+  },
+  "projectDetail": {
+    "featured": "Featured",
+    "visitSite": "Visit site",
+    "back": "Back to projects"
+  },
+  "settings": {
+    "preferences": "Preferences",
+    "title": "Settings",
+    "theme": "Theme",
+    "mode": "Mode",
+    "language": "Language",
+    "langEnglish": "English",
+    "langArabic": "Arabic",
+    "fontSize": "Font Size",
+    "light": "Light",
+    "dark": "Dark",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "themeDefault": "Parchment",
+    "themeInk": "Ink",
+    "themeEmerald": "Emerald",
+    "reset": "Reset to defaults",
+    "resetDesc": "Restore all settings to their defaults.",
+    "saved": "Saved"
+  },
+  "footer": {
+    "text": "May Allah make it beneficial."
+  }
+}
