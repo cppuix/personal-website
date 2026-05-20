@@ -93,6 +93,8 @@
       background: #2a1a1a;
       padding: 10px 16px;
       font-size: 14px;
+      white-space: pre-wrap;
+      font-family: monospace;
     }
     #error:empty { display: none; }
 
@@ -157,8 +159,18 @@
 </div>
 <div id="status"></div>
 
-<script>
-  // @ts-nocheck
+<script type="module" is:inline>
+  const errEl = document.getElementById('error');
+  window.onerror = (msg, src, line) => {
+    if (errEl) errEl.textContent += '\nScript error: ' + msg + ' (' + line + ')';
+    console.error('[PDF-Demo] Script error', msg, src, line);
+  };
+  window.addEventListener('unhandledrejection', (e) => {
+    const msg = e.reason?.message || String(e.reason);
+    if (errEl) errEl.textContent += '\nUnhandled rejection: ' + msg;
+    console.error('[PDF-Demo] Unhandled rejection', e.reason);
+  });
+
   let pdfLib = null;
   let pdfDoc = null;
   let pageNum = 1;
@@ -177,7 +189,6 @@
   const pageInp = document.getElementById('page-input');
   const totalEl = document.getElementById('total-pages');
   const zoomEl = document.getElementById('zoom-level');
-  const errEl = document.getElementById('error');
   const srchInfo = document.getElementById('search-info');
   const viewer = document.getElementById('viewer');
   const statusEl = document.getElementById('status');
@@ -190,7 +201,6 @@
     statusTimer = setTimeout(() => statusEl.classList.remove('show'), 2000);
   }
 
-  const setErr = (msg) => { errEl.textContent = msg; };
   const clearErr = () => { errEl.textContent = ''; };
 
   const log = (msg) => {
@@ -201,12 +211,10 @@
   async function initLib() {
     if (pdfLib) return pdfLib;
     log('Initializing PDF.js...');
-    // Use new Function to prevent Rollup from statically resolving the public asset path.
-    const dynamicImport = new Function('path', 'return import(path)');
-    pdfLib = await dynamicImport('/pdfjs/pdf.mjs');
+    pdfLib = await import('/pdfjs/pdf.mjs');
     log('PDF.js imported successfully');
     pdfLib.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
-    log('Worker path set to /pdfjs/pdf.worker.mjs');
+    log('Worker set');
     return pdfLib;
   }
 
@@ -241,7 +249,6 @@
     try {
       await renderTask.promise;
     } catch (e) {
-      if (e.name !== 'RenderingCancelledException') setErr('Render error: ' + e.message);
       if (e.name !== 'RenderingCancelledException') log('Render error: ' + e.message);
       return;
     }
@@ -317,8 +324,8 @@
   document.getElementById('load-btn').addEventListener('click', async () => {
     const url = document.getElementById('url-input').value.trim();
     if (!url) return;
-    log('Loading PDF from URL: ' + url);
     clearErr();
+    log('Loading: ' + url);
     controls.hidden = true;
     searchQuery = '';
     searchPages = [];
@@ -342,7 +349,6 @@
       log('Page 1 rendered successfully');
     } catch (e) {
       log('Load error: ' + (e.message || String(e)));
-      setErr('Failed to load PDF: ' + e.message);
     }
   });
 
