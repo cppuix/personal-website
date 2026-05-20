@@ -201,7 +201,7 @@
   async function initLib() {
     if (pdfLib) return pdfLib;
     log('Initializing PDF.js...');
-    pdfLib = await import('/pdfjs/pdf.mjs');
+    pdfLib = await import(/* @vite-ignore */ '/pdfjs/pdf.mjs');
     log('PDF.js imported successfully');
     pdfLib.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
     log('Worker path set to /pdfjs/pdf.worker.mjs');
