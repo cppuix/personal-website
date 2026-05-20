@@ -1,0 +1,393 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Viewer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; font-family: system-ui, sans-serif; background: #525659; }
+
+    #app { display: flex; flex-direction: column; height: 100%; }
+
+    #toolbar {
+      flex-shrink: 0;
+      background: #3d3d3d;
+      color: #eee;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    #url-bar { display: flex; gap: 8px; }
+
+    #controls { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+
+    .ctrl-group { display: flex; align-items: center; gap: 4px; }
+
+    button {
+      padding: 4px 10px;
+      border: none;
+      border-radius: 4px;
+      background: #555;
+      color: #eee;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    button:hover { background: #777; }
+
+    #url-input, #page-input, #search-input {
+      background: #1e1e1e;
+      border: none;
+      border-radius: 4px;
+      color: #eee;
+      padding: 4px 8px;
+      font-size: 13px;
+    }
+    #url-input  { flex: 1; padding: 6px 10px; font-size: 14px; }
+    #page-input { width: 50px; text-align: center; }
+    #search-input { width: 160px; }
+
+    #zoom-level, #search-info { font-size: 13px; white-space: nowrap; }
+    #search-info { color: #aaa; }
+
+    #viewer {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    #canvas-wrap { position: relative; line-height: 0; box-shadow: 0 4px 24px rgba(0,0,0,.5); }
+
+    canvas { display: block; }
+
+    #text-layer {
+      position: absolute;
+      top: 0; left: 0;
+      overflow: hidden;
+      line-height: 1;
+      text-size-adjust: none;
+      forced-color-adjust: none;
+    }
+    #text-layer span {
+      position: absolute;
+      color: transparent;
+      white-space: pre;
+      cursor: text;
+      transform-origin: 0% 0%;
+    }
+    #text-layer span.hit { background: rgba(255, 210, 0, .45); }
+    #text-layer ::selection { background: rgba(0, 120, 255, .3); color: transparent; }
+
+    #error {
+      flex-shrink: 0;
+      color: #ff6b6b;
+      background: #2a1a1a;
+      padding: 10px 16px;
+      font-size: 14px;
+    }
+    #error:empty { display: none; }
+
+    #status {
+      position: fixed;
+      bottom: 16px; right: 16px;
+      background: rgba(0,0,0,.7);
+      color: #eee;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    #status.show { opacity: 1; }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="toolbar">
+    <div id="url-bar">
+      <input id="url-input" type="url" placeholder="https://archive.org/...pdf" spellcheck="false" />
+      <button id="load-btn">Load PDF</button>
+    </div>
+
+    <div id="controls" hidden>
+      <div class="ctrl-group">
+        <button id="prev-btn" title="Previous page">◀</button>
+        <input id="page-input" type="number" min="1" title="Page number" />
+        <span>/</span>
+        <span id="total-pages">0</span>
+        <button id="next-btn" title="Next page">▶</button>
+      </div>
+
+      <div class="ctrl-group">
+        <button id="zoom-out-btn" title="Zoom out">−</button>
+        <span id="zoom-level">100%</span>
+        <button id="zoom-in-btn" title="Zoom in">+</button>
+        <button id="fit-width-btn">Fit Width</button>
+        <button id="fit-page-btn">Fit Page</button>
+      </div>
+
+      <div class="ctrl-group">
+        <input id="search-input" type="search" placeholder="Search in PDF..." />
+        <button id="search-btn">Find</button>
+        <button id="prev-match-btn" title="Previous match">↑</button>
+        <button id="next-match-btn" title="Next match">↓</button>
+        <span id="search-info"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="viewer">
+    <div id="canvas-wrap">
+      <canvas id="pdf-canvas"></canvas>
+      <div id="text-layer"></div>
+    </div>
+  </div>
+
+  <div id="error" role="alert"></div>
+</div>
+<div id="status"></div>
+
+<script>
+  // @ts-nocheck
+  let pdfLib = null;
+  let pdfDoc = null;
+  let pageNum = 1;
+  let pageCount = 0;
+  let curScale = 1.5;
+  let fitMode = 'width';
+  let renderTask = null;
+  let searchQuery = '';
+  let searchPages = [];
+  let searchIdx = -1;
+
+  const canvas = document.getElementById('pdf-canvas');
+  const ctx = canvas.getContext('2d');
+  const tLayer = document.getElementById('text-layer');
+  const controls = document.getElementById('controls');
+  const pageInp = document.getElementById('page-input');
+  const totalEl = document.getElementById('total-pages');
+  const zoomEl = document.getElementById('zoom-level');
+  const errEl = document.getElementById('error');
+  const srchInfo = document.getElementById('search-info');
+  const viewer = document.getElementById('viewer');
+  const statusEl = document.getElementById('status');
+
+  let statusTimer;
+  function showStatus(msg) {
+    statusEl.textContent = msg;
+    statusEl.classList.add('show');
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(() => statusEl.classList.remove('show'), 2000);
+  }
+
+  const setErr = (msg) => { errEl.textContent = msg; };
+  const clearErr = () => { errEl.textContent = ''; };
+
+  const log = (msg) => {
+    console.log('[PDF-Demo]', msg);
+    errEl.textContent = (errEl.textContent ? errEl.textContent + '\n' : '') + msg;
+  };
+
+  async function initLib() {
+    if (pdfLib) return pdfLib;
+    log('Initializing PDF.js...');
+    pdfLib = await import('/pdfjs/pdf.mjs');
+    log('PDF.js imported successfully');
+    pdfLib.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
+    log('Worker path set to /pdfjs/pdf.worker.mjs');
+    return pdfLib;
+  }
+
+  function computeScale(page) {
+    const base = page.getViewport({ scale: 1 });
+    if (fitMode === 'width') return (viewer.clientWidth - 40) / base.width;
+    if (fitMode === 'page') {
+      return Math.min(
+        (viewer.clientWidth - 40) / base.width,
+        (viewer.clientHeight - 40) / base.height
+      );
+    }
+    return curScale;
+  }
+
+  async function renderPage(n) {
+    if (!pdfDoc) return;
+    renderTask?.cancel();
+
+    const page = await pdfDoc.getPage(n);
+    const s = computeScale(page);
+    if (fitMode) curScale = s;
+
+    const vp = page.getViewport({ scale: s });
+    canvas.width = vp.width;
+    canvas.height = vp.height;
+    tLayer.style.width = vp.width + 'px';
+    tLayer.style.height = vp.height + 'px';
+    tLayer.innerHTML = '';
+
+    renderTask = page.render({ canvasContext: ctx, viewport: vp });
+    try {
+      await renderTask.promise;
+    } catch (e) {
+      if (e.name !== 'RenderingCancelledException') setErr('Render error: ' + e.message);
+      if (e.name !== 'RenderingCancelledException') log('Render error: ' + e.message);
+      return;
+    }
+
+    try {
+      const tc = await page.getTextContent();
+      const task = pdfLib.renderTextLayer({
+        textContentSource: tc,
+        container: tLayer,
+        viewport: vp,
+        textDivs: []
+      });
+      await (task?.promise ?? task);
+      if (searchQuery) applyHighlight();
+    } catch (_) {
+      // graceful degradation
+    }
+
+    pageNum = n;
+    pageInp.value = n;
+    zoomEl.textContent = Math.round(s * 100) + '%';
+    updateSearchInfo();
+  }
+
+  function applyHighlight() {
+    const q = searchQuery.toLowerCase();
+    tLayer.querySelectorAll('span').forEach((span) =>
+      span.classList.toggle('hit', span.textContent.toLowerCase().includes(q))
+    );
+    tLayer.querySelector('.hit')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  function updateSearchInfo() {
+    srchInfo.textContent = !searchQuery ? '' :
+      searchPages.length
+        ? `${searchIdx + 1} / ${searchPages.length} pages`
+        : 'No results';
+  }
+
+  async function runSearch(q) {
+    if (!pdfDoc || !q) return;
+    searchQuery = q;
+    searchPages = [];
+    searchIdx = -1;
+    showStatus('Searching...');
+
+    const lq = q.toLowerCase();
+    for (let i = 1; i <= pageCount; i++) {
+      const page = await pdfDoc.getPage(i);
+      const tc = await page.getTextContent();
+      if (tc.items.map((it) => it.str).join('').toLowerCase().includes(lq)) {
+        searchPages.push(i);
+      }
+    }
+
+    if (searchPages.length) {
+      searchIdx = 0;
+      updateSearchInfo();
+      await renderPage(searchPages[0]);
+    } else {
+      updateSearchInfo();
+      showStatus('No results');
+    }
+  }
+
+  async function jumpMatch(delta) {
+    if (!searchPages.length) return;
+    searchIdx = (searchIdx + delta + searchPages.length) % searchPages.length;
+    updateSearchInfo();
+    await renderPage(searchPages[searchIdx]);
+  }
+
+  document.getElementById('load-btn').addEventListener('click', async () => {
+    const url = document.getElementById('url-input').value.trim();
+    if (!url) return;
+    log('Loading PDF from URL: ' + url);
+    clearErr();
+    controls.hidden = true;
+    searchQuery = '';
+    searchPages = [];
+    searchIdx = -1;
+    showStatus('Loading...');
+
+    try {
+      const lib = await initLib();
+      log('PDF.js ready, calling getDocument...');
+      const proxyUrl = '/api/pdf-proxy?url=' + encodeURIComponent(url);
+      log('Proxy URL: ' + proxyUrl);
+      pdfDoc = await lib.getDocument(proxyUrl).promise;
+      log('PDF loaded: ' + pdfDoc.numPages + ' pages');
+      pageCount = pdfDoc.numPages;
+      totalEl.textContent = pageCount;
+      pageInp.max = pageCount;
+      fitMode = 'width';
+      controls.hidden = false;
+      log('Rendering page 1...');
+      await renderPage(1);
+      log('Page 1 rendered successfully');
+    } catch (e) {
+      log('Load error: ' + (e.message || String(e)));
+      setErr('Failed to load PDF: ' + e.message);
+    }
+  });
+
+  document.getElementById('prev-btn').addEventListener('click', () => {
+    if (pageNum > 1) renderPage(pageNum - 1);
+  });
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (pageNum < pageCount) renderPage(pageNum + 1);
+  });
+  pageInp.addEventListener('change', (e) => {
+    const p = parseInt(e.target.value);
+    if (p >= 1 && p <= pageCount) renderPage(p);
+  });
+
+  document.getElementById('zoom-in-btn').addEventListener('click', () => {
+    fitMode = null;
+    curScale = Math.min(curScale + 0.25, 4);
+    renderPage(pageNum);
+  });
+  document.getElementById('zoom-out-btn').addEventListener('click', () => {
+    fitMode = null;
+    curScale = Math.max(curScale - 0.25, 0.25);
+    renderPage(pageNum);
+  });
+  document.getElementById('fit-width-btn').addEventListener('click', () => {
+    fitMode = 'width';
+    renderPage(pageNum);
+  });
+  document.getElementById('fit-page-btn').addEventListener('click', () => {
+    fitMode = 'page';
+    renderPage(pageNum);
+  });
+
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const q = document.getElementById('search-input').value.trim();
+    if (q) runSearch(q);
+  });
+  document.getElementById('search-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const q = e.target.value.trim();
+      if (q) runSearch(q);
+    }
+  });
+  document.getElementById('prev-match-btn').addEventListener('click', () => jumpMatch(-1));
+  document.getElementById('next-match-btn').addEventListener('click', () => jumpMatch(1));
+
+  window.addEventListener('resize', () => { if (pdfDoc && fitMode) renderPage(pageNum); });
+</script>
+</body>
+</html>
