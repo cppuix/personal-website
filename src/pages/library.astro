@@ -420,7 +420,8 @@ const CATEGORIES = ['aqeedah','fiqh','hadith','tafsir','seerah','manhaj','fitan'
           ? parsedPdfUrl.toString()
           : '/api/pdf-proxy?url=' + encodeURIComponent(parsedPdfUrl.toString());
 
-        const pdfjs = await import(/* @vite-ignore */ '/pdfjs/pdf.mjs');
+        const dynamicImport = new Function('path', 'return import(path)');
+        const pdfjs = await dynamicImport('/pdfjs/pdf.mjs');
         pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
         const loadingTask = pdfjs.getDocument({
           url: effectivePdfUrl,

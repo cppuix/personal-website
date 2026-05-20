@@ -201,7 +201,9 @@
   async function initLib() {
     if (pdfLib) return pdfLib;
     log('Initializing PDF.js...');
-    pdfLib = await import(/* @vite-ignore */ '/pdfjs/pdf.mjs');
+    // Use new Function to prevent Rollup from statically resolving the public asset path.
+    const dynamicImport = new Function('path', 'return import(path)');
+    pdfLib = await dynamicImport('/pdfjs/pdf.mjs');
     log('PDF.js imported successfully');
     pdfLib.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.mjs';
     log('Worker path set to /pdfjs/pdf.worker.mjs');
