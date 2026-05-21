@@ -9,7 +9,8 @@ export const GET: APIRoute = async ({ url, redirect }) => {
 
   const clientId = import.meta.env.GITHUB_CLIENT_ID;
   const clientSecret = import.meta.env.GITHUB_CLIENT_SECRET;
-  const redirectUri = `${import.meta.env.SITE}/api/auth/callback`;
+  const redirectUri = `${import.meta.env.SITE ?? url.origin}/api/auth/callback`;
+  const secureCookie = import.meta.env.PROD || redirectUri.startsWith('https:');
 
   const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
@@ -27,7 +28,7 @@ export const GET: APIRoute = async ({ url, redirect }) => {
   response.headers.set('Set-Cookie', cookie.serialize('decap-cms-token', accessToken, {
     path: '/',
     httpOnly: true,
-    secure: true,
+    secure: secureCookie,
     sameSite: 'lax',
     maxAge: 60 * 60 * 24
   }));
