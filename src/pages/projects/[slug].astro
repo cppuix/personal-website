@@ -6,8 +6,14 @@ import ShareControls from '../../components/ShareControls.astro';
 import { translations } from '../../i18n/translations.js';
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({ params: { slug: project.id } }));
+  const projects = /** @type {{ id: string }[]} */ (await getCollection('projects'));
+  const paths = [];
+
+  for (const project of projects) {
+    paths.push({ params: { slug: project.id } });
+  }
+
+  return paths;
 }
 
 const { slug } = Astro.params;
@@ -17,6 +23,7 @@ if (!project) {
 }
 const canonicalUrl = `https://alqaddari.vercel.app/projects/${slug}`;
 const ogImage = project.data.coverImage || '/og/default.svg';
+const tags = /** @type {string[]} */ (Array.isArray(project.data.tags) ? project.data.tags : []);
 ---
 <Base
   title={`${project.data.title} — Digital Project`}
@@ -39,12 +46,14 @@ const ogImage = project.data.coverImage || '/og/default.svg';
         )}
 
         <div class="project-detail__header">
-          {project.data.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
-          <span class="card__tag" data-i18n={`projectType.${project.data.type.toLowerCase()}`}>{project.data.type}</span>
-          {project.data.category && <span class="card__tag" data-i18n={`projectCategory.${project.data.category}`}>{project.data.category}</span>}
-          {(project.data.tags || []).map((tag) => (
-            <span class="card__tag" data-i18n={`projectTag.${tag}`}>{tag}</span>
-          ))}
+          <div class="project-detail__tags">
+            {project.data.featured && <span class="card__tag card__tag--featured" data-i18n="projectDetail.featured">Featured</span>}
+            <span class="card__tag" data-i18n={`projectType.${project.data.type.toLowerCase()}`}>{project.data.type}</span>
+            {project.data.category && <span class="card__tag" data-i18n={`projectCategory.${project.data.category}`}>{project.data.category}</span>}
+            {tags.map((tag: string) => (
+              <span class="card__tag" data-i18n={`projectTag.${tag}`}>{tag}</span>
+            ))}
+          </div>
           <h1 class="project-detail__title">
             <span class="en">{project.data.title}</span>
             <span class="ar">{project.data.titleAr || project.data.title}</span>
@@ -61,12 +70,11 @@ const ogImage = project.data.coverImage || '/og/default.svg';
           )}
           <div class="project-detail__actions">
             <a class="btn" href={project.data.href} target="_blank" rel="noopener noreferrer" data-i18n="projectDetail.visitSite">Visit site</a>
-            <a class="btn btn--secondary" href="/apps" data-i18n="projectDetail.back">Back to projects</a>
           </div>
         </div>
       </section>
 
-      <section class="project-share" style="padding: 0 0 2rem;">
+      <section class="project-share">
         <ShareControls url={canonicalUrl} title={project.data.title} description={project.data.description} variant="compact" />
       </section>
     </div>

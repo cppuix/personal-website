@@ -1038,6 +1038,13 @@ a:hover
   gap: 2.5rem;
 }
 
+.project-detail__tags
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
 .project-detail__cover
 {
   width: 100%;
@@ -1071,6 +1078,12 @@ a:hover
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.project-share
+{
+  margin-top: 2rem;
+  padding-top: 0.5rem;
 }
 
 .divider
@@ -1681,8 +1694,7 @@ a:hover
 }
 
 .share-bar {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border-soft);
+  
   padding: 1.25rem 0;
 }
 
@@ -1713,6 +1725,20 @@ a:hover
   gap: 0.75rem;
 }
 
+.share-bar__buttons .share-bar__button {
+  gap: 0.6rem;
+}
+
+.share-bar__button svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.share-bar__button span {
+  line-height: 1;
+}
+
 .share-bar--compact {
   padding: 0.75rem 0;
 }
@@ -1727,6 +1753,12 @@ a:hover
   justify-content: flex-start;
 }
 
+.share-bar--compact .share-bar__button {
+  padding-inline: 0.95rem;
+  min-height: 2.7rem;
+  box-shadow: none;
+}
+
 .share-bar__button {
   display: inline-flex;
   align-items: center;
@@ -1735,7 +1767,7 @@ a:hover
   padding: 0 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
-  background: var(--bg-primary);
+  background: transparent;
   color: var(--text-primary);
   font-family: var(--font-ui);
   font-size: 0.95rem;
@@ -1746,8 +1778,13 @@ a:hover
 .share-bar__button:hover,
 .share-bar__button:focus {
   border-color: var(--accent);
-  background: var(--bg-surface);
+  background: transparent;
   transform: translateY(-1px);
+}
+
+.share-bar__button:hover svg,
+.share-bar__button:focus svg {
+  transform: scale(1.03);
 }
 
 .share-bar__button:focus {

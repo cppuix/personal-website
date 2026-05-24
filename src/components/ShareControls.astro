@@ -23,18 +23,103 @@ const idBase = `share-${Math.random().toString(36).slice(2, 8)}`;
         <p class="share-bar__help" data-i18n="shareBar.help">Send it via Telegram, WhatsApp, email, or copy the link.</p>
       </div>
       <div class="share-bar__buttons">
-        <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.telegram">Telegram</a>
-        <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.whatsapp">WhatsApp</a>
-        <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.email">Email</a>
-        <button class="share-bar__button" id={`${idBase}-copy`} type="button" data-i18n="shareBar.copyLink">Copy link</button>
+        <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id={`${idBase}-telegram-gradient`} x1="120" y1="240" x2="120" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#1d93d2" />
+                <stop offset="1" stop-color="#38b0e3" />
+              </linearGradient>
+            </defs>
+            <circle cx="120" cy="120" r="120" fill={`url(#${idBase}-telegram-gradient)`} />
+            <path d="M81.229 128.772l14.237 39.406s1.78 3.687 3.686 3.687 30.255-29.492 30.255-29.492l31.525-60.89L81.737 118.6Z" fill="#c8daea" />
+            <path d="M100.106 138.878l-2.733 29.046s-1.144 8.9 7.754 0 17.415-15.763 17.415-15.763" fill="#a9c6d8" />
+            <path d="M81.486 130.178 52.2 120.636s-3.5-1.42-2.373-4.64c.232-.664.7-1.229 2.1-2.2 6.489-4.523 120.106-45.36 120.106-45.36s3.208-1.081 5.1-.362a2.766 2.766 0 0 1 1.885 2.055 9.357 9.357 0 0 1 .254 2.585c-.009.752-.1 1.449-.169 2.542-.692 11.165-21.4 94.493-21.4 94.493s-1.239 4.876-5.678 5.043A8.13 8.13 0 0 1 146.1 172.5c-8.711-7.493-38.819-27.727-45.472-32.177a1.27 1.27 0 0 1-.546-.9c-.093-.469.417-1.05.417-1.05s52.426-46.6 53.821-51.492c.108-.379-.3-.566-.848-.4-3.482 1.281-63.844 39.4-70.506 43.607A3.21 3.21 0 0 1 81.486 130.178Z" fill="#fff" />
+          </svg>
+          <span data-i18n="shareBar.telegram">Telegram</span>
+        </a>
+        <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 175.216 175.552" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id={`${idBase}-whatsapp-gradient`} x1="85.915" x2="86.535" y1="32.567" y2="137.092" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#57d163" />
+                <stop offset="1" stop-color="#23b33a" />
+              </linearGradient>
+              <filter id={`${idBase}-whatsapp-blur`} width="1.115" height="1.114" x="-.057" y="-.057" color-interpolation-filters="sRGB">
+                <feGaussianBlur stdDeviation="3.531" />
+              </filter>
+            </defs>
+            <path fill="#b3b3b3" d="m54.532 138.45 2.235 1.324c9.387 5.571 20.15 8.518 31.126 8.523h.023c33.707 0 61.139-27.426 61.153-61.135.006-16.335-6.349-31.696-17.895-43.251A60.75 60.75 0 0 0 87.94 25.983c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.312-6.179 22.558zm-40.811 23.544L24.16 123.88c-6.438-11.154-9.825-23.808-9.821-36.772.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954zm0 0" filter={`url(#${idBase}-whatsapp-blur)`} />
+            <path fill="#fff" d="m12.966 161.238 10.439-38.114a73.42 73.42 0 0 1-9.821-36.772c.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954z" />
+            <path fill={`url(#${idBase}-whatsapp-gradient)`} d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z" />
+            <path fill="#fff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647" />
+          </svg>
+          <span data-i18n="shareBar.whatsapp">WhatsApp</span>
+        </a>
+        <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M3 6.75C3 5.231 4.231 4 5.75 4h12.5C19.769 4 21 5.231 21 6.75v10.5C21 18.769 19.769 20 18.25 20H5.75C4.231 20 3 18.769 3 17.25V6.75Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3.75 7.5L12 13.125L20.25 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span data-i18n="shareBar.email">Email</span>
+        </a>
+        <button class="share-bar__button" id={`${idBase}-copy`} type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8 8H16V20H8V8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            <path d="M6 6H17.5C18.328 6 19 6.672 19 7.5V17.5C19 18.328 18.328 19 17.5 19H16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 8L12 12L16 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span data-i18n="shareBar.copyLink">Copy link</span>
+        </button>
       </div>
     </>
   ) : (
     <div class="share-bar__buttons share-bar__buttons--compact">
-      <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.telegram">Telegram</a>
-      <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.whatsapp">WhatsApp</a>
-      <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer" data-i18n="shareBar.email">Email</a>
-      <button class="share-bar__button" id={`${idBase}-copy`} type="button" data-i18n="shareBar.copyLink">Copy link</button>
+      <a class="share-bar__button" href={telegramHref} target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id={`${idBase}-telegram-gradient-compact`} x1="120" y1="240" x2="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#1d93d2" />
+              <stop offset="1" stop-color="#38b0e3" />
+            </linearGradient>
+          </defs>
+          <circle cx="120" cy="120" r="120" fill={`url(#${idBase}-telegram-gradient-compact)`} />
+          <path d="M81.229 128.772l14.237 39.406s1.78 3.687 3.686 3.687 30.255-29.492 30.255-29.492l31.525-60.89L81.737 118.6Z" fill="#c8daea" />
+          <path d="M100.106 138.878l-2.733 29.046s-1.144 8.9 7.754 0 17.415-15.763 17.415-15.763" fill="#a9c6d8" />
+          <path d="M81.486 130.178 52.2 120.636s-3.5-1.42-2.373-4.64c.232-.664.7-1.229 2.1-2.2 6.489-4.523 120.106-45.36 120.106-45.36s3.208-1.081 5.1-.362a2.766 2.766 0 0 1 1.885 2.055 9.357 9.357 0 0 1 .254 2.585c-.009.752-.1 1.449-.169 2.542-.692 11.165-21.4 94.493-21.4 94.493s-1.239 4.876-5.678 5.043A8.13 8.13 0 0 1 146.1 172.5c-8.711-7.493-38.819-27.727-45.472-32.177a1.27 1.27 0 0 1-.546-.9c-.093-.469.417-1.05.417-1.05s52.426-46.6 53.821-51.492c.108-.379-.3-.566-.848-.4-3.482 1.281-63.844 39.4-70.506 43.607A3.21 3.21 0 0 1 81.486 130.178Z" fill="#fff" />
+        </svg>
+        <span data-i18n="shareBar.telegram">Telegram</span>
+      </a>
+      <a class="share-bar__button" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 175.216 175.552" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id={`${idBase}-whatsapp-gradient-compact`} x1="85.915" x2="86.535" y1="32.567" y2="137.092" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#57d163" />
+              <stop offset="1" stop-color="#23b33a" />
+            </linearGradient>
+          </defs>
+          <path fill="#b3b3b3" d="m54.532 138.45 2.235 1.324c9.387 5.571 20.15 8.518 31.126 8.523h.023c33.707 0 61.139-27.426 61.153-61.135.006-16.335-6.349-31.696-17.895-43.251A60.75 60.75 0 0 0 87.94 25.983c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.312-6.179 22.558zm-40.811 23.544L24.16 123.88c-6.438-11.154-9.825-23.808-9.821-36.772.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954zm0 0" filter={`url(#${idBase}-whatsapp-blur-compact)`} />
+          <path fill="#fff" d="m12.966 161.238 10.439-38.114a73.42 73.42 0 0 1-9.821-36.772c.017-40.556 33.021-73.55 73.578-73.55 19.681.01 38.154 7.669 52.047 21.572s21.537 32.383 21.53 52.037c-.018 40.553-33.027 73.553-73.578 73.553h-.032c-12.313-.005-24.412-3.094-35.159-8.954z" />
+          <path fill={`url(#${idBase}-whatsapp-gradient-compact)`} d="M87.184 25.227c-33.733 0-61.166 27.423-61.178 61.13a60.98 60.98 0 0 0 9.349 32.535l1.455 2.313-6.179 22.558 23.146-6.069 2.235 1.324c9.387 5.571 20.15 8.517 31.126 8.523h.023c33.707 0 61.14-27.426 61.153-61.135a60.75 60.75 0 0 0-17.895-43.251 60.75 60.75 0 0 0-43.235-17.928z" />
+          <path fill="#fff" fill-rule="evenodd" d="M68.772 55.603c-1.378-3.061-2.828-3.123-4.137-3.176l-3.524-.043c-1.226 0-3.218.46-4.902 2.3s-6.435 6.287-6.435 15.332 6.588 17.785 7.506 19.013 12.718 20.381 31.405 27.75c15.529 6.124 18.689 4.906 22.061 4.6s10.877-4.447 12.408-8.74 1.532-7.971 1.073-8.74-1.685-1.226-3.525-2.146-10.877-5.367-12.562-5.981-2.91-.919-4.137.921-4.746 5.979-5.819 7.206-2.144 1.381-3.984.462-7.76-2.861-14.784-9.124c-5.465-4.873-9.154-10.891-10.228-12.73s-.114-2.835.808-3.751c.825-.824 1.838-2.147 2.759-3.22s1.224-1.84 1.836-3.065.307-2.301-.153-3.22-4.032-10.011-5.666-13.647" />
+        </svg>
+        <span data-i18n="shareBar.whatsapp">WhatsApp</span>
+      </a>
+      <a class="share-bar__button" href={emailHref} target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 6.75C3 5.231 4.231 4 5.75 4h12.5C19.769 4 21 5.231 21 6.75v10.5C21 18.769 19.769 20 18.25 20H5.75C4.231 20 3 18.769 3 17.25V6.75Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M3.75 7.5L12 13.125L20.25 7.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span data-i18n="shareBar.email">Email</span>
+      </a>
+      <button class="share-bar__button" id={`${idBase}-copy`} type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M8 8H16V20H8V8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+          <path d="M6 6H17.5C18.328 6 19 6.672 19 7.5V17.5C19 18.328 18.328 19 17.5 19H16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M8 8L12 12L16 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span data-i18n="shareBar.copyLink">Copy link</span>
+      </button>
     </div>
   )}
 </div>
