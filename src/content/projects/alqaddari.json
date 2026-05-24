@@ -1,19 +1,17 @@
 {
-  "title": "alqaddari",
-  "titleAr": "القدّاري",
-  "description": "This personal website: library, writings, and community tools.",
-  "descriptionAr": "هذا الموقع الشخصي: مكتبة، مقالات، وأدوات للمجتمع.",
-  "href": "https://alqaddari.vercel.app/",
+  "noteAr": "",
   "coverImage": "/projects/alqaddari.svg",
-  "type": "Website",
-  "note": "Built as a clean digital publishing platform",
-  "noteAr": "بُني كمنصة نشر رقمية نظيفة.",
+  "titleAr": "موقعي شخصي",
+  "href": "https://alqaddari.vercel.app/",
+  "descriptionAr": "الموقع الشخصي لعبد الرحمن بن ميهوب القداري: مكتبة، مقالات، وبرامج.",
   "featured": true,
   "order": 5,
-  "category": "publishing",
+  "note": "",
+  "title": "alqaddari",
   "tags": [
-    "website",
-    "archive",
-    "community"
-  ]
+    "websit"
+  ],
+  "type": "Website",
+  "description": "The personal website of ʿAbdurraḥmān bnu Mīhūb al-Qaddārī: library, writings, and software.",
+  "category": "publishing"
 }
