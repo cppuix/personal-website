@@ -11,4 +11,4 @@ Jaami' Masaa’il al-Aqeedah as-Saheeha). The original series is by Dr.
 Faysal bin Misfir az-Zinaamy al-Waadi’y. Translation by Abdurrahmaan 
 Meehoob al-Qaddaary, with permission graciously granted by the author.&nbsp;</p><p>&nbsp;</p><p>The original audio lessons were transcribed using software, then 
 translated and rephrased for smoother English flow. Finally, the 
-translations were recorded with some improvisation.</p><p>&nbsp;</p><p>&nbsp;Site: <a href="https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/">https://arm-alqaddari.codeberg.page/compendiumCorrectCreed/</a></p><p>Telegram Channel: <a href="https://t.me/correctAqeedah">https://t.me/correctAqeedah</a>&nbsp;</p>
+translations were recorded with some improvisation.</p><p>&nbsp;</p><p>&nbsp;Site: <a href="https://alqaddari.vercel.app/compendiumCorrectCreed/">https://alqaddari.vercel.app/compendiumCorrectCreed/</a></p><p>Telegram Channel: <a href="https://t.me/correctAqeedah">https://t.me/correctAqeedah</a>&nbsp;</p>

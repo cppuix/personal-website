@@ -7,7 +7,7 @@ featured: false
 ---
 
 <h3 dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">تبصير الأمة بالخلل والأخطاء في الاحتجاج باستحداث التصوير بالأضواء</span></h3><div class="telegram-text" dir="rtl" style="text-align: right;">
-<p><span style="font-family: Amiri;">مستل من كتاب (<a href="https://arm-alqaddari.codeberg.page/books/buzoogh/" target="_blank">بزوغ ضياء الفجر الوضاء على سحر مسألة التصوير بالأضواء</a>)
+<p><span style="font-family: Amiri;">مستل من كتاب (<a href="https://alqaddari.vercel.app/books/buzoogh/" target="_blank">بزوغ ضياء الفجر الوضاء على سحر مسألة التصوير بالأضواء</a>)
 لمؤلفه:
 عبد الرحمن بن مِيهُوب القَدَّاري</span></p>
 <h3 id="mqdm-lmw-lf"><span style="font-family: Amiri;">مقدمة المؤلف</span></h3>

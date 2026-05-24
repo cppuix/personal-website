@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://arm-alqaddari.codeberg.page/sitemap.xml
+Sitemap: https://alqaddari.vercel.app/sitemap-index.xml

@@ -1,31 +1,60 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import BookCard from '../components/BookCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { translations } from '../i18n/translations.js';
 
-const blogPosts = await getCollection("blog");
+const blogPosts: CollectionEntry<'blog'>[] = await getCollection("blog");
 const recentPostsEn = blogPosts
-  .filter((post) => post.id.startsWith("en/"))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post: CollectionEntry<'blog'>) => post.id.startsWith("en/"))
+  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 const recentPostsAr = blogPosts
-  .filter((post) => post.id.startsWith("ar/"))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .filter((post: CollectionEntry<'blog'>) => post.id.startsWith("ar/"))
+  .sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
 
-const allBooks = await getCollection("books");
+type RecentPostCard = {
+  slug: string;
+  postLang: string;
+  rawDate: string;
+  defaultDate: string;
+  title: string;
+  tags: string[];
+};
+
+const recentPostCards: RecentPostCard[] = [...recentPostsEn, ...recentPostsAr].map((post: CollectionEntry<'blog'>) => ({
+  slug: post.id.split('/').pop() || '',
+  postLang: post.id.split('/')[0] || 'en',
+  rawDate: post.data.date.toISOString(),
+  defaultDate: post.data.date.toLocaleDateString('en', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }),
+  title: post.data.title,
+  tags: post.data.tags?.slice(0, 2) || [],
+}));
+
+const allBooks: CollectionEntry<'books'>[] = await getCollection("books");
 const featuredBooks = allBooks
-  .filter(book => book.data.featured)
+  .filter((book: CollectionEntry<'books'>) => book.data.featured)
   .slice(0, 4);
 
-const allProjects = await getCollection('projects');
+const featuredBookCards = featuredBooks.map((book: CollectionEntry<'books'>) => ({
+  link: `/library?book=${encodeURIComponent(book.id)}`,
+  language: book.data.language,
+  book: { id: book.id, ...book.data },
+}));
+
+const allProjects: CollectionEntry<'projects'>[] = await getCollection('projects');
 const featuredProjects = allProjects
-  .filter(project => project.data.featured)
+  .filter((project: CollectionEntry<'projects'>) => project.data.featured)
   .slice(0, 3)
-  .map(project => ({
+  .map((project: CollectionEntry<'projects'>) => ({
     ...project.data,
     cover: project.data.coverImage,
     detailUrl: `/projects/${project.id}`,
@@ -35,7 +64,7 @@ const featuredProjects = allProjects
 <Base
     title="عبد الرحمن بن ميهوب القداري"
     description="A place for books, writings, translations, and tools."
-    canonical="https://alqaddari.vercel.app"
+  canonical="/"
     image="/og/default.svg"
     ogType="website"
   >
@@ -76,24 +105,16 @@ const featuredProjects = allProjects
         <a href="/blog" data-i18n="sections.blogBrowse">See all posts →</a>
       </div>
       <div class="book-grid">
-        {[...recentPostsEn, ...recentPostsAr].map((post) => {
-          const slug = post.id.split("/").pop();
-          const postLang = post.id.split("/")[0];
-          const rawDate = post.data.date.toISOString();
-          const defaultDate = post.data.date.toLocaleDateString("en", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          });
+        {recentPostCards.map((post) => {
           return (
-            <a href={`/blog/${slug}`} class="book-card home-post" data-blog-lang={postLang} style="text-decoration:none; color:inherit;">
+            <a href={`/blog/${post.slug}`} class="book-card home-post" data-blog-lang={post.postLang} style="text-decoration:none; color:inherit;">
               <div class="book-card__tags">
-                {post.data.tags?.slice(0, 2).map(tag => (
+                {post.tags.map((tag) => (
                   <span class="book-tag book-tag--cat">{tag}</span>
                 ))}
               </div>
-              <h3 class="book-card__title">{post.data.title}</h3>
-              <p class="book-card__author" data-date={rawDate}>{defaultDate}</p>
+              <h3 class="book-card__title">{post.title}</h3>
+              <p class="book-card__author" data-date={post.rawDate}>{post.defaultDate}</p>
               <div class="book-card__footer">
                 <span class="book-card__open" data-i18n="common.read">Read →</span>
               </div>
@@ -117,11 +138,10 @@ const featuredProjects = allProjects
         <a href="/library" data-i18n="sections.landingSeeAllBooks">See all books →</a>
       </div>
       <div class="book-grid">
-        {featuredBooks.map((book) => {
-          const link = `/library?book=${encodeURIComponent(book.id)}`;
+        {featuredBookCards.map((bookCard) => {
           return (
-            <a href={link} class="book-card-link home-book-link" data-book-lang={book.data.language} style="text-decoration:none;color:inherit;">
-              <BookCard book={{ id: book.id, ...book.data }} />
+            <a href={bookCard.link} class="book-card-link home-book-link" data-book-lang={bookCard.language} style="text-decoration:none;color:inherit;">
+              <BookCard book={bookCard.book} />
             </a>
           );
         })}
@@ -141,7 +161,7 @@ const featuredProjects = allProjects
         <a href="/apps" data-i18n="sections.landingSeeAllProjects">See all projects →</a>
       </div>
       <div class="card-grid">
-        {featuredProjects.map(project => (
+        {featuredProjects.map((project) => (
           <ProjectCard project={project} />
         ))}
       </div>

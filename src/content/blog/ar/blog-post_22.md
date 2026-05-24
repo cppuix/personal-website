@@ -108,4 +108,4 @@ featured: false
 الشيء على الرغْم من بساطة الآلات، وابتلينا نحن بالمزيد عند دروس الفقه، 
 وذهاب العلماء، وتفشي فتنة الدنيا وتغلغل فكر وعادات الكفار في أواسط 
 المسلمين، وشيوع وتطور آلات ووسائل التصوير، وتفشيه في أواسط العامة، فلم 
-نجد بدا من أن نرد ما أتوا به من الباطل بالحق.</span></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">&nbsp;</span></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">الكتاب الكامل: <a href="https://arm-alqaddari.codeberg.page/books/buzoogh/" target="_blank">https://arm-alqaddari.codeberg.page/books/buzoogh/&nbsp;</a></span></p>
+نجد بدا من أن نرد ما أتوا به من الباطل بالحق.</span></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">&nbsp;</span></p><p dir="rtl" style="text-align: right;"><span style="font-family: Amiri;">الكتاب الكامل: <a href="https://alqaddari.vercel.app/books/buzoogh/" target="_blank">https://alqaddari.vercel.app/books/buzoogh/&nbsp;</a></span></p>

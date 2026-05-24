@@ -21,7 +21,7 @@ const project = await getEntry('projects', slug);
 if (!project) {
   throw new Error(`Project not found: ${slug}`);
 }
-const canonicalUrl = `https://alqaddari.vercel.app/projects/${slug}`;
+const canonicalUrl = `/projects/${slug}`;
 const ogImage = project.data.coverImage || '/og/default.svg';
 const tags = /** @type {string[]} */ (Array.isArray(project.data.tags) ? project.data.tags : []);
 ---

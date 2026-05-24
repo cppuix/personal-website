@@ -1,12 +1,13 @@
 ---
 import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import ShareControls from '../../components/ShareControls.astro';
 import { translations } from '../../i18n/translations.js';
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const posts: CollectionEntry<'blog'>[] = await getCollection("blog");
   return posts.map((post) => {
     const slug = post.id.split("/").pop();
     return { params: { slug } };
@@ -14,7 +15,8 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = (await getCollection("blog")).find(
+const allPosts: CollectionEntry<'blog'>[] = await getCollection("blog");
+const post = allPosts.find(
   (p) => p.id.split("/").pop() === slug
 );
 
@@ -22,7 +24,7 @@ if (!post) return Astro.redirect("/blog");
 
 const { Content } = await render(post);
 const publishedTime = post.data.date?.toISOString();
-const canonicalUrl = `https://alqaddari.vercel.app/blog/${slug}`;
+const canonicalUrl = `/blog/${slug}`;
 const ogImage = post.data.coverImage || '/og/default.svg';
 ---
 
@@ -49,7 +51,7 @@ const ogImage = post.data.coverImage || '/og/default.svg';
               {post.data.category}
             </span>
           )}
-          {post.data.tags?.map(tag => (
+          {post.data.tags?.map((tag: string) => (
             <span class="book-tag book-tag--cat" data-tag={tag} data-tag-original={tag}>{tag}</span>
           ))}
         </div>

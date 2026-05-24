@@ -26,6 +26,6 @@ featured: false
 استعملت آلة حديثة لنسخ صورة الوردة.</span></p>
 <p><span style="font-family: Amiri;">هذا من البدهيات، وبسيط جدا، ولا يحتاج هذا الكم من الشرح والتفصيل، ولكن</span></p>
 <p><span style="font-family: Amiri;">قدر الله وما شاء فعل، وإلى الله المشتكى.</span></p>
-<p><span style="font-family: Amiri;">هناك تفصيل أعمق من هذا في <a href="https://arm-alqaddari.codeberg.page/books/buzoogh/" target="_blank">كتاب البزوغ</a>، ولكن المنصف يكفيه هذا الشرح المختصر.</span></p>
+<p><span style="font-family: Amiri;">هناك تفصيل أعمق من هذا في <a href="https://alqaddari.vercel.app/books/buzoogh/" target="_blank">كتاب البزوغ</a>، ولكن المنصف يكفيه هذا الشرح المختصر.</span></p>
 
       </div>

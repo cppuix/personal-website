@@ -100,7 +100,7 @@ featured: false
  الْقِيَامَةِ لَمْ تَحِلَّ لِأَحَدٍ قَبْلِي، وَلَا تَحِلُّ لِأَحَدٍ 
 بَعْدِي، وَلَمْ تَحْلِلْ لِي قَطُّ إِلَّا سَاعَةً مِنَ الدَّهْرِ لَا 
 يُنَفَّرُ صَيْدُهَا، وَلَا يُعْضَدُ  شَوْكُهَا، وَلَا يُخْتَلَى خَلَاهَا
- ، وَلَا تَحِلُّ لُقَطَتُهَا إِلَّا  لِمُنْشِدٍ[...]"<sup class="footnote-reference"><a href="https://arm-alqaddari.codeberg.page/books/sabqtafdheel/#1">1</a></sup>.<br />
+ ، وَلَا تَحِلُّ لُقَطَتُهَا إِلَّا  لِمُنْشِدٍ[...]"<sup class="footnote-reference"><a href="https://alqaddari.vercel.app/books/sabqtafdheel/#1">1</a></sup>.<br />
 ولم يذكر هذا عن غيرها.</span></p>
 </blockquote>
 <p><span style="font-family: Amiri;">وهي البقعة التي اختارها الله لبناء الكعبة، منذ زمن إبراهيم وإسماعيل عليهما السلام، وما زال الناس يحجون إليها من ذاك الزمن.<br />
@@ -108,7 +108,7 @@ featured: false
  كانت كذلك قبل إنزاله، وزادها الله شرفا بإنزال كتابه فيها.</span></p>
 <p><span style="font-family: Amiri;">4 - قول رسول الله صلى الله عليه وسلم:</span></p>
 <blockquote>
-<p><span style="font-family: Amiri;">وَاللهِ إِنَّكِ لَخَيْرُ أَرْضِ اللهِ ‌وَأَحَبُّ ‌أَرْضِ ‌اللهِ إِلَى اللهِ وَلَوْلَا أَنِّي أُخْرِجْتُ مِنْكِ مَا خَرَجْتُ"<sup class="footnote-reference"><a href="https://arm-alqaddari.codeberg.page/books/sabqtafdheel/#2">2</a></sup>.<br />
+<p><span style="font-family: Amiri;">وَاللهِ إِنَّكِ لَخَيْرُ أَرْضِ اللهِ ‌وَأَحَبُّ ‌أَرْضِ ‌اللهِ إِلَى اللهِ وَلَوْلَا أَنِّي أُخْرِجْتُ مِنْكِ مَا خَرَجْتُ"<sup class="footnote-reference"><a href="https://alqaddari.vercel.app/books/sabqtafdheel/#2">2</a></sup>.<br />
 فهل مكة أصبحت أحب أرض الله إلى الله بعد نزول القرآن فقط؟
 هذا لا يقول به أحد، إن شاء الله. ولكنه لازم لتلك المقولة، فبان غلطها.</span></p>
 </blockquote>
@@ -117,7 +117,7 @@ featured: false
 <p><span style="font-family: Amiri;">إن ‌الله ‌نظر ‌في ‌قلوب ‌العباد فوجد قلب محمد صلى الله عليه وعلى آله 
 وسلم خير قلوب العباد فاصطفاه لنفسه فابتعثه برسالته ثم نظر في قلوب العباد
  بعد قلب محمد فوجد قلوب أصحابه خير قلوب العباد فجعلهم وزراء نبيه يقاتلون
- على دينه فما رأى المسلمون حسنًا<sup class="footnote-reference"><a href="https://arm-alqaddari.codeberg.page/books/sabqtafdheel/#3">3</a></sup> فهو عند الله حسن وما رأوا سيئًا فهو عند الله سيئ."<sup class="footnote-reference"><a href="https://arm-alqaddari.codeberg.page/books/sabqtafdheel/#4">4</a></sup>.<br />
+ على دينه فما رأى المسلمون حسنًا<sup class="footnote-reference"><a href="https://alqaddari.vercel.app/books/sabqtafdheel/#3">3</a></sup> فهو عند الله حسن وما رأوا سيئًا فهو عند الله سيئ."<sup class="footnote-reference"><a href="https://alqaddari.vercel.app/books/sabqtafdheel/#4">4</a></sup>.<br />
 الشاهد من هذا أن الله تعالى اصطفى نبينا صلى الله عليه وسلم قبل أن يبعثه. وهذا صريح فهم صحابي جليل.</span></p>
 </blockquote>
 <p><span style="font-family: Amiri;">6 - قال الإمام السعدي في بيان قول الله تعالى: { فِي لَيْلَةٍ مُبَارَكَةٍ }:</span></p>

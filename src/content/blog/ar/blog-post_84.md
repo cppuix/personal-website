@@ -104,7 +104,7 @@ featured: false
 قال.</span></p>
 <p><span style="font-family: Amiri;">رحمه الله، وإنما قال هذا بناء على فهمه للتصوير الضوئي، وهو فهم غير 
 صحيح، وكل ما انبنى على ذاك الفهم لا يصح أيضا. وسنفصل إن شاء الله في هذا 
-بعد قليل<sup class="footnote-reference"><a href="https://arm-alqaddari.codeberg.page/books/dontpublishscholarsphotos/#1">1</a></sup>.</span></p>
+بعد قليل<sup class="footnote-reference"><a href="https://alqaddari.vercel.app/books/dontpublishscholarsphotos/#1">1</a></sup>.</span></p>
 <p><span style="font-family: Amiri;">وقوله هذا الذي نقلناه، صحيحٌ أنه في سياق الكلام عن التجسس، ولكن إطلاقه صحيح، إذ العلة في عدم رضى المُصَوَّر وعدم إذنه.</span></p>
 <p><span style="font-family: Amiri;">وما يشاع عن العثيمين – رحمه الله – حصل فيه خبط وخلط كثير، وتدليس وتلبيس، فقد استقر قول الشيخ على التالي:</span></p><p><span style="font-family: Amiri;"></span></p>
       
@@ -178,7 +178,7 @@ featured: false
 لَّا يَشْعُرُونَ  } [البقرة: 11-12].</span></p>
 <hr />
 <h3 id="lkhlf-lmz-wm"><span style="font-family: Amiri;">الخلاف المزعوم</span></h3>
-<p><span style="font-family: Amiri;">قد ذكرنا في <a href="https://arm-alqaddari.codeberg.page/books/buzoogh/">كتابنا البزوغ</a> أن هذا الخلاف من أوهى ما يكون، ولا يعتبر به، وسننقل نص ذلك:</span></p>
+<p><span style="font-family: Amiri;">قد ذكرنا في <a href="https://alqaddari.vercel.app/books/buzoogh/">كتابنا البزوغ</a> أن هذا الخلاف من أوهى ما يكون، ولا يعتبر به، وسننقل نص ذلك:</span></p>
 <blockquote>
 <ol start="19"><li><span style="font-family: Amiri;">حكم التصوير الضوئي مسألة خلافية
 يقولون هي نازلة من النوازل، وقد أفتى العديد بعدم حرمته.
@@ -213,7 +213,7 @@ featured: false
 للصوت" أو "انعكاسا له"، فكذلك التصوير الضوئي: هو صناعة صورة بالضوء، لا 
 حبس ظل ولا انعكاس. بل بمنطقهم، التسجيل الصوتي هو "حبس الصمت"، والله 
 المستعان.<br />
-وقد فندنا كل شبههم في <a href="https://arm-alqaddari.codeberg.page/books/buzoogh/">كتابنا البزوغ</a> بما لا يدع مجالا للشك، والحمد لله رب العالمين.</span></p>
+وقد فندنا كل شبههم في <a href="https://alqaddari.vercel.app/books/buzoogh/">كتابنا البزوغ</a> بما لا يدع مجالا للشك، والحمد لله رب العالمين.</span></p>
 <hr />
 <h3 id="mnzwr-lmhrim-lltswyr-ldwy-y"><span style="font-family: Amiri;">منظور المحرِم للتصوير الضوئي</span></h3>
 <p><span style="font-family: Amiri;">نحن نعلم ما هو التصوير الضوئي، وأنتم لا تعلمون. وبما أننا نعلم، فإنه 
