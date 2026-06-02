@@ -1,15 +1,20 @@
 {
-  "title": "The Position of al-ʿAllāmah Muḥammad ibn ʿUthaymīn on Image-Making",
-  "author": "Abdurrahman ibn Mihoub al-Qaddari",
-  "description": "A detailed study of Shaykh Ibn Uthaymeen's actual position on image-making, clarifying common misrepresentations.",
-  "category": "translations",
-  "language": "en",
   "size": "1.3 MB",
-  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/The%20Position%20of%20al-%CA%BFAll%C4%81mah%20Mu%E1%B8%A5ammad%20ibn%20%CA%BFUthaym%C4%ABn%20on%20Image-Making.pdf",
-  "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
-  "featured": true,
+  "coverImage": "https://archive.org/download/armAlQaddaarreeBooks/The%20Position%20of%20al-%CA%BFAll%C4%81mah%20Mu%E1%B8%A5ammad%20ibn%20%CA%BFUthaym%C4%ABn%20on%20Image-Making.jpg",
   "titleAr": "موقف العلامة محمد بن عثيمين من التصوير",
-  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
+  "author": "Abdurraḥmān bnu Mīhūb al-Qaddārī",
+  "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
   "descriptionAr": "دراسة مفصّلة لموقف الشيخ ابن عثيمين الحقيقي من التصوير، موضحة الشبهات الشائعة.",
-  "categoryAr": "الترجمات"
+  "featured": true,
+  "categoryAr": "الترجمات",
+  "title": "The Position of al-ʿAllāmah Muḥammad bnu ʿUthaymīn on Image-Making",
+  "language": "en",
+  "tags": [
+    "taswir",
+    "manhaj"
+  ],
+  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
+  "description": "A detailed study of ash-shaykh Ibn ʿUthaymeen's actual position on image-making, clarifying common misrepresentations.",
+  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/The%20Position%20of%20al-%CA%BFAll%C4%81mah%20Mu%E1%B8%A5ammad%20ibn%20%CA%BFUthaym%C4%ABn%20on%20Image-Making.pdf",
+  "category": "translations"
 }
