@@ -1,15 +1,20 @@
 {
-  "title": "Teaching in Harmony with the Fitrah",
-  "author": "Abdurrahman ibn Mihoub al-Qaddari",
-  "description": "An exploration of how Islamic education aligns with the natural disposition Allah placed in mankind.",
-  "category": "manhaj",
-  "language": "en",
   "size": "2.2 MB",
-  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/Teaching%20in%20Harmony%20with%20the%20Fitrah.pdf",
-  "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
-  "featured": false,
+  "coverImage": "https://archive.org/download/armAlQaddaarreeBooks/Teaching%20in%20Harmony%20with%20the%20Fitrah.jpg",
   "titleAr": "التعليم في انسجام مع الفطرة",
-  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
+  "author": "Abdurraḥmān bnu Mīhūb al-Qaddārī",
+  "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
   "descriptionAr": "استكشاف كيف يتوافق التعليم الإسلامي مع الفطرة التي خلقها الله في الإنسان.",
-  "categoryAr": "المنهج"
+  "featured": false,
+  "categoryAr": "المنهج",
+  "title": "Teaching in Harmony with the Fiṭrah",
+  "language": "en",
+  "tags": [
+    "education",
+    "children"
+  ],
+  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
+  "description": "An exploration of how Islamic education aligns with the natural disposition Allāh placed in mankind.",
+  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/Teaching%20in%20Harmony%20with%20the%20Fitrah.pdf",
+  "category": "other"
 }
