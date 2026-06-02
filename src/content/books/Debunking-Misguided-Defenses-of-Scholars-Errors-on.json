@@ -1,15 +1,21 @@
 {
-  "title": "Debunking Misguided Defenses of Scholars' Errors on Photography",
-  "titleAr": "تفنيد دفاعات مشوّهة عن أخطاء العلماء في التصوير",
-  "author": "Abdurrahman ibn Mihoub al-Qaddari",
-  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
-  "description": "A refutation of the arguments used to defend scholars who permitted photography, examining the evidences and their misapplication.",
-  "descriptionAr": "تفنيد الحجج المستخدمة للدفاع عن العلماء الذين أباحوا التصوير، مع بيان الأدلة وسوء تطبيقها.",
-  "category": "manhaj",
-  "categoryAr": "المنهج",
-  "language": "en",
   "size": "295 KB",
-  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/Debunking%20Misguided%20Defenses%20of%20Scholars%E2%80%99%20Errors%20on%20Photography.pdf",
+  "coverImage": "https://archive.org/download/armAlQaddaarreeBooks/Debunking%20Misguided%20Defenses%20of%20Scholars%E2%80%99%20Errors%20on%20Photography.jpg",
+  "titleAr": "تفنيد دفاعات مشوّهة عن أخطاء العلماء في التصوير",
+  "author": "Abdurraḥmān bnu Mīhūb al-Qaddārī",
   "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
-  "featured": false
+  "descriptionAr": "تفنيد الحجج المستخدمة للدفاع عن العلماء الذين أباحوا التصوير، مع بيان الأدلة وسوء تطبيقها.",
+  "featured": true,
+  "categoryAr": "المنهج",
+  "title": "Debunking Misguided Defenses of Scholars' Errors on Photography",
+  "language": "en",
+  "tags": [
+    "taswir",
+    "taqlid",
+    "evidence"
+  ],
+  "authorAr": "عبد الرحمن بن ميهوب القدّاري",
+  "description": "A rough guide on how to discuss with those who cling to scholars who permitted photography.",
+  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/Debunking%20Misguided%20Defenses%20of%20Scholars%E2%80%99%20Errors%20on%20Photography.pdf",
+  "category": "manhaj"
 }
