@@ -1,11 +1,15 @@
 {
-  "title": "الرد على فتوى الشيخ بخيت المطيعي التي أباح فيها التصوير الضوئي",
-  "author": "عبد الرحمن بن ميهوب القدّاري",
-  "description": "رد علمي على فتوى الشيخ بخيت المطيعي في إباحة التصوير الضوئي.",
-  "category": "fiqh",
-  "language": "ar",
   "size": "150 KB",
-  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%81%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%B4%D9%8A%D8%AE%20%D8%A8%D8%AE%D9%8A%D8%AA%20%D8%A7%D9%84%D9%85%D8%B7%D9%8A%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%A3%D8%A8%D8%A7%D8%AD%20%D9%81%D9%8A%D9%87%D8%A7%20%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B6%D9%88%D8%A6%D9%8A.pdf",
+  "coverImage": "https://archive.org/download/armAlQaddaarreeBooks/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%81%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%B4%D9%8A%D8%AE%20%D8%A8%D8%AE%D9%8A%D8%AA%20%D8%A7%D9%84%D9%85%D8%B7%D9%8A%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%A3%D8%A8%D8%A7%D8%AD%20%D9%81%D9%8A%D9%87%D8%A7%20%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B6%D9%88%D8%A6%D9%8A.jpg",
+  "author": "عبد الرحمن بن ميهوب القدّاري",
   "archiveUrl": "https://archive.org/details/armAlQaddaarreeBooks",
-  "featured": false
+  "featured": false,
+  "title": "الرد على فتوى الشيخ بخيت المطيعي التي أباح فيها التصوير الضوئي",
+  "language": "ar",
+  "tags": [
+    "taswir"
+  ],
+  "description": "رد علمي على فتوى الشيخ بخيت المطيعي في إباحة التصوير الضوئي.",
+  "pdfUrl": "https://archive.org/download/armAlQaddaarreeBooks/%D8%A7%D9%84%D8%B1%D8%AF%20%D8%B9%D9%84%D9%89%20%D9%81%D8%AA%D9%88%D9%89%20%D8%A7%D9%84%D8%B4%D9%8A%D8%AE%20%D8%A8%D8%AE%D9%8A%D8%AA%20%D8%A7%D9%84%D9%85%D8%B7%D9%8A%D8%B9%D9%8A%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%A3%D8%A8%D8%A7%D8%AD%20%D9%81%D9%8A%D9%87%D8%A7%20%D8%A7%D9%84%D8%AA%D8%B5%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D8%B6%D9%88%D8%A6%D9%8A.pdf",
+  "category": "fiqh"
 }
